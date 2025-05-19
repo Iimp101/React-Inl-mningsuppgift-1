@@ -1,0 +1,19 @@
+.homepage-container {
+	background-image: url("/images/starwars-background.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.homepage-overlay {
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 4rem;
+	border-radius: 1rem;
+	text-align: center;
+}
