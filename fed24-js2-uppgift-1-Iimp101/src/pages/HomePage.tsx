@@ -22,7 +22,7 @@ const HomePage = () => {
 			</audio>
 
 			<div className="homepage-overlay">
-				<h1 className="display-4 text-warning mb-4">Star Wars Encyclopedia</h1>
+				<h1 className="display-4 text-warning mb-4">Starwars Encyclopedia</h1>
 				<p className="text-light mb-5">Discover characters, ships, planets and more...</p>
 
 				<Form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: 500 }}>

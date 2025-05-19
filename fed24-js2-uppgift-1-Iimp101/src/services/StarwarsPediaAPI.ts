@@ -5,7 +5,7 @@ import type {
     Species, Starship,
     Vehicle,
     SWAPIListResponse
-} from "./StarwarsPedia.TYPES";
+} from "./StarwarsPedia.types";
 
 const instance = axios.create({
     baseURL: "https://swapi.thehiveresistance.com/api",
