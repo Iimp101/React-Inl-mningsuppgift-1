@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PeoplesPages = () => {
+const SearchForm = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const PeoplesPages = () => {
   )
 }
 
-export default PeoplesPages
+export default SearchForm

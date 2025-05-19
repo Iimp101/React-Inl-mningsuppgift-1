@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-const SearchPage = () => {
+const PeoplesPage = () => {
   return (
     <div>
       
@@ -9,4 +8,4 @@ const SearchPage = () => {
   )
 }
 
-export default SearchPage
+export default PeoplesPage

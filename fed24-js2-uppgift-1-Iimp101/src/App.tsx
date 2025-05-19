@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation';
 import Container from 'react-bootstrap/Container';
 import Home from './pages/Home';
-import PeoplesPages from './pages/PeoplesPages';
+import PeoplesPages from './pages/PeoplesPage';
 import './App.css'
-import PlanetsPages from './pages/PlanetsPages';
+import PlanetsPages from './pages/PlanetsPage';
 import SpeciesPage from './pages/SpeciesPage';
 import StarshipsPage from './pages/StarshipsPage';
 import VehiclesPage from './pages/VehiclesPage';
