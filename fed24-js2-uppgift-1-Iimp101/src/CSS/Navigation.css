@@ -1,0 +1,27 @@
+.starwars-navbar {
+	background-color: #000 !important;
+	border-bottom: 2px solid yellow;
+	box-shadow: 0 0 10px yellow;
+}
+
+.starwars-logo {
+	color: yellow !important;
+	font-family: 'Orbitron', sans-serif;
+	letter-spacing: 1px;
+	font-size: 1.4rem;
+}
+
+.nav-link.active {
+	color: yellow !important;
+	text-shadow: 0 0 5px yellow;
+}
+
+.nav-link {
+	color: #ccc !important;
+	margin-right: 1rem;
+	transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+	color: #fff700 !important;
+}

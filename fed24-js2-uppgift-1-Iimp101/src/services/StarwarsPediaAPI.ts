@@ -1,9 +1,11 @@
 import axios from "axios";
-import { Person, 
-    Film, Planet, 
-    Species, Starship, 
-    Vehicle, 
-    SWAPIListResponse } from "./StarwarsPedia.TYPES";
+import type {
+    Person,
+    Film, Planet,
+    Species, Starship,
+    Vehicle,
+    SWAPIListResponse
+} from "./StarwarsPedia.TYPES";
 
 const instance = axios.create({
     baseURL: "https://swapi.thehiveresistance.com/api",
