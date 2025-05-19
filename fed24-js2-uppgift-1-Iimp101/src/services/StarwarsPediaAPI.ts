@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: "https://swapi.thehiveresistance.com/api",
     timeout: 10000,
     headers: {
-        accept: "appplication/json",
+        accept: "application/json",
         "content-type": "application/json"
     },
 });
