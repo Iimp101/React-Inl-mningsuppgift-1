@@ -8,7 +8,7 @@ import "../CSS/Navigation.css";
 const Navigation = () => {
   return (
     <Navbar bg="black" variant="dark" expand="md" sticky="top" className="starwars-navbar">
-        <Container>
+        <Container fluid>
             <Navbar.Brand as={NavLink} to="/" className="fw-bold starwars-logo">
             🌌 Star Wars DB
             </Navbar.Brand>

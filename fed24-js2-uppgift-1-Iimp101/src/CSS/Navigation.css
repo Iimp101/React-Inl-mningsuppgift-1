@@ -2,6 +2,9 @@
 	background-color: #000;
 	border-bottom: 2px solid yellow;
 	box-shadow: 0 0 10px yellow;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	min-height: 80px;
 }
 
 .starwars-logo {
@@ -13,12 +16,13 @@
 
 .nav-link.active {
 	color: yellow;
-	text-shadow: 0 0 5px yellow;
+	text-shadow: 0 0 10px #ffe81f, 0 0 20px #ffe81f;
+	font-weight: bold;
 }
 
 .nav-link {
 	color: #ccc;
-	margin-right: 1rem;
+	margin-left: 1rem;
 	transition: color 0.3s ease;
 }
 
