@@ -1,14 +1,31 @@
-import { useState } from 'react'
-import { Route } from 'react-router-dom'
+
+import { Route, Routes } from 'react-router-dom'
+import Navigation from './components/Navigation';
+import Container from 'react-bootstrap/Container';
 import Home from './pages/Home';
+import PeoplesPages from './pages/PeoplesPages';
 import './App.css'
+import PlanetsPages from './pages/PlanetsPages';
+import SpeciesPage from './pages/SpeciesPage';
+import StarshipsPage from './pages/StarshipsPage';
+import VehiclesPage from './pages/VehiclesPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <Route path="/" element={<Home />} />
-  )
+	return (
+    	<>
+			<Navigation />
+			<Container className="my-4">
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/people" element={<PeoplesPages />} />
+					<Route path="/planets" element={<PlanetsPages />} />
+					<Route path="/species" element={<SpeciesPage/>} />
+					<Route path="/starships" element={<StarshipsPage />} />
+					<Route path="/vehicles" element={<VehiclesPage />} />
+				</Routes>
+			</Container>
+    	</>
+  	)
 }
 
 export default App
