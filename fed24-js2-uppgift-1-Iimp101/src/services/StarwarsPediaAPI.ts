@@ -4,7 +4,7 @@ import type {
     Film, Planet,
     Species, Starship,
     Vehicle,
-    SWAPIListResponse
+    SWAPIListResponse,
 } from "./StarwarsPedia.types";
 
 const instance = axios.create({
