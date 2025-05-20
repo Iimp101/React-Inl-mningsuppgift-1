@@ -1,9 +1,5 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
 import { useState, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import "../CSS/Navigation.css";
 
 const Navigation = () => {
@@ -22,42 +18,36 @@ const Navigation = () => {
 	};
 
 	return (
-		<Navbar bg="black" variant="dark" expand="md" sticky="top" className="starwars-navbar">
-			<Container fluid>
-				<div className="d-flex justify-content-between align-items-center w-100">
-					
-					{/* Vänster: Brand */}
-					<Navbar.Brand as={NavLink} to="/" className="fw-bold starwars-logo me-auto">
-						🌌 Starwars DB
-					</Navbar.Brand>
+		<header className="starwars-navbar">
+			<div className="nav-container">
+				
+				{/* Vänster: Logo */}
+				<div className="nav-left">
+					<NavLink to="/" className="starwars-logo">🌌 Starwars DB</NavLink>
+				</div>
 
-					{/* Mitten: Nav länkar */}
-					<Nav className="mx-auto nav-links">
-						<Nav.Link as={NavLink} to="/films">Films</Nav.Link>
-						<Nav.Link as={NavLink} to="/people">People</Nav.Link>
-						<Nav.Link as={NavLink} to="/planets">Planets</Nav.Link>
-						<Nav.Link as={NavLink} to="/species">Species</Nav.Link>
-						<Nav.Link as={NavLink} to="/starships">Starships</Nav.Link>
-						<Nav.Link as={NavLink} to="/vehicles">Vehicles</Nav.Link>
-					</Nav>
+				{/* Mitten: Nav länkar */}
+				<nav className="nav-center">
+					<NavLink to="/films" className="nav-link">Films</NavLink>
+					<NavLink to="/people" className="nav-link">People</NavLink>
+					<NavLink to="/planets" className="nav-link">Planets</NavLink>
+					<NavLink to="/species" className="nav-link">Species</NavLink>
+					<NavLink to="/starships" className="nav-link">Starships</NavLink>
+					<NavLink to="/vehicles" className="nav-link">Vehicles</NavLink>
+				</nav>
 
-					{/* Höger: Ljudknapp */}
-					<Button
-						variant={audioPlaying ? "warning" : "outline-warning"}
-						size="sm"
-						onClick={toggleAudio}
-						className="sound-toggle ms-auto"
-					>
+				{/* Höger: Ljudknapp */}
+				<div className="nav-right">
+					<button onClick={toggleAudio} className="sound-toggle">
 						{audioPlaying ? "🔊 On" : "🔇 Off"}
-					</Button>
-
-					{/* Ljud */}
+					</button>
 					<audio ref={audioRef} loop>
 						<source src="/sounds/starwars-theme.mp3" type="audio/mpeg" />
 					</audio>
 				</div>
-			</Container>
-		</Navbar>
+
+			</div>
+		</header>
 	);
 };
 
