@@ -1,5 +1,7 @@
 .people-page {
 	padding: 2rem;
+	max-width: 93.75rem;
+  	margin: 0 auto;
 }
 
 .page-title {
@@ -23,6 +25,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 1.5rem;
+	justify-items: center;
 }
 
 .person-card {

@@ -34,7 +34,7 @@ const PeoplesPage = () => {
 		fetchPeople();
 	}, [currentPage]);
 
-	const fallbackImages: Record<number, string> = {
+/* 	const missingImages: Record<number, string> = {
 	37: "/images/PeopleImages/Roos Tarpals.png",
 	38: "/images/PeopleImages/Rugor Nass.png",
 	43: "/images/PeopleImages/Shmi Skywalker.png",
@@ -53,7 +53,7 @@ const PeoplesPage = () => {
 	79: "/images/PeopleImages/Grievous.png",
 	82: "/images/PeopleImages/Sly Moore.png",
 	83: "/images/PeopleImages/Tion Medon.png",
-};
+}; */
 
 	const goToPage = (newPage: number) => {
 		setSearchParams({ page: newPage.toString() });
