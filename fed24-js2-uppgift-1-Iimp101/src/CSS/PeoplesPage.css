@@ -73,3 +73,23 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+.with-lightsabers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  color: yellow;
+  position: relative;
+}
+
+.lightsaber {
+  height: 2rem;
+  vertical-align: middle;
+}
+
+.lightsaber.left {
+  transform: scaleX(-1);
+}
+

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { getPersonList } from "../services/StarwarsPediaAPI";
 import type { Person, SWAPIListResponse } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
+import LoadingPeople from "../components/LoadingPeople";
 import "../CSS/PeoplesPage.css";
 
 	const missingImages: Record<number, string> = {
@@ -42,6 +43,7 @@ const PeoplesPage = () => {
 
 			try {
 				const data: SWAPIListResponse<Person> = await getPersonList(currentPage);
+				await new Promise(r => setTimeout(r, 1500));
 				setPeople(data.data);
 				setTotalPages(data.last_page);
 			} catch (err) {
@@ -62,20 +64,22 @@ const PeoplesPage = () => {
 
 	return (
 		<div className="people-page">
-			<h1 className="page-title">
-  				Starwars People
-  			<img
-				src="/GIFS/lightsaber2.gif"
-				alt="Lightsaber"
-				style={{
-				height: "1.8rem",
-				marginLeft: "0.5rem",
-				verticalAlign: "middle"
-    			}}
-  			/>
+			<h1 className="page-title with-lightsabers">
+				<img
+					src="/GIFS/lightsaberBlue2.gif"
+					alt="Blue Lightsaber"
+					className="lightsaber left"
+				/>
+				Star Wars People
+				<img
+					src="/GIFS/lightsaberRed2.gif"
+					alt="Red Lightsaber"
+					className="lightsaber right"
+				/>
 			</h1>
 
-			{isLoading && <p className="loading">Loading characters...</p>}
+
+			{isLoading && <LoadingPeople />}
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && people.length > 0 && (
@@ -99,14 +103,16 @@ const PeoplesPage = () => {
 				</ul>
 			)}
 
-			<Pagination
-				page={currentPage}
-				totalPages={totalPages}
-				hasPreviousPage={currentPage > 1}
-				hasNextPage={currentPage < totalPages}
-				onPreviousPage={() => goToPage(currentPage - 1)}
-				onNextPage={() => goToPage(currentPage + 1)}
-			/>
+			{!isLoading && !error && people.length > 0 && (
+  				<Pagination
+					page={currentPage}
+					totalPages={totalPages}
+					hasPreviousPage={currentPage > 1}
+					hasNextPage={currentPage < totalPages}
+					onPreviousPage={() => goToPage(currentPage - 1)}
+					onNextPage={() => goToPage(currentPage + 1)}
+  				/>
+			)}
 		</div>
 	);
 };
