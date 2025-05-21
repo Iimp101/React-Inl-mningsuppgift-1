@@ -6,8 +6,8 @@ import PlanetsPages from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
-import "./App.css";
 import FilmsPage from "./pages/FilmPage";
+import "./App.css";
 
 function App() {
 	return (
