@@ -32,8 +32,8 @@ const PeoplesPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [totalPages, setTotalPages] = useState<number>(1);
-
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const currentPage = parseInt(searchParams.get("page") || "1");
 
 	useEffect(() => {

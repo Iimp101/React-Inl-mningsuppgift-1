@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getPlanetList } from "../services/StarwarsPediaAPI";
 import type { Planet, SWAPIListResponse } from "../services/StarwarsPedia.types";
+import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
+import Pagination from "../components/Pagination";
 import "../CSS/PlanetPage.css";
 
 
@@ -9,6 +11,10 @@ const PlanetsPage = () => {
 	const [planets, setPlanets] = useState<Planet[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
   	const [error, setError] = useState<string | null>(null);
+	const [totalPages, setTotalPages] = useState<number>(1);
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const currentPage = parseInt(searchParams.get("page") || "1");
 
 	useEffect(() => {
     const fetchPlanets = async () => {
@@ -16,9 +22,10 @@ const PlanetsPage = () => {
       setError(null);
 
       try {
-        const response: SWAPIListResponse<Planet> = await getPlanetList();
+        const response: SWAPIListResponse<Planet> = await getPlanetList(currentPage);
         await new Promise(r => setTimeout(r, 1500)); 
         setPlanets(response.data);
+		setTotalPages(response.last_page);
       } catch (err) {
         setError(err instanceof Error
 			? err.message
@@ -30,8 +37,11 @@ const PlanetsPage = () => {
     };
 
     fetchPlanets();
-  }, []);
+}, [currentPage]);
 
+	const goToPage = (newPage: number) => {
+  		setSearchParams({ page: newPage.toString() });
+	};
 
 	return (
     	<div className="planets-page">
@@ -67,8 +77,19 @@ const PlanetsPage = () => {
           	))}
         </ul>
       )}
-    </div>
-  )
+
+	  {!isLoading && !error && planets.length > 0 && (
+				<Pagination
+					page={currentPage}
+					totalPages={totalPages}
+					hasPreviousPage={currentPage > 1}
+					hasNextPage={currentPage < totalPages}
+					onPreviousPage={() => goToPage(currentPage - 1)}
+					onNextPage={() => goToPage(currentPage + 1)}
+				/>
+			)}
+    	</div>
+	)
 }
 
 export default PlanetsPage;
