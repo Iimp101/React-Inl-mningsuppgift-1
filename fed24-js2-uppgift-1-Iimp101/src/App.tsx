@@ -7,6 +7,7 @@ import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import "./App.css";
+import FilmsPage from "./pages/FilmPage";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/people" element={<PeoplesPages />} />
+					<Route path="/films" element={<FilmsPage />} />
 					<Route path="/planets" element={<PlanetsPages />} />
 					<Route path="/species" element={<SpeciesPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />

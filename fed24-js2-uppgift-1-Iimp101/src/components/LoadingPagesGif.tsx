@@ -1,3 +1,4 @@
+import "../CSS/LoadingPagesGif.css";
 
 const LoadingPagesGif = () => {
   return (

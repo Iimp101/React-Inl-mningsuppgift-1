@@ -47,10 +47,11 @@ const PeoplesPage = () => {
 				setPeople(data.data);
 				setTotalPages(data.last_page);
 			} catch (err) {
-				console.error(err);
-				setError("Failed to load characters.");
+				setError(err instanceof Error
+				? err.message
+				: "Failed to load people"
+				)
 			}
-
 			setIsLoading(false);
 		};
 
@@ -70,7 +71,7 @@ const PeoplesPage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Star Wars People
+				Starwars People
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"
@@ -114,7 +115,7 @@ const PeoplesPage = () => {
   				/>
 			)}
 		</div>
-	);
-};
+	)
+}
 
 export default PeoplesPage;
