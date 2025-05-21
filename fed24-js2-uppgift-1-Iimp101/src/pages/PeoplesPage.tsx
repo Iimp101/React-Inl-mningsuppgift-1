@@ -62,7 +62,18 @@ const PeoplesPage = () => {
 
 	return (
 		<div className="people-page">
-			<h1 className="page-title">🧑‍🚀 Star Wars People</h1>
+			<h1 className="page-title">
+  				Starwars People
+  			<img
+				src="/GIFS/lightsaber2.gif"
+				alt="Lightsaber"
+				style={{
+				height: "1.8rem",
+				marginLeft: "0.5rem",
+				verticalAlign: "middle"
+    			}}
+  			/>
+			</h1>
 
 			{isLoading && <p className="loading">Loading characters...</p>}
 			{error && <p className="error-msg">{error}</p>}
