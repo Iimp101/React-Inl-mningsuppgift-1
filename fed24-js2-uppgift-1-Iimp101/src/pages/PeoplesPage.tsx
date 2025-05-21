@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { getPersonList } from "../services/StarwarsPediaAPI";
 import type { Person, SWAPIListResponse } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
-import LoadingPeople from "../components/LoadingPeople";
+import LoadingPagesGif from "../components/LoadingPagesGif";
 import "../CSS/PeoplesPage.css";
 
 	const missingImages: Record<number, string> = {
@@ -79,7 +79,7 @@ const PeoplesPage = () => {
 			</h1>
 
 
-			{isLoading && <LoadingPeople />}
+			{isLoading && <LoadingPagesGif />}
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && people.length > 0 && (

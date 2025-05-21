@@ -1,0 +1,22 @@
+.loading-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.loading-pages img {
+  width: 220px;
+  height: auto;
+  filter: drop-shadow(0 0 10px yellow);
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
