@@ -1,5 +1,5 @@
 const planetImages: Record<number, string> = {
-    1: "/images/PlanetImages/Tatooine.png",
+    1: "/images/PlanetImages/Tatoonie.png",
     2: "/images/PlanetImages/Alderaan.png",
     3: "/images/PlanetImages/Yavin 4.png",
     4: "/images/PlanetImages/Hoth.png",

@@ -23,18 +23,18 @@ const PlanetsPage = () => {
       setError(null);
 
       try {
-        const response: SWAPIListResponse<Planet> = await getPlanetList(currentPage);
-        await new Promise(r => setTimeout(r, 1500)); 
-        setPlanets(response.data);
-		setTotalPages(response.last_page);
+			const response: SWAPIListResponse<Planet> = await getPlanetList(currentPage);
+			await new Promise(r => setTimeout(r, 1500)); 
+			setPlanets(response.data);
+			setTotalPages(response.last_page);
       } catch (err) {
         setError(err instanceof Error
 			? err.message
 			: "Failed to load planets"
 			)
-      }
+      	}
 
-      setIsLoading(false);
+    	setIsLoading(false);
     };
 
     fetchPlanets();
@@ -68,7 +68,7 @@ const PlanetsPage = () => {
 			{planets.map((planet) => (
 				<li key={planet.id} className="planet-card">
 					<img
-						src={planetImages[planet.id] || "/images/placeholder.png"}
+						src={planetImages[planet.id]}
 						alt={planet.name}
 						className="planet-image"
 						/>

@@ -68,7 +68,7 @@ const PeoplesPage = () => {
 					{people.map((person) => (
 						<li key={person.id} className="person-card">
 							<img
-								src={person.image_url || missingImages[person.id] || "/images/placeholder.png"}
+								src={person.image_url || missingImages[person.id]}
 								alt={person.name}
 								className="person-image"
 							/>
