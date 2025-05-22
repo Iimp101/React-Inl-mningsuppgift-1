@@ -33,12 +33,10 @@ const Navigation = () => {
 		<header className="starwars-navbar">
 			<div className="nav-container">
 
-				{/* Vänster: Logo */}
 				<div className="nav-left">
 					<NavLink to="/" className="starwars-logo">🌌 Starwars DB</NavLink>
 				</div>
 
-				{/* Mitten: Nav länkar */}
 				<nav className="nav-center">
 					<NavLink to="/films" className="nav-link">Films</NavLink>
 					<NavLink to="/people" className="nav-link">People</NavLink>
