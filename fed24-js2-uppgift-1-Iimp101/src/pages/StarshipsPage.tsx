@@ -77,8 +77,6 @@ const StarshipPage = () => {
             <div className="starship-info">
 				<h3>{ship.name}</h3>
 				<p><strong>Model:</strong> {ship.model}</p>
-				<p><strong>Class:</strong> {ship.starship_class}</p>
-				<p><strong>Manufacturer:</strong> {ship.manufacturer}</p>
 				<p><strong>Cost:</strong> {ship.cost_in_credits} credits</p>
 				<p><strong>Length:</strong> {ship.length} m</p>
 				<p><strong>Crew:</strong> {ship.crew}</p>
@@ -88,7 +86,6 @@ const StarshipPage = () => {
 				<p><strong>MGLT:</strong> {ship.MGLT}</p>
 				<p><strong>Cargo Capacity:</strong> {ship.cargo_capacity} kg</p>
 				<p><strong>Consumables:</strong> {ship.consumables}</p>
-				<p><strong>Pilots:</strong> {ship.pilots_count}</p>
 				<p><strong>Films:</strong> {ship.films_count}</p>
             </div>
           </li>
