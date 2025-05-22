@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
-import PeoplesPages from "./pages/PeoplesPage";
+import PeoplesPage from "./pages/PeoplesPage";
 import PlanetsPage from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
@@ -17,7 +17,7 @@ function App() {
 			<div>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/people" element={<PeoplesPages />} />
+					<Route path="/people" element={<PeoplesPage />} />
 					<Route path="/films" element={<FilmsPage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
