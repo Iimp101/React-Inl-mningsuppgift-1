@@ -4,6 +4,7 @@ import type { Planet, SWAPIListResponse } from "../services/StarwarsPedia.types"
 import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
+import planetImages from "../data/PlanetImages";
 import "../CSS/PlanetPage.css";
 
 
@@ -66,6 +67,11 @@ const PlanetsPage = () => {
         	<ul className="planet-list">
 			{planets.map((planet) => (
 				<li key={planet.id} className="planet-card">
+					<img
+						src={planetImages[planet.id] || "/images/placeholder.png"}
+						alt={planet.name}
+						className="planet-image"
+						/>
 				<div className="planet-info">
 					<h3>{planet.name}</h3>
 					<p><strong>Climate:</strong> {planet.climate}</p>
