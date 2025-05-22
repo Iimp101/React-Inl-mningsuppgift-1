@@ -4,6 +4,7 @@ import type { Starship, SWAPIListResponse } from "../services/StarwarsPedia.type
 import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
+import starshipImages from "../data/StarshipImages";
 import "../CSS/StarshipPage.css";
 
 const StarshipPage = () => {
@@ -67,11 +68,11 @@ const StarshipPage = () => {
       <ul className="starship-list">
         {starship.map((ship) => (
           <li key={ship.id} className="starship-card">
-           {/*  <img
-  				src={starship[ship.id]}
+            <img
+				src={starshipImages[ship.id]}
 				alt={ship.name}
 				className="starship-image"
-			/> */}
+			/>
 
             <div className="starship-info">
 				<h3>{ship.name}</h3>
