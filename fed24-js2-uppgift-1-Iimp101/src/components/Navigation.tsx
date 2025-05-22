@@ -4,10 +4,13 @@ import "../CSS/Navigation.css";
 
 const Navigation = () => {
 	const [audioPlaying, setAudioPlaying] = useState(false);
+	const [volume, setVolume] = useState(0.5);
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
 	const toggleAudio = () => {
 		if (!audioRef.current) return;
+
+		audioRef.current.volume = volume;
 
 		if (audioPlaying) {
 			audioRef.current.pause();
@@ -17,10 +20,19 @@ const Navigation = () => {
 		setAudioPlaying(!audioPlaying);
 	};
 
+	const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newVolume = parseFloat(e.target.value);
+		setVolume(newVolume);
+
+		if (audioRef.current) {
+			audioRef.current.volume = newVolume;
+		}
+	};
+
 	return (
 		<header className="starwars-navbar">
 			<div className="nav-container">
-				
+
 				{/* Vänster: Logo */}
 				<div className="nav-left">
 					<NavLink to="/" className="starwars-logo">🌌 Starwars DB</NavLink>
@@ -36,13 +48,22 @@ const Navigation = () => {
 					<NavLink to="/vehicles" className="nav-link">Vehicles</NavLink>
 				</nav>
 
-				{/* Höger: Ljudknapp */}
 				<div className="nav-right">
 					<button onClick={toggleAudio} className="sound-toggle">
 						{audioPlaying ? "🔊 On" : "🔇 Off"}
 					</button>
+					<input
+						type="range"
+						min="0"
+						max="1"
+						step="0.01"
+						value={volume}
+						onChange={handleVolumeChange}
+						className="lightsaber-slider"
+						title="Volume"
+					/>
 					<audio ref={audioRef} loop>
-						<source src="/sounds/starwars-theme.mp3" type="audio/mpeg" />
+						<source src="/sounds/Starwars-Lobby-Music.mp3" type="audio/mpeg" />
 					</audio>
 				</div>
 
