@@ -34,7 +34,7 @@ const Navigation = () => {
 			<div className="nav-container">
 
 				<div className="nav-left">
-					<NavLink to="/" className="starwars-logo">🌌 Starwars DB</NavLink>
+					<NavLink to="/" className="starwars-logo">🌌 Star wars DB</NavLink>
 				</div>
 
 				<nav className="nav-center">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getSpeciesList } from "../services/StarwarsPediaAPI";
-import type { Species, SWAPIListResponse } from "../services/StarwarsPedia.types";
+import type { Species } from "../services/StarwarsPedia.types";
 import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
@@ -11,10 +11,10 @@ const SpeciesPage = () => {
 	const [species, setSpecies] = useState<Species[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState<number>(1);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const currentPage = parseInt(searchParams.get("page") || "1");
+	const speciesPerPage = 8;
 
 	useEffect(() => {
 		const fetchSpecies = async () => {
@@ -22,10 +22,21 @@ const SpeciesPage = () => {
 			setError(null);
 
 			try {
-				const response: SWAPIListResponse<Species> = await getSpeciesList(currentPage);
+				const firstPage = await getSpeciesList(1);
 				await new Promise(r => setTimeout(r, 1500)); 
-				setSpecies(response.data);
-				setTotalPages(response.last_page);
+				let allResults = [...firstPage.data];
+
+				const totalPages = firstPage.last_page;
+				const promises = [];
+
+				for (let page = 2; page <= totalPages; page++) {
+					promises.push(getSpeciesList(page));
+				}
+
+				const otherPages = await Promise.all(promises);
+				otherPages.forEach(p => allResults = allResults.concat(p.data));
+
+				setSpecies(allResults);
 			}
 			catch (err) {
 			setError(err instanceof Error
@@ -40,6 +51,10 @@ const SpeciesPage = () => {
 		fetchSpecies();
 	}, [currentPage]);
 
+	const totalPages = Math.ceil(species.length / speciesPerPage);
+	const startIndex = (currentPage - 1) * speciesPerPage;
+	const visibleSpecies = species.slice(startIndex, startIndex + speciesPerPage);
+
 	const goToPage = (newPage: number) => {
 		setSearchParams( {page: newPage.toString() });
 	};
@@ -52,7 +67,7 @@ const SpeciesPage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Starwars Species
+				Star wars Species
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"
@@ -65,7 +80,7 @@ const SpeciesPage = () => {
 
 			{!isLoading && !error && (
 				<ul className="species-list">
-					{species.map((specie) => (
+					{visibleSpecies.map((specie) => (
 						<li key={specie.id} className="species-card">
 							{/* <img
 								src={speciesImages[specie.id]}

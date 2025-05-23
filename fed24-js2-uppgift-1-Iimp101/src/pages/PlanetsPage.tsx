@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPlanetList } from "../services/StarwarsPediaAPI";
-import type { Planet, SWAPIListResponse } from "../services/StarwarsPedia.types";
+import type { Planet } from "../services/StarwarsPedia.types";
 import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
@@ -11,10 +11,11 @@ const PlanetsPage = () => {
 	const [planets, setPlanets] = useState<Planet[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
   	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState<number>(1);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const currentPage = parseInt(searchParams.get("page") || "1");
+	const planetPerPage = 8;
+
 
 	useEffect(() => {
     const fetchPlanets = async () => {
@@ -22,10 +23,21 @@ const PlanetsPage = () => {
       setError(null);
 
       try {
-			const response: SWAPIListResponse<Planet> = await getPlanetList(currentPage);
-			await new Promise(r => setTimeout(r, 1500)); 
-			setPlanets(response.data);
-			setTotalPages(response.last_page);
+			const firstPage = await getPlanetList(1);
+			await new Promise(r => setTimeout(r, 1500));
+			let allResults = [...firstPage.data];
+
+			const totalPages = firstPage.last_page;
+			const promises = [];
+
+			for (let page = 2; page <= totalPages; page++) {
+				promises.push(getPlanetList(page));
+			}
+
+			const otherPages = await Promise.all(promises);
+			otherPages.forEach(p => allResults = allResults.concat(p.data));
+
+			setPlanets(allResults);
       } catch (err) {
         setError(err instanceof Error
 			? err.message
@@ -39,6 +51,10 @@ const PlanetsPage = () => {
     fetchPlanets();
 }, [currentPage]);
 
+	const totalPages = Math.ceil(planets.length / planetPerPage);
+	const startIndex = (currentPage - 1) * planetPerPage;
+	const visiblePlanets = planets.slice(startIndex, startIndex + planetPerPage);
+
 	const goToPage = (newPage: number) => {
   		setSearchParams({ page: newPage.toString() });
 	};
@@ -51,7 +67,7 @@ const PlanetsPage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Starwars Planets
+				Star wars Planets
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"
@@ -64,7 +80,7 @@ const PlanetsPage = () => {
 
       	{!isLoading && !error && (
         	<ul className="planet-list">
-			{planets.map((planet) => (
+			{visiblePlanets.map((planet) => (
 				<li key={planet.id} className="planet-card">
 					<img
 						src={planetImages[planet.id]}

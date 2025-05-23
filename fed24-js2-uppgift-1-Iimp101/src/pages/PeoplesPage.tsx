@@ -24,10 +24,11 @@ const PeoplesPage = () => {
 			try {
 				
 				const firstPage = await getPersonList(1);
+				await new Promise(r => setTimeout(r, 1500));
 				let allResults = [...firstPage.data];
 
 				const totalPages = firstPage.last_page;
-				const promises = []
+				const promises = [];
 
 				for (let page = 2; page <= totalPages; page++) {
 					promises.push(getPersonList(page));
@@ -66,7 +67,7 @@ const PeoplesPage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Starwars People
+				Star wars People
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"

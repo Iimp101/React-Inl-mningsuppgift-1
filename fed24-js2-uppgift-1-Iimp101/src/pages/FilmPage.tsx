@@ -41,7 +41,7 @@ const FilmsPage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Starwars Films
+				Star wars Films
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"
