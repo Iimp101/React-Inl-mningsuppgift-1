@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getPersonList } from "../services/StarwarsPediaAPI";
-import type { Person, SWAPIListResponse } from "../services/StarwarsPedia.types";
+import type { Person } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import missingImages from "../data/PeopleImages";
@@ -11,9 +11,9 @@ const PeoplesPage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState<number>(1);
 	const [searchParams, setSearchParams] = useSearchParams();
 
+	const peoplePerPage = 10;
 	const currentPage = parseInt(searchParams.get("page") || "1");
 
 	useEffect(() => {
@@ -22,10 +22,21 @@ const PeoplesPage = () => {
 			setError(null);
 
 			try {
-				const data: SWAPIListResponse<Person> = await getPersonList(currentPage);
-				await new Promise(r => setTimeout(r, 1500));
-				setPeople(data.data);
-				setTotalPages(data.last_page);
+				
+				const firstPage = await getPersonList(1);
+				let allResults = [...firstPage.data];
+
+				const totalPages = firstPage.last_page;
+				const promises = []
+
+				for (let page = 2; page <= totalPages; page++) {
+					promises.push(getPersonList(page));
+				}
+
+				const otherPages = await Promise.all(promises);
+				otherPages.forEach(p => allResults = allResults.concat(p.data));
+
+				setPeople(allResults);
 			} catch (err) {
 				setError(err instanceof Error
 				? err.message
@@ -38,6 +49,10 @@ const PeoplesPage = () => {
 		fetchPeople();
 	}, [currentPage]);
 
+
+	const totalPages = Math.ceil(people.length / peoplePerPage);
+	const startIndex = (currentPage - 1) * peoplePerPage;
+	const visiblePeople = people.slice(startIndex, startIndex + peoplePerPage);
 
 	const goToPage = (newPage: number) => {
 		setSearchParams({ page: newPage.toString() });
@@ -63,9 +78,9 @@ const PeoplesPage = () => {
 			{isLoading && <LoadingPagesGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && people.length > 0 && (
+			{!isLoading && !error && visiblePeople.length > 0 && (
 				<ul className="people-list">
-					{people.map((person) => (
+					{visiblePeople.map((person) => (
 						<li key={person.id} className="person-card">
 							<img
 								src={person.image_url || missingImages[person.id]}
@@ -84,7 +99,7 @@ const PeoplesPage = () => {
 				</ul>
 			)}
 
-			{!isLoading && !error && people.length > 0 && (
+			{!isLoading && !error && visiblePeople.length > 0 && (
   				<Pagination
 					page={currentPage}
 					totalPages={totalPages}

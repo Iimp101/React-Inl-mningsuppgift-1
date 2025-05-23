@@ -27,6 +27,7 @@
 
 .species-card {
     flex: 0 0 280px;
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid yellow;
     border-radius: 12px;
