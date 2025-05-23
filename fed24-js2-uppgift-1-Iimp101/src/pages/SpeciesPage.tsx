@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
 import "../CSS/SpeciesPage.css";
+import speciesImages from "../data/SpeciesImages";
 
 const SpeciesPage = () => {
 
@@ -82,11 +83,11 @@ const SpeciesPage = () => {
 				<ul className="species-list">
 					{visibleSpecies.map((specie) => (
 						<li key={specie.id} className="species-card">
-							{/* <img
+							<img
 								src={speciesImages[specie.id]}
 								alt={specie.name}
                					 className="species-image"
-              				/> */}
+              				/>
 							<div className="species-info">
 								<h3>{specie.name}</h3>
 								<p><strong>Classification:</strong> {specie.classification}</p>
