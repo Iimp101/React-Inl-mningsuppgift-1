@@ -7,7 +7,6 @@ import Pagination from "../components/Pagination";
 import planetImages from "../data/PlanetImages";
 import "../CSS/PlanetPage.css";
 
-
 const PlanetsPage = () => {
 	const [planets, setPlanets] = useState<Planet[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
