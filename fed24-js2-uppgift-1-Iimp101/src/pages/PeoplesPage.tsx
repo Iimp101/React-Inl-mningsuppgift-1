@@ -5,7 +5,9 @@ import type { Person } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import missingImages from "../data/PeopleImages";
+import lightsaberColor from "../data/PeopleLightsaverColor";
 import "../CSS/PeoplesPage.css";
+import getTransparentColor from "../components/TransparentColor";
 
 const PeoplesPage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
@@ -82,7 +84,13 @@ const PeoplesPage = () => {
 			{!isLoading && !error && visiblePeople.length > 0 && (
 				<ul className="people-list">
 					{visiblePeople.map((person) => (
-						<li key={person.id} className="person-card">
+						<li
+							key={person.id}
+							className="person-card"
+							style={{
+								"--glow-color": lightsaberColor[person.id] || "yellow",
+								"--glow-color-transparent": getTransparentColor(lightsaberColor[person.id]) || "rgba(255, 255, 0, 0.4)"
+							} as React.CSSProperties}>
 							<img
 								src={person.image_url || missingImages[person.id]}
 								alt={person.name}

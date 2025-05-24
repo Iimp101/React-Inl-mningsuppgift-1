@@ -35,7 +35,7 @@
 	padding: 1rem;
 	text-align: center;
 	color: #fff;
-	box-shadow: 0 0 10px yellow;
+	box-shadow: 0 0 10px var(--glow-color, yellow);
 	transition: transform 0.2s, box-shadow 0.2s;
 	display: flex;
 	flex-direction: column;
@@ -46,10 +46,9 @@
 
 .person-card:hover {
 	transform: scale(1.03);
-	box-shadow: 0 0 20px 4px rgba(255, 255, 0, 0.5);
+	box-shadow: 0 0 20px 4px var(--glow-color, yellow);
 }
 
-/* Scan effect on hover */
 .person-card:hover::before {
 	content: '';
 	position: absolute;
@@ -60,12 +59,13 @@
 	background: linear-gradient(
 		to bottom,
 		transparent 0%,
-		rgba(255, 255, 0, 0.4) 50%,
+		var(--glow-color-transparent, rgba(255, 255, 0, 0.4)) 50%,
 		transparent 100%
 	);
 	animation: scan 1.5s linear;
 	pointer-events: none;
 }
+
 
 @keyframes scan {
 	0% {
