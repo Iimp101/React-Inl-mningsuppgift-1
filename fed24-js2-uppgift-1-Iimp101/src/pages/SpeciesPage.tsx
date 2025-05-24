@@ -112,6 +112,8 @@ const SpeciesPage = () => {
 					hasNextPage={currentPage < totalPages}
 					onPreviousPage={() => goToPage(currentPage - 1)}
 					onNextPage={() => goToPage(currentPage + 1)}
+					onFirstPage={() => goToPage(1)}
+  					onLastPage={() => goToPage(totalPages)}
 				/>
 			)}
     	</div>

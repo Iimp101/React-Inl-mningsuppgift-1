@@ -8,6 +8,8 @@ interface PaginationProps {
 	onPreviousPage: () => void;
 	page: number;
 	totalPages?: number;
+    onFirstPage: () => void;
+    onLastPage: () => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -16,10 +18,18 @@ const Pagination: React.FC<PaginationProps> = ({
 	onNextPage,
 	onPreviousPage,
 	page,
-	totalPages,    
+	totalPages,
+    onFirstPage,
+    onLastPage,    
 }) => {
     return (
         <div className="pagination-container">
+            <button
+                className="pagination-button"
+                onClick={onFirstPage}
+                disabled={!hasPreviousPage} 
+            >⏮ First
+            </button>
             <button
                 className="pagination-button"
                 onClick={onPreviousPage}
@@ -38,6 +48,13 @@ const Pagination: React.FC<PaginationProps> = ({
                 disabled={!hasNextPage}
             >
                 Next →                
+            </button>
+            <button
+                className="pagination-button"
+                onClick={onLastPage}
+                disabled={!hasNextPage}
+            >
+                Last ⏭
             </button>
         </div>
     )
