@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import PeoplesPage from "./pages/PeoplesPage";
@@ -11,11 +12,14 @@ import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
+
+	const location = useLocation()
+	const homePage = location.pathname === "/";
 	return (
 		<div className="page-wrapper">
 			<Navigation />
 
-			<main className="app-content">
+			<main className={homePage ? "" : "app-content"}>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/films" element={<FilmsPage />} />
