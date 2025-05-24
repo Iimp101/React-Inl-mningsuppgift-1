@@ -37,6 +37,14 @@
     justify-content: space-between;
 }
 
+.vehicle-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
 .vehicle-card:hover {
     transform: scale(1.03);
     box-shadow: 0 0 15px #fff700;

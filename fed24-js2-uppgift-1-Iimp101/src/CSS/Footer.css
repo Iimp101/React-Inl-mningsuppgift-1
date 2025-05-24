@@ -1,0 +1,9 @@
+.starwars-footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: black;
+    color: yellow;
+    font-family: 'Orbitron', sans-serif;
+    border-top: 2px solid yellow;
+    margin-top: 2rem;
+}

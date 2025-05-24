@@ -7,6 +7,7 @@ import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FilmsPage from "./pages/FilmPage";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
 					<Route path="/vehicles" element={<VehiclesPage />} />
 				</Routes>
 			</div>
+
+			<Footer />
 		</>
 	);
 }
