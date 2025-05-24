@@ -91,10 +91,8 @@ const VehiclesPage = () => {
 								<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
 								<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
 								<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
-								<p><strong>Length:</strong> {vehicle.length} m</p>
 								<p><strong>Crew:</strong> {vehicle.crew}</p>								
 								<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>							
-								<p><strong>Pilots:</strong> {vehicle.pilots_count}</p>
 								<p><strong>Films:</strong> {vehicle.films_count}</p>
 							</div>
 						</li>
