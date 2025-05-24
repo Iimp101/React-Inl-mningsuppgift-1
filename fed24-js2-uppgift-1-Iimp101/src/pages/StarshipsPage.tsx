@@ -99,7 +99,6 @@ const StarshipPage = () => {
 				<p><strong>Passengers:</strong> {ship.passengers}</p>
 				<p><strong>Max Speed:</strong> {ship.max_atmosphering_speed} km/h</p>
 				<p><strong>Hyperdrive Rating:</strong> {ship.hyperdrive_rating}</p>
-				<p><strong>MGLT:</strong> {ship.MGLT}</p>
 				<p><strong>Consumables:</strong> {ship.consumables}</p>
 				<p><strong>Films:</strong> {ship.films_count}</p>
             </div>
