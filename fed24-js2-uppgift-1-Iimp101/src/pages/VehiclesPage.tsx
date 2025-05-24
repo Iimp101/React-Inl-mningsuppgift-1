@@ -4,8 +4,8 @@ import type { Vehicle } from "../services/StarwarsPedia.types";
 import { useSearchParams } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
-// import vehicleImages from "../data/VehicleImages"; // lägg till senare om du har bilder
 import "../CSS/VehiclePage.css";
+import vehicleImages from "../data/VehicleImages";
 
 const VehiclesPage = () => {
 	const [vehicles, setVehicles] = useState<Vehicle[]>([]);
@@ -80,11 +80,11 @@ const VehiclesPage = () => {
 				<ul className="vehicle-list">
 					{visibleVehicles.map(vehicle => (
 						<li key={vehicle.id} className="vehicle-card">
-							{/* <img
+							<img
 								src={vehicleImages[vehicle.id]}
 								alt={vehicle.name}
 								className="vehicle-image"
-							/> */}
+							/>
 							<div className="vehicle-info">
 								<h3>{vehicle.name}</h3>
 								<p><strong>Model:</strong> {vehicle.model}</p>
