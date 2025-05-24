@@ -12,24 +12,25 @@ import "./App.css";
 
 function App() {
 	return (
-		<>
+		<div className="page-wrapper">
 			<Navigation />
 
-			<div>
+			<main className="app-content">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/people" element={<PeoplesPage />} />
 					<Route path="/films" element={<FilmsPage />} />
+					<Route path="/people" element={<PeoplesPage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />
 					<Route path="/vehicles" element={<VehiclesPage />} />
 				</Routes>
-			</div>
+			</main>
 
 			<Footer />
-		</>
+		</div>
 	);
 }
+
 
 export default App;

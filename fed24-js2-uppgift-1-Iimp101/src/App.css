@@ -26,6 +26,12 @@ h1, h2, h3 {
 	flex-direction: column;
 }
 
+.page-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 .app-content {
 	flex: 1;
 	width: 100%;
@@ -34,3 +40,4 @@ h1, h2, h3 {
 	padding: 2rem;
 	box-sizing: border-box;
 }
+

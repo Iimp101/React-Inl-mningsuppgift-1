@@ -1,9 +1,13 @@
-.starwars-footer {
+.footer {
+    background-color: #111;
+    color: #aaa;
     text-align: center;
-    padding: 1rem;
-    background-color: black;
-    color: yellow;
-    font-family: 'Orbitron', sans-serif;
-    border-top: 2px solid yellow;
-    margin-top: 2rem;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #333;
 }
+
+.footer p {
+     margin: 0.3rem 0;
+}
+
