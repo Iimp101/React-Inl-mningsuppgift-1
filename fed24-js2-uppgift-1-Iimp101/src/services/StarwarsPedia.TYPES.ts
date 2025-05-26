@@ -34,7 +34,6 @@ export interface Film {
 	species_count: number;
 }
 
-
 export interface Planet {
 	id: number;
 	name: string;

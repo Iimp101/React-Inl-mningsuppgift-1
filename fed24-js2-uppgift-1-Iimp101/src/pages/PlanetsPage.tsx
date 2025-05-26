@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { getPlanetList } from "../services/StarwarsPediaAPI";
 import type { Planet } from "../services/StarwarsPedia.types";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
 import planetImages from "../data/PlanetImages";
+import lightsaberColor from "../data/PeopleLightsaverColor";
+import getTransparentColor from "../components/TransparentColor";
 import "../CSS/PlanetPage.css";
 
 const PlanetsPage = () => {
@@ -60,8 +62,8 @@ const PlanetsPage = () => {
 	};
 
 	return (
-    	<div className="planets-page">
-      		<h1 className="page-title with-lightsabers">
+		<div className="planets-page">
+			<h1 className="page-title with-lightsabers">
 				<img
 					src="/GIFS/lightsaberBlue2.gif"
 					alt="Blue Lightsaber"
@@ -75,31 +77,50 @@ const PlanetsPage = () => {
 				/>
 			</h1>
 
-    	{isLoading && <LoadingPagesGif />}
-    	{error && <p className="error-msg">{error}</p>}
+			{isLoading && <LoadingPagesGif />}
+			{error && <p className="error-msg">{error}</p>}
 
-      	{!isLoading && !error && (
-        	<ul className="planet-list">
-			{visiblePlanets.map((planet) => (
-				<li key={planet.id} className="planet-card">
-					<img
-						src={planetImages[planet.id]}
-						alt={planet.name}
-						className="planet-image"
+			{!isLoading && !error && (
+			<ul className="planet-list">
+				{visiblePlanets.map((planet) => {
+				const saberColor = lightsaberColor[planet.id];
+				const glowColor = saberColor ?? "#cccccc";
+				const glowTransparent = saberColor
+					? getTransparentColor(saberColor)
+					: "rgba(204, 204, 204, 0.3)";
+
+				return (
+					<li key={planet.id}>
+					<Link to={`/planets/${planet.id}`} className="planet-card-link">
+						<div
+						className="planet-card"
+						style={{
+							"--glow-color": glowColor,
+							"--glow-color-transparent": glowTransparent
+						} as React.CSSProperties}
+						>
+						<img
+							src={planetImages[planet.id]}
+							alt={planet.name}
+							className="planet-image"
 						/>
-				<div className="planet-info">
-					<h3>{planet.name}</h3>
-					<p><strong>Climate:</strong> {planet.climate}</p>
-					<p><strong>Terrain:</strong> {planet.terrain}</p>
-					<p><strong>Population:</strong> {planet.population}</p>
-					<p><strong>Gravity:</strong> {planet.gravity}</p>
-				</div>
-				</li>
-          	))}
-        </ul>
-      )}
+						<div className="planet-info">
+							<h3>{planet.name}</h3>
+							<p><strong>Climate:</strong> {planet.climate}</p>
+							<p><strong>Terrain:</strong> {planet.terrain}</p>
+							<p><strong>Population:</strong> {planet.population}</p>
+							<p><strong>Gravity:</strong> {planet.gravity}</p>
+						</div>
+						</div>
+					</Link>
+					</li>
+					);
+				})}
+			</ul>
+			)}
 
-	  {!isLoading && !error && planets.length > 0 && (
+
+			{!isLoading && !error && planets.length > 0 && (
 				<Pagination
 					page={currentPage}
 					totalPages={totalPages}
@@ -108,11 +129,11 @@ const PlanetsPage = () => {
 					onPreviousPage={() => goToPage(currentPage - 1)}
 					onNextPage={() => goToPage(currentPage + 1)}
 					onFirstPage={() => goToPage(1)}
-  					onLastPage={() => goToPage(totalPages)}
+					onLastPage={() => goToPage(totalPages)}
 				/>
 			)}
-    	</div>
-	)
-}
+		</div>
+)	;
+};
 
 export default PlanetsPage;
