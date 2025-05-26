@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getFilmList } from "../services/StarwarsPediaAPI";
 import type { Film, SWAPIListResponse } from "../services/StarwarsPedia.types";
 import LoadingPagesGif from "../components/LoadingPagesGif";
@@ -55,25 +56,29 @@ const FilmsPage = () => {
     	{!isLoading && !error && (
 			<ul className="film-list">
 				{films.map((film) => (
-					<li key={film.id} className="film-card">
-				<img
-					src={film.image_url || "/images/placeholder.png"}
-					alt={film.title}
-					className="film-image"
-				/>
-					<div className="film-info">
-						<h3>{film.title}</h3>
-						<p><strong>Release:</strong> {film.release_date}</p>
-						<p><strong>Director:</strong> {film.director}</p>
-						<p><strong>Producer:</strong> {film.producer}</p>
-						<p className="opening-crawl">{film.opening_crawl.slice(0, 150)}...</p>
-					</div>
-				</li>
-			))}
-		</ul>
-      )}
-    </div>
-  )
+					<li key={film.id}>
+					<Link to={`/films/${film.id}`} className="film-card-link">
+						<div className="film-card">
+						<img
+							src={film.image_url || "/images/placeholder.png"}
+							alt={film.title}
+							className="film-image"
+						/>
+						<div className="film-info">
+							<h3>{film.title}</h3>
+							<p><strong>Release:</strong> {film.release_date}</p>
+							<p><strong>Director:</strong> {film.director}</p>
+							<p><strong>Producer:</strong> {film.producer}</p>
+							<p className="opening-crawl">{film.opening_crawl.slice(0, 150)}...</p>
+						</div>
+						</div>
+					</Link>
+					</li>
+				))}
+			</ul>
+      	)}
+    	</div>
+  	)
 }
 
 export default FilmsPage;

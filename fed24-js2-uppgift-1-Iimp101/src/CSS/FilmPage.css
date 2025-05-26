@@ -89,3 +89,9 @@
 .lightsaber.left {
   	transform: scaleX(-1);
 }
+
+.film-card-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
