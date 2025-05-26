@@ -1,0 +1,89 @@
+.person-details-page {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 2rem;
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.85);
+	border: 1px solid #4fc3f7;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+	color: #fff;
+}
+
+.person-details-img {
+	width: 280px;
+	height: auto;
+	border-radius: 10px;
+	object-fit: cover;
+	animation: saberGlow 2s infinite ease-in-out;
+}
+
+@keyframes saberGlow {
+	0% {
+		box-shadow: 0 0 10px #4fc3f7;
+	}
+	50% {
+		box-shadow: 0 0 25px #4fc3f7;
+	}
+	100% {
+		box-shadow: 0 0 10px #4fc3f7;
+	}
+}
+
+.person-details-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.person-details-info h1 {
+	color: #4fc3f7;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.person-details-info p {
+	margin: 0.5rem 0;
+	font-size: 1rem;
+	line-height: 1.6;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.5rem;
+}
+
+.person-details-info a {
+	color: #4fc3f7;
+	text-decoration: underline;
+	transition: color 0.3s ease;
+}
+
+.person-details-info a:hover {
+	color: #fff;
+}
+
+.person-details-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.back-button {
+	background-color: transparent;
+	border: 2px solid #4fc3f7;
+	color: #4fc3f7;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: 'Orbitron', sans-serif;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+	background-color: #4fc3f7;
+	color: black;
+}

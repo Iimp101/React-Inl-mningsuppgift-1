@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { getPersonList } from "../services/StarwarsPediaAPI";
 import type { Person } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
@@ -24,7 +24,6 @@ const PeoplesPage = () => {
 			setError(null);
 
 			try {
-				
 				const firstPage = await getPersonList(1);
 				await new Promise(r => setTimeout(r, 1500));
 				let allResults = [...firstPage.data];
@@ -42,16 +41,15 @@ const PeoplesPage = () => {
 				setPeople(allResults);
 			} catch (err) {
 				setError(err instanceof Error
-				? err.message
-				: "Failed to load people"
-				)
+					? err.message
+					: "Failed to load people"
+				);
 			}
 			setIsLoading(false);
 		};
 
 		fetchPeople();
 	}, [currentPage]);
-
 
 	const totalPages = Math.ceil(people.length / peoplePerPage);
 	const startIndex = (currentPage - 1) * peoplePerPage;
@@ -77,39 +75,48 @@ const PeoplesPage = () => {
 				/>
 			</h1>
 
-
 			{isLoading && <LoadingPagesGif />}
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && visiblePeople.length > 0 && (
 				<ul className="people-list">
-					{visiblePeople.map((person) => (
-						<li
-							key={person.id}
-							className="person-card"
-							style={{
-								"--glow-color": lightsaberColor[person.id] || "yellow",
-								"--glow-color-transparent": getTransparentColor(lightsaberColor[person.id]) || "rgba(255, 255, 0, 0.4)"
-							} as React.CSSProperties}>
-							<img
-								src={person.image_url || missingImages[person.id]}
-								alt={person.name}
-								className="person-image"
-							/>
-							<div className="person-info">
-								<h3>{person.name}</h3>
-									<p><strong>Birth Year:</strong> {person.birth_year}</p>
-									<p><strong>Height:</strong> {person.height} cm</p>
-									<p><strong>Mass:</strong> {person.mass} kg</p>
-									<p><strong>Homeworld:</strong> {person.homeworld.name}</p>
-							</div>
-						</li>
-					))}
+					{visiblePeople.map((person) => {
+						const saberColor = lightsaberColor[person.id];
+						const glowColor = saberColor ?? "#cccccc";
+						const glowTransparent = saberColor ? getTransparentColor(saberColor) : "rgba(204, 204, 204, 0.3)";
+
+						return (
+							<li key={person.id}>
+								<Link to={`/people/${person.id}`} className="person-card-link">
+									<div
+										className="person-card"
+										style={{
+											"--glow-color": glowColor,
+											"--glow-color-transparent": glowTransparent
+										} as React.CSSProperties}
+									>
+										<img
+											src={person.image_url || missingImages[person.id]}
+											alt={person.name}
+											className="person-image"
+										/>
+										<div className="person-info">
+											<h3>{person.name}</h3>
+											<p><strong>Birth Year:</strong> {person.birth_year}</p>
+											<p><strong>Height:</strong> {person.height} cm</p>
+											<p><strong>Mass:</strong> {person.mass} kg</p>
+											<p><strong>Homeworld:</strong> {person.homeworld.name}</p>
+										</div>
+									</div>
+								</Link>
+							</li>
+						);
+					})}
 				</ul>
 			)}
 
 			{!isLoading && !error && visiblePeople.length > 0 && (
-  				<Pagination
+				<Pagination
 					page={currentPage}
 					totalPages={totalPages}
 					hasPreviousPage={currentPage > 1}
@@ -117,11 +124,11 @@ const PeoplesPage = () => {
 					onPreviousPage={() => goToPage(currentPage - 1)}
 					onNextPage={() => goToPage(currentPage + 1)}
 					onFirstPage={() => goToPage(1)}
-  					onLastPage={() => goToPage(totalPages)}
-  				/>
+					onLastPage={() => goToPage(totalPages)}
+				/>
 			)}
 		</div>
-	)
-}
+	);
+};
 
 export default PeoplesPage;
