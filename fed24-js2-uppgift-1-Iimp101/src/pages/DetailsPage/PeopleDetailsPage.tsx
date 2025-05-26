@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getPersonById } from "../../services/StarwarsPediaAPI";
 import type { Person } from "../../services/StarwarsPedia.types";
 import LoadingPagesGif from "../../components/LoadingPagesGif";
+import lightsaberColor from "../../data/PeopleLightsaverColor";
+import getTransparentColor from "../../components/TransparentColor";
 import "../../CSS/DetailsPage/PeopleDetailsPage.css";
 
 
@@ -38,19 +40,27 @@ const PeopleDetailsPage = () => {
 	if (!person) return null;
 
     return (
-		<div className="person-details-page">
-			<img
-				src={person.image_url ?? "/images/placeholder.png"}
-				alt={person.name}
-				className="person-details-img"
-			/>
-			<div className="person-details-info">
-				<div className="person-details-header">
-					<h1>{person.name}</h1>
-					<button className="back-button" onClick={() => navigate(-1)}>
-						← Back
-					</button>
-				</div>
+        <div
+            className="person-details-page"
+            style={{
+                "--border-color": lightsaberColor[person.id] ?? "#cccccc",
+                "--border-shadow": lightsaberColor[person.id]
+                    ? getTransparentColor(lightsaberColor[person.id])
+                    : "rgba(204, 204, 204, 0.3)"
+            } as React.CSSProperties}
+        >
+            <img
+                src={person.image_url ?? "/images/placeholder.png"}
+                alt={person.name}
+                className="person-details-img"
+            />
+            <div className="person-details-info">
+                <div className="person-details-header">
+                    <h1>{person.name}</h1>
+                    <button className="back-button" onClick={() => navigate(-1)}>
+                        ← Back
+                    </button>
+                </div>
 
                     <p><strong>Birth Year:</strong> {person.birth_year}</p>
                     <p><strong>Height:</strong> {person.height} cm</p>
@@ -62,17 +72,17 @@ const PeopleDetailsPage = () => {
                     <p><strong>Species:</strong> {person.species_count}</p>
                     <p><strong>Starships:</strong> {person.starships_count}</p>
                     <p><strong>Vehicles:</strong> {person.vehicles_count}</p>
-				{person.wiki_link && (
-					<p>
-						<strong>More info:</strong>{" "}
-						<a href={person.wiki_link} target="_blank" rel="noopener noreferrer">
-							Wikipedia
-						</a>
-					</p>
-				)}
-			</div>
-		</div>
-	);   
+                {person.wiki_link && (
+                    <p>
+                        <strong>More info:</strong>{" "}
+                        <a href={person.wiki_link} target="_blank" rel="noopener noreferrer">
+                            Wikipedia
+                        </a>
+                    </p>
+                )}
+            </div>
+        </div>
+    );  
 };
 
 export default PeopleDetailsPage;
