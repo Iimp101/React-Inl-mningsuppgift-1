@@ -25,6 +25,9 @@
 
 .film-card {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	border-radius: 12px;
 	text-align: center;
@@ -32,12 +35,14 @@
 	background-color: rgba(0, 0, 0, 0.85);
 	border: 1px solid yellow;
 	box-shadow: 0 0 10px yellow;
+	min-height: 500px;
+	height: 100%;
 }
 
 .film-card:hover {
 	transform: scale(1.03);
 	box-shadow: 0 0 25px 6px #ffe81f;
-} 
+}
 
 .film-card:hover::after {
 	transform: translateX(-50%) scaleY(1);
@@ -46,25 +51,26 @@
 .film-image {
 	width: 100%;
 	height: auto;
-	object-fit: contain; 
-	aspect-ratio: 2 / 3;  
+	object-fit: contain;
+	aspect-ratio: 2 / 3;
 	border-radius: 10px;
 	margin-bottom: 1rem;
 }
 
+.film-info {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 0 1rem;
+	width: 100%;
+}
 
 .film-info h3 {
 	color: yellow;
 	font-family: 'Orbitron', sans-serif;
 	margin-bottom: 0.5rem;
-}
-
-.film-info {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
 }
 
 .opening-crawl {
@@ -74,6 +80,9 @@
 	font-style: italic;
 	font-size: 0.9rem;
 	line-height: 1.4;
+	max-height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .with-lightsabers {
@@ -92,11 +101,12 @@
 }
 
 .lightsaber.left {
-  	transform: scaleX(-1);
+	transform: scaleX(-1);
 }
 
 .film-card-link {
 	text-decoration: none;
 	color: inherit;
 	display: block;
+	height: 100%;
 }
