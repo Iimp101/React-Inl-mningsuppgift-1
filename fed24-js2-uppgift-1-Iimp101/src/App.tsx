@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import PlanetDetailsPage from "./pages/DetailsPage/PlanetDetailsPage";
 import FilmDetailsPage from "./pages/DetailsPage/FilmDetailsPage";
 import PeopleDetailsPage from "./pages/DetailsPage/PeopleDetailsPage";
+import SpeciesDetailsPage from "./pages/DetailsPage/SpeciesDetailsPage";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import PeoplesPage from "./pages/PeoplesPage";
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/planets/:id" element={<PlanetDetailsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
+					<Route path="/species/:id" element={<SpeciesDetailsPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />
 					<Route path="/vehicles" element={<VehiclesPage />} />
 				</Routes>

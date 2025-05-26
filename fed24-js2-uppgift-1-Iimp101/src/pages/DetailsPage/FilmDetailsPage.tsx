@@ -65,8 +65,7 @@ const FilmDetailsPage = () => {
                 <p><strong>Vehicles:</strong> {film.vehicles_count}</p>
                 <p><strong>Species:</strong> {film.species_count}</p>
             </div>
-</div>
-
+        </div>
 	);
 }
 

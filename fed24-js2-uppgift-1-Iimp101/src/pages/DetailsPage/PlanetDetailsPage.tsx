@@ -30,12 +30,9 @@ const PlanetDetailsPage = () => {
                 ? err.message 
                 : "Failed to load planet");
         }
-
         setIsLoading(false); 
     };
-
-    if (id) { fetchPlanetData();
-    }
+    if (id)fetchPlanetData();
 }, [id]);
 
     if (isLoading) return <LoadingPagesGif />;
