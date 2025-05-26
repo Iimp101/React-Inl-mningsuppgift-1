@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import FilmDetailsPage from "./pages/DetailsPage/FilmDetailsPage";
+import PeopleDetailsPage from "./pages/DetailsPage/PeopleDetailsPage";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import PeoplesPage from "./pages/PeoplesPage";
@@ -24,12 +25,13 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/films" element={<FilmsPage />} />
+					<Route path="/films/:id" element={<FilmDetailsPage />} />
 					<Route path="/people" element={<PeoplesPage />} />
+					<Route path="/people/:id" element={<PeopleDetailsPage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />
 					<Route path="/vehicles" element={<VehiclesPage />} />
-					<Route path="/films/:id" element={<FilmDetailsPage />} />
 				</Routes>
 			</main>
 

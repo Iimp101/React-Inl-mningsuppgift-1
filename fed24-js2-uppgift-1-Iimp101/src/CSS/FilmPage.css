@@ -24,23 +24,42 @@
 }
 
 .film-card {
-	background-color: rgba(0, 0, 0, 0.8);
-	border: 1px solid yellow;
+	position: relative;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	border-radius: 12px;
-	padding: 1rem;
 	text-align: center;
-	color: #fff;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.85);
+	border: 1px solid yellow;
 	box-shadow: 0 0 10px yellow;
-	transition: transform 0.2s;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
 }
 
+/* Hover: glow + beam */
 .film-card:hover {
 	transform: scale(1.03);
-	box-shadow: 0 0 15px #fff700;
+	box-shadow: 0 0 25px 6px #ffe81f;
 }
+
+/* Lightsaber beam effect on hover */
+.film-card::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 4px;
+	height: 100%;
+	background: linear-gradient(to bottom, #ffe81f, transparent);
+	transform: translateX(-50%) scaleY(0);
+	transform-origin: top;
+	transition: transform 0.4s ease;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.film-card:hover::after {
+	transform: translateX(-50%) scaleY(1);
+}
+
 
 .film-image {
 	width: 100%;
@@ -56,10 +75,12 @@
 	margin-bottom: 0.5rem;
 }
 
-.film-info p {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+.film-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 
 .opening-crawl {

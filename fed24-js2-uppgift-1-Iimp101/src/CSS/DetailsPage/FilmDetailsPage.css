@@ -17,8 +17,20 @@
 	width: 300px;
 	height: auto;
 	border-radius: 10px;
-	box-shadow: 0 0 15px #ffe81f;
 	object-fit: cover;
+	animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+	0% {
+		box-shadow: 0 0 15px #ffe81f;
+	}
+	50% {
+		box-shadow: 0 0 30px #ffe81f;
+	}
+	100% {
+		box-shadow: 0 0 15px #ffe81f;
+	}
 }
 
 .film-details-info {
@@ -50,4 +62,27 @@
 	background-color: rgba(255, 255, 255, 0.05);
 	padding: 1rem;
 	border-left: 3px solid #ffe81f;
+}
+
+.film-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    background-color: transparent;
+    border: 2px solid yellow;
+    color: yellow;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: yellow;
+    color: black;
 }
