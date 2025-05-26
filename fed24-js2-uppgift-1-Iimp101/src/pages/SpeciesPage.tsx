@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getSpeciesList } from "../services/StarwarsPediaAPI";
 import type { Species } from "../services/StarwarsPedia.types";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
 import "../CSS/SpeciesPage.css";
@@ -82,23 +82,27 @@ const SpeciesPage = () => {
 			{!isLoading && !error && (
 				<ul className="species-list">
 					{visibleSpecies.map((specie) => (
-						<li key={specie.id} className="species-card">
-							<img
-								src={speciesImages[specie.id]}
-								alt={specie.name}
-               					 className="species-image"
-              				/>
-							<div className="species-info">
-								<h3>{specie.name}</h3>
-								<p><strong>Classification:</strong> {specie.classification}</p>
-								<p><strong>Designation:</strong> {specie.designation}</p>
-								<p><strong>Avg Height:</strong> {specie.average_height} cm</p>
-								<p><strong>Lifespan:</strong> {specie.average_lifespan} years</p>
-								<p><strong>Language:</strong> {specie.language}</p>
-								{specie.homeworld && (
-								<p><strong>Homeworld:</strong> {specie.homeworld.name}</p>
-                				)}
-              				</div>
+						<li key={specie.id}>
+							<Link to={`/species/${specie.id}`} className="species-card-link">
+								<div className="species-card">
+									<img
+										src={speciesImages[specie.id]}
+										alt={specie.name}
+										className="species-image"
+									/>
+									<div className="species-info">
+										<h3>{specie.name}</h3>
+										<p><strong>Classification:</strong> {specie.classification}</p>
+										<p><strong>Designation:</strong> {specie.designation}</p>
+										<p><strong>Avg Height:</strong> {specie.average_height} cm</p>
+										<p><strong>Lifespan:</strong> {specie.average_lifespan} years</p>
+										<p><strong>Language:</strong> {specie.language}</p>
+										{specie.homeworld && (
+											<p><strong>Homeworld:</strong> {specie.homeworld.name}</p>
+										)}
+									</div>
+								</div>
+							</Link>
 						</li>
 					))}
 				</ul>

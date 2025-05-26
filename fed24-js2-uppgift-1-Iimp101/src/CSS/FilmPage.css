@@ -34,27 +34,10 @@
 	box-shadow: 0 0 10px yellow;
 }
 
-/* Hover: glow + beam */
 .film-card:hover {
 	transform: scale(1.03);
 	box-shadow: 0 0 25px 6px #ffe81f;
-}
-
-/* Lightsaber beam effect on hover */
-.film-card::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 4px;
-	height: 100%;
-	background: linear-gradient(to bottom, #ffe81f, transparent);
-	transform: translateX(-50%) scaleY(0);
-	transform-origin: top;
-	transition: transform 0.4s ease;
-	pointer-events: none;
-	z-index: 1;
-}
+} 
 
 .film-card:hover::after {
 	transform: translateX(-50%) scaleY(1);
