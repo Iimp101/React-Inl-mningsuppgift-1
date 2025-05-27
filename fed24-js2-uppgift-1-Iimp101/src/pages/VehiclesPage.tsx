@@ -13,6 +13,12 @@ const VehiclesPage = () => {
 	const [error, setError] = useState<string | null>(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 
+	useEffect(() => {
+	if (!searchParams.has("page")) {
+		setSearchParams({ page: "1" });
+	}
+	}, [searchParams, setSearchParams]);
+
 	const currentPage = parseInt(searchParams.get("page") || "1");
 	const vehiclesPerPage = 8;
 

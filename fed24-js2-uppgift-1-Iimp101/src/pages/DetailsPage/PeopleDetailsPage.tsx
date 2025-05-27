@@ -6,6 +6,7 @@ import LoadingPagesGif from "../../components/LoadingPagesGif";
 import RelatedLinksSection from "../../components/RelationLinkSection";
 import lightsaberColor from "../../data/PeopleLightsaverColor";
 import getTransparentColor from "../../components/TransparentColor";
+import missingImages from "../../data/PeopleImages";
 import "../../CSS/DetailsPage/PeopleDetailsPage.css";
 
 const PeopleDetailsPage = () => {
@@ -46,7 +47,7 @@ const PeopleDetailsPage = () => {
 			} as React.CSSProperties}
 		>
 			<img
-				src={person.image_url ?? "/images/placeholder.png"}
+				src={person.image_url || missingImages[person.id] || "/images/placeholder.png"}
 				alt={person.name}
 				className="person-details-img"
 			/>
