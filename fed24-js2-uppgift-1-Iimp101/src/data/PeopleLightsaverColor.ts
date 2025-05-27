@@ -1,5 +1,5 @@
 const lightsaberColor: Record<number, string> = {
-    1: "green",
+    1: "blue",
     4: "red",
     10: "blue",
     11: "blue",

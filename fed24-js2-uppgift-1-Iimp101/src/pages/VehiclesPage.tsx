@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getVehicleList } from "../services/StarwarsPediaAPI";
 import type { Vehicle } from "../services/StarwarsPedia.types";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
 import "../CSS/VehiclePage.css";
@@ -39,7 +39,9 @@ const VehiclesPage = () => {
 
 				setVehicles(allResults);
 			} catch (err) {
-				setError(err instanceof Error ? err.message : "Failed to load vehicles");
+				setError(err instanceof Error 
+					? err.message 
+					: "Failed to load vehicles");
 			}
 
 			setIsLoading(false);
@@ -78,22 +80,26 @@ const VehiclesPage = () => {
 			{!isLoading && !error && (
 				<ul className="vehicle-list">
 					{visibleVehicles.map(vehicle => (
-						<li key={vehicle.id} className="vehicle-card">
-							<img
-								src={vehicleImages[vehicle.id]}
-								alt={vehicle.name}
-								className="vehicle-image"
-							/>
-							<div className="vehicle-info">
-								<h3>{vehicle.name}</h3>
-								<p><strong>Model:</strong> {vehicle.model}</p>
-								<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
-								<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
-								<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
-								<p><strong>Crew:</strong> {vehicle.crew}</p>								
-								<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>							
-								<p><strong>Films:</strong> {vehicle.films_count}</p>
-							</div>
+						<li key={vehicle.id}>
+							<Link to={`/vehicles/${vehicle.id}`} className="vehicle-card-link">
+								<div className="vehicle-card">
+								<img
+									src={vehicleImages[vehicle.id]}
+									alt={vehicle.name}
+									className="vehicle-image"
+								/>
+								<div className="vehicle-info">
+									<h3>{vehicle.name}</h3>
+									<p><strong>Model:</strong> {vehicle.model}</p>
+									<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
+									<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
+									<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
+									<p><strong>Crew:</strong> {vehicle.crew}</p>								
+									<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>							
+									<p><strong>Films:</strong> {vehicle.films_count}</p>
+								</div>
+								</div>
+							</Link>
 						</li>
 					))}
 				</ul>

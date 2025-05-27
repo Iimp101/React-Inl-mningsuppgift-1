@@ -43,7 +43,7 @@ const StarshipPage = () => {
 			catch (err) {
 			setError(err instanceof Error
 				? err.message
-				: "Failed to load starship"
+				: "Failed to load starships"
 				)
 			}
 

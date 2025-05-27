@@ -1,0 +1,85 @@
+.vehicle-details-page {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 2rem;
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.85);
+	border: 2px solid #4fc3f7;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+	color: #fff;
+}
+
+.vehicle-image-wrapper {
+	width: 50%;
+	height: auto;
+	flex-shrink: 0;
+}
+
+.vehicle-details-img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 10px;
+	animation: vehicleGlow 2s infinite ease-in-out;
+}
+
+@keyframes vehicleGlow {
+	0% {
+		box-shadow: 0 0 10px #4fc3f7;
+	}
+	50% {
+		box-shadow: 0 0 25px #4fc3f7;
+	}
+	100% {
+		box-shadow: 0 0 10px #4fc3f7;
+	}
+}
+
+.vehicle-details-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.vehicle-details-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.vehicle-details-info h1 {
+	color: #4fc3f7;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.vehicle-details-info p {
+	margin: 0.5rem 0;
+	font-size: 1rem;
+	line-height: 1.6;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.5rem;
+}
+
+.back-button {
+	background-color: transparent;
+	border: 2px solid #4fc3f7;
+	color: #4fc3f7;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: 'Orbitron', sans-serif;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+	background-color: #4fc3f7;
+	color: black;
+}
