@@ -14,11 +14,11 @@ const images = [
 ];
 
 const HeroBanner = () => {
-	const [currentIndex, setCurrentIndex] = useState(0);
+	const [currentBanner, setCurrentBanner] = useState(0);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+			setCurrentBanner((prev) => (prev + 1) % images.length);
 		}, 5000);
 
 		return () => clearInterval(interval);
@@ -28,7 +28,7 @@ const HeroBanner = () => {
 		<div
 			className="hero-banner"
 			style={{
-				backgroundImage: `url(${images[currentIndex]})`
+				backgroundImage: `url(${images[currentBanner]})`
 			}}
 		/>
 	);
