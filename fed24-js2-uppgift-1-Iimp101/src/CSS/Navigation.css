@@ -13,6 +13,7 @@
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	position: relative;
 }
 
 .nav-left .starwars-logo {
@@ -23,10 +24,13 @@
 }
 
 .nav-center {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	gap: 1rem;
-	justify-content: center;
-	flex: 1;
 }
 
 .nav-link {
@@ -70,7 +74,7 @@
 
 .lightsaber-slider {
 	appearance: none;
-	width: 120px;
+	width: 100px;
 	height: 10px;
 	margin-left: 1rem;
 	background: linear-gradient(to right, red 0%, yellow 100%);

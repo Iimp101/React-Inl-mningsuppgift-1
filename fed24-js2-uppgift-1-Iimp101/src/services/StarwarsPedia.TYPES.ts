@@ -26,13 +26,21 @@ export interface Film {
 	director: string;
 	producer: string;
 	release_date: string;      
-	image_url?: string | null;    
+	image_url?: string | null;
+
 	characters_count: number;
 	planets_count: number;
 	starships_count: number;
 	vehicles_count: number;
 	species_count: number;
+
+	characters: { id: number; name: string }[];
+	planets: { id: number; name: string }[];
+	species: { id: number; name: string }[];
+	starships: { id: number; name: string }[];
+	vehicles: { id: number; name: string }[];
 }
+
 
 export interface Planet {
 	id: number;

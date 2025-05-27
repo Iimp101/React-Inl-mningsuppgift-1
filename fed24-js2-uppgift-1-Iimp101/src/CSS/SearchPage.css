@@ -1,0 +1,61 @@
+.searchbar-form {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-left: 1rem;
+}
+
+.searchbar-input {
+	padding: 0.4rem 0.6rem;
+	border-radius: 8px;
+	border: 2px solid #ffe81f;
+	font-size: 1rem;
+	background-color: #000;
+	color: #ffe81f;
+	width: 100px;
+	transition: all 0.3s ease;
+	box-shadow: 0 0 10px rgba(255, 232, 31, 0.2);
+	font-family: 'Orbitron', sans-serif;
+}
+
+.lightsaber-icon {
+	width: 20px;
+	height: 20px;
+	filter: drop-shadow(0 0 4px #ffe81f);
+	transition: transform 0.2s ease;
+}
+
+.searchbar-button:hover .lightsaber-icon {
+	transform: rotate(20deg) scale(1.1);
+}
+
+.searchbar-input::placeholder {
+	color: #aaa;
+	font-style: italic;
+}
+
+.searchbar-input:focus {
+	outline: none;
+	border-color: #fff700;
+	box-shadow: 0 0 15px #fff700;
+	background-color: #111;
+}
+
+.searchbar-button {
+	background-color: #ffe81f;
+	color: #000;
+	border: none;
+	padding: 0.4rem 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: 'Orbitron', sans-serif;
+	transition: all 0.3s ease;
+	box-shadow: 0 0 8px rgba(255, 232, 31, 0.6);
+}
+
+.searchbar-button:hover {
+	background-color: #fff700;
+	box-shadow: 0 0 15px #fff700;
+	transform: scale(1.05);
+}
