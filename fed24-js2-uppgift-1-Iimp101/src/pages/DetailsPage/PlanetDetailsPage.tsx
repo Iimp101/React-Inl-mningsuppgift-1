@@ -23,7 +23,7 @@ const PlanetDetailsPage = () => {
 
         try {
             const res = await getPlanetById(Number(id));
-            await new Promise((r) => setTimeout(r, 1500));
+            await new Promise(r => setTimeout(r, 1500));
             setPlanet(res);
         } catch (err) {
             setError(err instanceof Error 

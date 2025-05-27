@@ -19,10 +19,12 @@ const SpeciesDetailsPage = () => {
 			setError(null);
 			try {
 				const res = await getSpeciesById(Number(id));
-				await new Promise((r) => setTimeout(r, 1500));
+				await new Promise(r => setTimeout(r, 1500));
 				setSpecies(res);
 			} catch (err) {
-				setError(err instanceof Error ? err.message : "Failed to load species");
+				setError(err instanceof Error 
+					? err.message 
+					: "Failed to load species");
 			}
 			setIsLoading(false);
 		};

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getStarshipList } from "../services/StarwarsPediaAPI";
 import type { Starship } from "../services/StarwarsPedia.types";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import LoadingPagesGif from "../components/LoadingPagesGif";
 import Pagination from "../components/Pagination";
 import starshipImages from "../data/StarshipImages";
@@ -84,25 +84,28 @@ const StarshipPage = () => {
     {!isLoading && !error && (
       <ul className="starship-list">
         {visibleStarships.map((ship) => (
-          <li key={ship.id} className="starship-card">
-            <img
-				src={starshipImages[ship.id]}
-				alt={ship.name}
-				className="starship-image"
-			/>
-
-            <div className="starship-info">
-				<h3>{ship.name}</h3>
-				<p><strong>Cost:</strong> {ship.cost_in_credits} credits</p>
-				<p><strong>Length:</strong> {ship.length} m</p>
-				<p><strong>Crew:</strong> {ship.crew}</p>
-				<p><strong>Passengers:</strong> {ship.passengers}</p>
-				<p><strong>Max Speed:</strong> {ship.max_atmosphering_speed} km/h</p>
-				<p><strong>Hyperdrive Rating:</strong> {ship.hyperdrive_rating}</p>
-				<p><strong>Consumables:</strong> {ship.consumables}</p>
-				<p><strong>Films:</strong> {ship.films_count}</p>
-            </div>
-          </li>
+        	<li key={ship.id}>
+				<Link to={`/starships/${ship.id}`} className="starship-card-link">
+					<div className="starship-card">
+					<img
+						src={starshipImages[ship.id]}
+						alt={ship.name}
+						className="starship-image"
+					/>
+					<div className="starship-info">
+						<h3>{ship.name}</h3>
+						<p><strong>Cost:</strong> {ship.cost_in_credits} credits</p>
+						<p><strong>Length:</strong> {ship.length} m</p>
+						<p><strong>Crew:</strong> {ship.crew}</p>
+						<p><strong>Passengers:</strong> {ship.passengers}</p>
+						<p><strong>Max Speed:</strong> {ship.max_atmosphering_speed} km/h</p>
+						<p><strong>Hyperdrive Rating:</strong> {ship.hyperdrive_rating}</p>
+						<p><strong>Consumables:</strong> {ship.consumables}</p>
+						<p><strong>Films:</strong> {ship.films_count}</p>
+					</div>
+					</div>
+				</Link>
+			</li>
         ))}
       </ul>
     )}

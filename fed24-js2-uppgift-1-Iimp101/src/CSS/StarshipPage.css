@@ -25,44 +25,73 @@
     margin: 0 auto;
 }
 
-.starship-card {
+.starship-list li {
     flex: 0 0 300px;
-    text-align: center;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.starship-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.starship-card {
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid yellow;
     border-radius: 12px;
     padding: 1rem;
     color: #fff;
     box-shadow: 0 0 10px yellow;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
 }
 
 .starship-card:hover {
     transform: scale(1.03);
     box-shadow: 0 0 15px #fff700;
+    z-index: 1;
 }
 
 .starship-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
     border-radius: 10px;
     margin-bottom: 1rem;
+}
+
+.starship-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.4rem;
 }
 
 .starship-info h3 {
     color: yellow;
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .starship-info p {
+    font-size: 0.95rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin: 0;
 }
 
 .with-lightsabers {
