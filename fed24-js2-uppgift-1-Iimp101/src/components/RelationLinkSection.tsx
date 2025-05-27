@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 interface RelatedLinksSectionProps {
 	title: string;
-	items: { id: number; name: string }[];
+	items: { id: number; name?: string; title?: string }[];
 	basePath: string;
 	icon?: string;
 }
@@ -17,7 +17,8 @@ const RelatedLinksSection = ({ title, items, basePath, icon }: RelatedLinksSecti
 				{items.map((item) => (
 					<li key={item.id}>
 						<Link to={`/${basePath}/${item.id}`}>
-							{icon && <span className="link-icon">{icon}</span>} {item.name}
+							{icon && <span className="link-icon">{icon}</span>}{" "}
+							{item.name || item.title}
 						</Link>
 					</li>
 				))}
