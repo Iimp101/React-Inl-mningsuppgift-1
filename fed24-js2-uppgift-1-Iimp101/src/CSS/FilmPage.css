@@ -33,11 +33,39 @@
 	text-align: center;
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 1px solid yellow;
+	border: 1px solid gold;
 	box-shadow: 0 0 10px yellow;
 	min-height: 500px;
 	height: 100%;
 }
+
+.film-card:hover::before {
+	content: '';
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to bottom,
+		transparent 0%,
+		rgba(255, 232, 31, 0.3) 50%,
+		transparent 100%
+	);
+	animation: scan 1.5s linear;
+	pointer-events: none;
+	z-index: 1;
+}
+
+@keyframes scan {
+	0% {
+		top: -100%;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
 
 .film-card:hover {
 	transform: scale(1.03);
