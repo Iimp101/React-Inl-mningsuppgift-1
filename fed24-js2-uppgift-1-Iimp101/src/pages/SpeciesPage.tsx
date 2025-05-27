@@ -24,7 +24,6 @@ const SpeciesPage = () => {
 
 			try {
 				const firstPage = await getSpeciesList(1);
-				await new Promise(r => setTimeout(r, 1500)); 
 				let allResults = [...firstPage.data];
 
 				const totalPages = firstPage.last_page;

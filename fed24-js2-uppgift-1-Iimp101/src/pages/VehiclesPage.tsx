@@ -23,7 +23,6 @@ const VehiclesPage = () => {
 
 			try {
 				const firstPage = await getVehicleList(1);
-				await new Promise(r => setTimeout(r, 1500));
 				let allResults = [...firstPage.data];
 
 				const totalPages = firstPage.last_page;

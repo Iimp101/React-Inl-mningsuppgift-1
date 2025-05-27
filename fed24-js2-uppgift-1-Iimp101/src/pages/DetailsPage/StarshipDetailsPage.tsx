@@ -40,12 +40,15 @@ const StarshipDetailsPage = () => {
 
 
   	return (
+
 		<div className="starship-details-page">
-			<img
-				src={starshipImages[starships.id]}
-				alt={starships.name}
-				className="starship-image"
-			/>
+			<div className="starship-image-wrapper">
+				<img
+					src={starshipImages[starships.id] ?? "/images/placeholder.png"}
+					alt={starships.name}
+					className="starship-details-img"
+				/>
+			</div>
 
 			<div className="starship-details-info">
 				<div className="starship-details-header">

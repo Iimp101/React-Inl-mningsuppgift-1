@@ -5,6 +5,7 @@ import FilmDetailsPage from "./pages/DetailsPage/FilmDetailsPage";
 import PeopleDetailsPage from "./pages/DetailsPage/PeopleDetailsPage";
 import SpeciesDetailsPage from "./pages/DetailsPage/SpeciesDetailsPage";
 import StarshipDetailsPage from "./pages/DetailsPage/StarshipDetailsPage";
+import VehicleDetailsPage from "./pages/DetailsPage/VehicleDetailsPage";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import PeoplesPage from "./pages/PeoplesPage";
@@ -38,6 +39,7 @@ function App() {
 					<Route path="/starships" element={<StarshipsPage />} />
 					<Route path="/starships/:id" element={<StarshipDetailsPage />} /> 
 					<Route path="/vehicles" element={<VehiclesPage />} />
+					<Route path="/vehicles/:id" element={<VehicleDetailsPage />} />
 				</Routes>
 			</main>
 

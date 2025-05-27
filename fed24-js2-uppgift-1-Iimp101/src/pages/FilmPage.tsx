@@ -18,7 +18,6 @@ const FilmsPage = () => {
 
       try {
         const response: SWAPIListResponse<Film> = await getFilmList();
-        await new Promise(r => setTimeout(r, 1500)); 
         setFilms(response.data);
       } catch (err) {
         setError(err instanceof Error
