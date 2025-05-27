@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getFilmById } from "../../services/StarwarsPediaAPI";
 import type { Film } from "../../services/StarwarsPedia.types";
+import { getFilmById } from "../../services/StarwarsPediaAPI";
 import LoadingPagesGif from "../../components/LoadingPagesGif";
+import RelatedLinksSection from "../../components/RelationLinkSection";
 import "../../CSS/DetailsPage/FilmDetailsPage.css";
 
 const FilmDetailsPage = () => {
@@ -45,27 +46,32 @@ const FilmDetailsPage = () => {
 
     return (
 		<div className="film-details-page">
+			<img
+				src={film.image_url ?? "/images/placeholder.png"}
+				alt={film.title}
+				className="film-details-img"
+			/>
 
-            
-            <img src={film.image_url ?? "/images/placeholder.png"} alt={film.title} className="film-details-img" />
+			<div className="film-details-info">
+				<div className="film-details-header">
+					<h1>{film.title} (Episode {film.episode_id})</h1>
+					<button className="back-button" onClick={() => navigate(-1)}>
+						← Back
+					</button>
+				</div>
 
-            <div className="film-details-info">
-                <div className="film-details-header">
-                    <h1>{film.title} (Episode {film.episode_id})</h1>
-                    <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
-                </div>
-              
-                <p><strong>Director:</strong> {film.director}</p>
-                <p><strong>Producer:</strong> {film.producer}</p>
-                <p><strong>Release Date:</strong> {film.release_date}</p>
-                <p className="opening-crawl">{film.opening_crawl}</p>
-                <p><strong>Characters:</strong> {film.characters_count}</p>
-                <p><strong>Planets:</strong> {film.planets_count}</p>
-                <p><strong>Starships:</strong> {film.starships_count}</p>
-                <p><strong>Vehicles:</strong> {film.vehicles_count}</p>
-                <p><strong>Species:</strong> {film.species_count}</p>
-            </div>
-        </div>
+				<p><strong>Director:</strong> {film.director}</p>
+				<p><strong>Producer:</strong> {film.producer}</p>
+				<p><strong>Release Date:</strong> {film.release_date}</p>
+				<p className="opening-crawl">{film.opening_crawl}</p>
+
+				<RelatedLinksSection title="Characters" items={film.characters} basePath="people" icon="🧍" />
+				<RelatedLinksSection title="Planets" items={film.planets} basePath="planets" icon="🌍" />
+				<RelatedLinksSection title="Species" items={film.species} basePath="species" icon="🧬" />
+				<RelatedLinksSection title="Starships" items={film.starships} basePath="starships" icon="🚀" />
+				<RelatedLinksSection title="Vehicles" items={film.vehicles} basePath="vehicles" icon="🛻" />
+			</div>
+		</div>
 	);
 }
 

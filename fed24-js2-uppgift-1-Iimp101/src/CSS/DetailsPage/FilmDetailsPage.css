@@ -86,3 +86,46 @@
     background-color: yellow;
     color: black;
 }
+
+.details-section {
+	margin-top: 2rem;
+}
+
+.details-section h3 {
+	color: #ffe81f;
+	font-family: 'Orbitron', sans-serif;
+	margin-bottom: 0.8rem;
+	font-size: 1.2rem;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.3rem;
+}
+
+.details-section ul {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.details-section li {
+	margin: 0.3rem 0;
+}
+
+.details-section a {
+	color: #fff;
+	text-decoration: none;
+	padding: 0.3rem 0.5rem;
+	display: inline-block;
+	border-radius: 6px;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.details-section a:hover {
+	color: black;
+	background-color: #ffe81f;
+	box-shadow: 0 0 8px #ffe81f;
+}
+
+.link-icon {
+	margin-right: 0.5rem;
+}
+
