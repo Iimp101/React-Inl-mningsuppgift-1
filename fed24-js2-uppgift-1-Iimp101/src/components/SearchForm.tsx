@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/SearchInput.css";
+import "../CSS/SearchForm.css";
 
-const SearchBar = () => {
+const SearchForm = () => {
 	const [search, setSearch] = useState("");
 	const navigate = useNavigate();
 
@@ -34,4 +34,4 @@ const SearchBar = () => {
 	);
 };
 
-export default SearchBar;
+export default SearchForm;

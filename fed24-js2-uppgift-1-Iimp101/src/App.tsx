@@ -8,7 +8,7 @@ import StarshipDetailsPage from "./pages/DetailsPage/StarshipDetailsPage";
 import VehicleDetailsPage from "./pages/DetailsPage/VehicleDetailsPage";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
-import PeoplesPage from "./pages/PeoplesPage";
+import PeoplePage from "./pages/PeoplePage";
 import PlanetsPage from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
@@ -31,7 +31,7 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/films" element={<FilmsPage />} />
 					<Route path="/films/:id" element={<FilmDetailsPage />} />
-					<Route path="/people" element={<PeoplesPage />} />
+					<Route path="/people" element={<PeoplePage />} />
 					<Route path="/people/:id" element={<PeopleDetailsPage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/planets/:id" element={<PlanetDetailsPage />} />
@@ -41,7 +41,7 @@ function App() {
 					<Route path="/starships/:id" element={<StarshipDetailsPage />} /> 
 					<Route path="/vehicles" element={<VehiclesPage />} />
 					<Route path="/vehicles/:id" element={<VehicleDetailsPage />} />
-					<Route path="/search/" element={<SearchPage />} />
+					<Route path="/search" element={<SearchPage />} />
 				</Routes>
 			</main>
 

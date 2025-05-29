@@ -9,7 +9,7 @@ import lightsaberColor from "../data/PeopleLightsaverColor";
 import "../CSS/PeoplesPage.css";
 import getTransparentColor from "../components/TransparentColor";
 
-const PeoplesPage = () => {
+const PeoplePage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -137,4 +137,4 @@ const PeoplesPage = () => {
 	);
 };
 
-export default PeoplesPage;
+export default PeoplePage;

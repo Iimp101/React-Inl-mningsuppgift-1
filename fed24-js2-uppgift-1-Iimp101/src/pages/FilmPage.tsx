@@ -13,24 +13,24 @@ const FilmsPage = () => {
 
 	useEffect(() => {
     const fetchFilms = async () => {
-      setIsLoading(true);
-      setError(null);
+		setIsLoading(true);
+		setError(null);
 
-      try {
-        const response: SWAPIListResponse<Film> = await getFilmList();
-        setFilms(response.data);
-      } catch (err) {
+      	try {
+			const response: SWAPIListResponse<Film> = await getFilmList();
+			setFilms(response.data);
+      	} catch (err) {
         setError(err instanceof Error
 			? err.message
 			: "Failed to load films"
 			)
-      }
+      	}
 
-      setIsLoading(false);
+      	setIsLoading(false);
     };
 
     fetchFilms();
-  }, []);
+  	}, []);
 
 
 	return (

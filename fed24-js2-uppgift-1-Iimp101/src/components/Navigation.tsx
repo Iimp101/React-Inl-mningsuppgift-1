@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import SearchBar from "./SearchInput";
+import SearchForm from "./SearchForm";
 import "../CSS/Navigation.css";
 
 const Navigation = () => {
@@ -61,7 +61,7 @@ const Navigation = () => {
 						className="lightsaber-slider"
 						title="Volume"
 					/>
-					<SearchBar />
+					<SearchForm />
 					
 					<audio ref={audioRef} loop>
 						<source src="/sounds/Starwars-Lobby-Music.mp3" type="audio/mpeg" />
