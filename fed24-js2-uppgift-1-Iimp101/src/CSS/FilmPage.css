@@ -128,9 +128,9 @@
 	vertical-align: middle;
 }
 
-.lightsaber.left {
+/* .lightsaber.left {
 	transform: scaleX(-1);
-}
+} */
 
 .film-card-link {
 	text-decoration: none;

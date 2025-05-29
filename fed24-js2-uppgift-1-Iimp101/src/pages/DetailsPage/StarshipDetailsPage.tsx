@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStarshipById } from "../../services/StarwarsPediaAPI";
 import type { Starship } from "../../services/StarwarsPedia.types";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import starshipImages from "../../data/StarshipImages";
 import "../../CSS/DetailsPage/StarshipDetailsPage.css";
 
@@ -33,7 +33,7 @@ const StarshipDetailsPage = () => {
 		if (id) fetchStarshipData();
 	}, [id]);
 
-	if (isLoading) return <LoadingPagesGif />;
+	if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!starships) return null;
 

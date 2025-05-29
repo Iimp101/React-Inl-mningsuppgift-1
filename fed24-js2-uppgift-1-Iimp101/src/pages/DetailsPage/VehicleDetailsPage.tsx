@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getVehicleById } from "../../services/StarwarsPediaAPI";
 import type { Vehicle } from "../../services/StarwarsPedia.types";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import vehicleImages from "../../data/VehicleImages";
 import "../../CSS/DetailsPage/VehicleDetailsPage.css";
 
@@ -34,7 +34,7 @@ const VehicleDetailsPage = () => {
 		if (id) fetchVehicleData();
 	}, [id]);
 
-	if (isLoading) return <LoadingPagesGif />;
+	if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!vehicle) return null;
 

@@ -1,27 +1,21 @@
 import { useState, useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { getSpeciesList } from "../services/StarwarsPediaAPI";
 import type { Species } from "../services/StarwarsPedia.types";
-import { useSearchParams, Link } from "react-router-dom";
-import LoadingPagesGif from "../components/LoadingPagesGif";
+import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
-import "../CSS/SpeciesPage.css";
 import speciesImages from "../data/SpeciesImages";
+import "../CSS/SpeciesPage.css";
 
 const SpeciesPage = () => {
-
 	const [species, setSpecies] = useState<Species[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [totalPages, setTotalPages] = useState(1);
 
-	useEffect(() => {
-	if (!searchParams.has("page")) {
-		setSearchParams({ page: "1" });
-	}
-	}, [searchParams, setSearchParams]);
-		
-	const currentPage = parseInt(searchParams.get("page") || "1");
-	const speciesPerPage = 8;
+	const [searchParams, setSearchParams] = useSearchParams();
+	const page = parseInt(searchParams.get("page") || "1");
+	const query = searchParams.get("query") || "";
 
 	useEffect(() => {
 		const fetchSpecies = async () => {
@@ -29,40 +23,25 @@ const SpeciesPage = () => {
 			setError(null);
 
 			try {
-				const firstPage = await getSpeciesList(1);
-				let allResults = [...firstPage.data];
-
-				const totalPages = firstPage.last_page;
-				const promises = [];
-
-				for (let page = 2; page <= totalPages; page++) {
-					promises.push(getSpeciesList(page));
-				}
-
-				const otherPages = await Promise.all(promises);
-				otherPages.forEach(p => allResults = allResults.concat(p.data));
-
-				setSpecies(allResults);
-			}
-			catch (err) {
-			setError(err instanceof Error
-				? err.message
-				: "Failed to load species"
-				)
+				const response = await getSpeciesList(page, query);
+				setSpecies(response.data);
+				setTotalPages(response.last_page);
+			} catch (err) {
+				setError(err instanceof Error 
+					? err.message 
+					: "Failed to load species");
 			}
 
 			setIsLoading(false);
 		};
 
 		fetchSpecies();
-	}, [currentPage]);
-
-	const totalPages = Math.ceil(species.length / speciesPerPage);
-	const startIndex = (currentPage - 1) * speciesPerPage;
-	const visibleSpecies = species.slice(startIndex, startIndex + speciesPerPage);
+	}, [page, query]);
 
 	const goToPage = (newPage: number) => {
-		setSearchParams( {page: newPage.toString() });
+		const newParams: Record<string, string> = { page: newPage.toString() };
+		if (query) newParams.query = query;
+		setSearchParams(newParams);
 	};
 
 	return (
@@ -81,12 +60,18 @@ const SpeciesPage = () => {
 				/>
 			</h1>
 
-			{isLoading && <LoadingPagesGif />}
+			{query && (
+				<h2 className="search-results-heading">
+					Search results for "{query}"
+				</h2>
+			)}
+
+			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && (
+			{!isLoading && !error && species.length > 0 && (
 				<ul className="species-list">
-					{visibleSpecies.map((specie) => (
+					{species.map((specie) => (
 						<li key={specie.id}>
 							<Link to={`/species/${specie.id}`} className="species-card-link">
 								<div className="species-card">
@@ -114,19 +99,23 @@ const SpeciesPage = () => {
 			)}
 
 			{!isLoading && !error && species.length > 0 && (
-				<Pagination 
-					page={currentPage}
+				<Pagination
+					page={page}
 					totalPages={totalPages}
-					hasPreviousPage={currentPage > 1}
-					hasNextPage={currentPage < totalPages}
-					onPreviousPage={() => goToPage(currentPage - 1)}
-					onNextPage={() => goToPage(currentPage + 1)}
+					hasPreviousPage={page > 1}
+					hasNextPage={page < totalPages}
+					onPreviousPage={() => goToPage(page - 1)}
+					onNextPage={() => goToPage(page + 1)}
 					onFirstPage={() => goToPage(1)}
-  					onLastPage={() => goToPage(totalPages)}
+					onLastPage={() => goToPage(totalPages)}
 				/>
 			)}
-    	</div>
-  	)
-}
+
+			{!isLoading && !error && species.length === 0 && (
+				<p className="no-results-msg">No results found for "{query}"</p>
+			)}
+		</div>
+	);
+};
 
 export default SpeciesPage;

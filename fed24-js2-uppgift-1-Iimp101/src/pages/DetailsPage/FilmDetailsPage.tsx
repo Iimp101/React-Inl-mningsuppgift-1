@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Film } from "../../services/StarwarsPedia.types";
 import { getFilmById } from "../../services/StarwarsPediaAPI";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import RelatedLinksSection from "../../components/RelationLinkSection";
 import "../../CSS/DetailsPage/FilmDetailsPage.css";
 
@@ -39,7 +39,7 @@ const FilmDetailsPage = () => {
         if (id) fetchFilmData(); 
     }, [id]);
 
-    if (isLoading) return <LoadingPagesGif />;
+    if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!film) return null;
 

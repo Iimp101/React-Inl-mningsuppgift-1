@@ -3,27 +3,21 @@ import { useSearchParams, Link } from "react-router-dom";
 import { getPersonList } from "../services/StarwarsPediaAPI";
 import type { Person } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
-import LoadingPagesGif from "../components/LoadingPagesGif";
+import LoadingGif from "../components/LoadingGif";
 import missingImages from "../data/PeopleImages";
 import lightsaberColor from "../data/PeopleLightsaverColor";
-import "../CSS/PeoplesPage.css";
 import getTransparentColor from "../components/TransparentColor";
+import "../CSS/PeoplesPage.css";
 
 const PeoplePage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [totalPages, setTotalPages] = useState(1);
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	useEffect(() => {
-	if (!searchParams.has("page")) {
-		setSearchParams({ page: "1" });
-	}
-	}, [searchParams, setSearchParams]);
-
-
-	const peoplePerPage = 10;
-	const currentPage = parseInt(searchParams.get("page") || "1");
+	const page = parseInt(searchParams.get("page") || "1");
+	const query = searchParams.get("query") || "";
 
 	useEffect(() => {
 		const fetchPeople = async () => {
@@ -31,38 +25,24 @@ const PeoplePage = () => {
 			setError(null);
 
 			try {
-				const firstPage = await getPersonList(1);
-				let allResults = [...firstPage.data];
-
-				const totalPages = firstPage.last_page;
-				const promises = [];
-
-				for (let page = 2; page <= totalPages; page++) {
-					promises.push(getPersonList(page));
-				}
-
-				const otherPages = await Promise.all(promises);
-				otherPages.forEach(p => allResults = allResults.concat(p.data));
-
-				setPeople(allResults);
+				const response = await getPersonList(page, query);
+				setPeople(response.data);
+				setTotalPages(response.last_page);
 			} catch (err) {
 				setError(err instanceof Error
-					? err.message
-					: "Failed to load people"
-				);
+				? err.message
+				: "Failed to load people");
 			}
 			setIsLoading(false);
 		};
 
 		fetchPeople();
-	}, [currentPage]);
-
-	const totalPages = Math.ceil(people.length / peoplePerPage);
-	const startIndex = (currentPage - 1) * peoplePerPage;
-	const visiblePeople = people.slice(startIndex, startIndex + peoplePerPage);
+	}, [page, query]);
 
 	const goToPage = (newPage: number) => {
-		setSearchParams({ page: newPage.toString() });
+		const newParams: Record<string, string> = { page: newPage.toString() };
+		if (query) newParams.query = query;
+		setSearchParams(newParams);
 	};
 
 	return (
@@ -81,12 +61,18 @@ const PeoplePage = () => {
 				/>
 			</h1>
 
-			{isLoading && <LoadingPagesGif />}
+			{query && (
+				<h2 className="search-results-heading">
+					Search results for "{query}"
+				</h2>
+			)}
+
+			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && visiblePeople.length > 0 && (
+			{!isLoading && !error && people.length > 0 && (
 				<ul className="people-list">
-					{visiblePeople.map((person) => {
+					{people.map((person) => {
 						const saberColor = lightsaberColor[person.id];
 						const glowColor = saberColor ?? "#cccccc";
 						const glowTransparent = saberColor ? getTransparentColor(saberColor) : "rgba(204, 204, 204, 0.3)";
@@ -121,17 +107,21 @@ const PeoplePage = () => {
 				</ul>
 			)}
 
-			{!isLoading && !error && visiblePeople.length > 0 && (
+			{!isLoading && !error && people.length > 0 && (
 				<Pagination
-					page={currentPage}
+					page={page}
 					totalPages={totalPages}
-					hasPreviousPage={currentPage > 1}
-					hasNextPage={currentPage < totalPages}
-					onPreviousPage={() => goToPage(currentPage - 1)}
-					onNextPage={() => goToPage(currentPage + 1)}
+					hasPreviousPage={page > 1}
+					hasNextPage={page < totalPages}
+					onPreviousPage={() => goToPage(page - 1)}
+					onNextPage={() => goToPage(page + 1)}
 					onFirstPage={() => goToPage(1)}
 					onLastPage={() => goToPage(totalPages)}
 				/>
+			)}
+
+			{!isLoading && !error && people.length === 0 && (
+				<p className="no-results-msg">No results found for "{query}"</p>
 			)}
 		</div>
 	);

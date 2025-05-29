@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPlanetById } from "../../services/StarwarsPediaAPI";
 import type { Planet } from "../../services/StarwarsPedia.types";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import getTransparentColor from "../../components/TransparentColor";
 import planetImages from "../../data/PlanetImages";
 import lightsaberColor from "../../data/PeopleLightsaverColor";
@@ -35,7 +35,7 @@ const PlanetDetailsPage = () => {
     if (id)fetchPlanetData();
 }, [id]);
 
-    if (isLoading) return <LoadingPagesGif />;
+    if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!planet) return null;
 

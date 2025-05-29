@@ -2,7 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPersonById } from "../../services/StarwarsPediaAPI";
 import type { Person } from "../../services/StarwarsPedia.types";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import RelatedLinksSection from "../../components/RelationLinkSection";
 import lightsaberColor from "../../data/PeopleLightsaverColor";
 import getTransparentColor from "../../components/TransparentColor";
@@ -32,7 +32,7 @@ const PeopleDetailsPage = () => {
 		if (id) fetchPersonData();
 	}, [id]);
 
-	if (isLoading) return <LoadingPagesGif />;
+	if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!person) return null;
 

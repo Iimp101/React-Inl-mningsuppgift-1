@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { getVehicleList } from "../services/StarwarsPediaAPI";
 import type { Vehicle } from "../services/StarwarsPedia.types";
-import { useSearchParams, Link } from "react-router-dom";
-import LoadingPagesGif from "../components/LoadingPagesGif";
+import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
 import "../CSS/VehiclePage.css";
 import vehicleImages from "../data/VehicleImages";
@@ -11,16 +11,11 @@ const VehiclesPage = () => {
 	const [vehicles, setVehicles] = useState<Vehicle[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [totalPages, setTotalPages] = useState(1);
+
 	const [searchParams, setSearchParams] = useSearchParams();
-
-	useEffect(() => {
-	if (!searchParams.has("page")) {
-		setSearchParams({ page: "1" });
-	}
-	}, [searchParams, setSearchParams]);
-
-	const currentPage = parseInt(searchParams.get("page") || "1");
-	const vehiclesPerPage = 8;
+	const page = parseInt(searchParams.get("page") || "1");
+	const query = searchParams.get("query") || "";
 
 	useEffect(() => {
 		const fetchVehicles = async () => {
@@ -28,22 +23,9 @@ const VehiclesPage = () => {
 			setError(null);
 
 			try {
-				const firstPage = await getVehicleList(1);
-				let allResults = [...firstPage.data];
-
-				const totalPages = firstPage.last_page;
-				const promises = [];
-
-				for (let page = 2; page <= totalPages; page++) {
-					promises.push(getVehicleList(page));
-				}
-
-				const otherPages = await Promise.all(promises);
-				otherPages.forEach(p => {
-					allResults = allResults.concat(p.data);
-				});
-
-				setVehicles(allResults);
+				const response = await getVehicleList(page, query);
+				setVehicles(response.data);
+				setTotalPages(response.last_page);
 			} catch (err) {
 				setError(err instanceof Error 
 					? err.message 
@@ -54,14 +36,12 @@ const VehiclesPage = () => {
 		};
 
 		fetchVehicles();
-	}, [currentPage]);
-
-	const totalPages = Math.ceil(vehicles.length / vehiclesPerPage);
-	const startIndex = (currentPage - 1) * vehiclesPerPage;
-	const visibleVehicles = vehicles.slice(startIndex, startIndex + vehiclesPerPage);
+	}, [page, query]);
 
 	const goToPage = (newPage: number) => {
-		setSearchParams({ page: newPage.toString() });
+		const newParams: Record<string, string> = { page: newPage.toString() };
+		if (query) newParams.query = query;
+		setSearchParams(newParams);
 	};
 
 	return (
@@ -80,30 +60,36 @@ const VehiclesPage = () => {
 				/>
 			</h1>
 
-			{isLoading && <LoadingPagesGif />}
+			{query && (
+				<h2 className="search-results-heading">
+					Search results for "{query}"
+				</h2>
+			)}
+
+			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && (
+			{!isLoading && !error && vehicles.length > 0 && (
 				<ul className="vehicle-list">
-					{visibleVehicles.map(vehicle => (
+					{vehicles.map(vehicle => (
 						<li key={vehicle.id}>
 							<Link to={`/vehicles/${vehicle.id}`} className="vehicle-card-link">
 								<div className="vehicle-card">
-								<img
-									src={vehicleImages[vehicle.id]}
-									alt={vehicle.name}
-									className="vehicle-image"
-								/>
-								<div className="vehicle-info">
-									<h3>{vehicle.name}</h3>
-									<p><strong>Model:</strong> {vehicle.model}</p>
-									<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
-									<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
-									<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
-									<p><strong>Crew:</strong> {vehicle.crew}</p>								
-									<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>							
-									<p><strong>Films:</strong> {vehicle.films_count}</p>
-								</div>
+									<img
+										src={vehicleImages[vehicle.id]}
+										alt={vehicle.name}
+										className="vehicle-image"
+									/>
+									<div className="vehicle-info">
+										<h3>{vehicle.name}</h3>
+										<p><strong>Model:</strong> {vehicle.model}</p>
+										<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
+										<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
+										<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
+										<p><strong>Crew:</strong> {vehicle.crew}</p>
+										<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>
+										<p><strong>Films:</strong> {vehicle.films_count}</p>
+									</div>
 								</div>
 							</Link>
 						</li>
@@ -111,17 +97,21 @@ const VehiclesPage = () => {
 				</ul>
 			)}
 
-			{!isLoading && !error && visibleVehicles.length > 0 && (
+			{!isLoading && !error && vehicles.length > 0 && (
 				<Pagination
-					page={currentPage}
+					page={page}
 					totalPages={totalPages}
-					hasPreviousPage={currentPage > 1}
-					hasNextPage={currentPage < totalPages}
-					onPreviousPage={() => goToPage(currentPage - 1)}
-					onNextPage={() => goToPage(currentPage + 1)}
+					hasPreviousPage={page > 1}
+					hasNextPage={page < totalPages}
+					onPreviousPage={() => goToPage(page - 1)}
+					onNextPage={() => goToPage(page + 1)}
 					onFirstPage={() => goToPage(1)}
-  					onLastPage={() => goToPage(totalPages)}
+					onLastPage={() => goToPage(totalPages)}
 				/>
+			)}
+
+			{!isLoading && !error && vehicles.length === 0 && (
+				<p className="no-results-msg">No results found for "{query}"</p>
 			)}
 		</div>
 	);

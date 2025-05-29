@@ -1,6 +1,6 @@
-import "../CSS/LoadingPagesGif.css";
+import "../CSS/LoadingGif.css";
 
-const LoadingPagesGif = () => {
+const LoadingGif = () => {
   return (
     <div className="loading-pages">
         <img src="/GIFS/Baby Yoda.gif" alt="Loading baby yoda" />    
@@ -8,4 +8,4 @@ const LoadingPagesGif = () => {
   )
 }
 
-export default LoadingPagesGif;
+export default LoadingGif;

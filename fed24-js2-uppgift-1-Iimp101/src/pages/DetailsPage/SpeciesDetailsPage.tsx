@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSpeciesById } from "../../services/StarwarsPediaAPI";
 import type { Species } from "../../services/StarwarsPedia.types";
-import LoadingPagesGif from "../../components/LoadingPagesGif";
+import LoadingGif from "../../components/LoadingGif";
 import speciesImages from "../../data/SpeciesImages";
 import "../../CSS/DetailsPage/SpeciesDetailsPage.css";
 
@@ -31,7 +31,7 @@ const SpeciesDetailsPage = () => {
 		if (id) fetchSpeciesData();
 	}, [id]);
 
-	if (isLoading) return <LoadingPagesGif />;
+	if (isLoading) return <LoadingGif />;
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!species) return null;
 
