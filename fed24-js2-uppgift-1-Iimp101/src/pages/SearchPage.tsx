@@ -46,80 +46,67 @@ const SearchPage = () => {
 	const [redirecting, setRedirecting] = useState(false);
 
 	useEffect(() => {
-		if (query.trim().length < 2) return;
+	if (query.trim().length < 2) return;
 
-		const fetchAll = async () => {
-			setLoading(true);
-			setError(null);
-			setNoResults(false);
+	const fetchAll = async () => {
+		setLoading(true);
+		setError(null);
+		setNoResults(false);
 
-			try {
-				const [
-					filmsRes,
-					peopleRes,
-					planetsRes,
-					speciesRes,
-					starshipsRes,
-					vehiclesRes,
-				] = await Promise.all([
-					getFilmList(currentPage, query),
-					getPersonList(currentPage, query),
-					getPlanetList(currentPage, query),
-					getSpeciesList(currentPage, query),
-					getStarshipList(currentPage, query),
-					getVehicleList(currentPage, query),
-				]);
+		try {
+			const [
+				filmsRes,
+				peopleRes,
+				planetsRes,
+				speciesRes,
+				starshipsRes,
+				vehiclesRes,
+			] = await Promise.all([
+				getFilmList(currentPage, query),
+				getPersonList(currentPage, query),
+				getPlanetList(currentPage, query),
+				getSpeciesList(currentPage, query),
+				getStarshipList(currentPage, query),
+				getVehicleList(currentPage, query),
+			]);
 
-				setFilms(filmsRes.data);
-				setTotalFilms(filmsRes.total);
+			setFilms(filmsRes.data); setTotalFilms(filmsRes.total);
+			setPeople(peopleRes.data); setTotalPeople(peopleRes.total);
+			setPlanets(planetsRes.data); setTotalPlanets(planetsRes.total);
+			setSpecies(speciesRes.data); setTotalSpecies(speciesRes.total);
+			setStarships(starshipsRes.data); setTotalStarships(starshipsRes.total);
+			setVehicles(vehiclesRes.data); setTotalVehicles(vehiclesRes.total);
 
-				setPeople(peopleRes.data);
-				setTotalPeople(peopleRes.total);
+			const allResultsTotal = filmsRes.total + peopleRes.total + planetsRes.total +
+				speciesRes.total + starshipsRes.total + vehiclesRes.total;
 
-				setPlanets(planetsRes.data);
-				setTotalPlanets(planetsRes.total);
-
-				setSpecies(speciesRes.data);
-				setTotalSpecies(speciesRes.total);
-
-				setStarships(starshipsRes.data);
-				setTotalStarships(starshipsRes.total);
-
-				setVehicles(vehiclesRes.data);
-				setTotalVehicles(vehiclesRes.total);
-
-				const allResultsTotal =
-					filmsRes.total +
-					peopleRes.total +
-					planetsRes.total +
-					speciesRes.total +
-					starshipsRes.total +
-					vehiclesRes.total;
-
-				if (allResultsTotal === 0) {
+			if (allResultsTotal === 0) {
+				setTimeout(() => {
 					setNoResults(true);
-					return;
-				}
+					setLoading(false);
+				}, 1500);
+				return;
+			}
 
-				if (allResultsTotal === 1) {
-					setRedirecting(true);
-					if (filmsRes.total === 1) return navigate(`/films/${filmsRes.data[0].id}`);
-					if (peopleRes.total === 1) return navigate(`/people/${peopleRes.data[0].id}`);
-					if (planetsRes.total === 1) return navigate(`/planets/${planetsRes.data[0].id}`);
-					if (speciesRes.total === 1) return navigate(`/species/${speciesRes.data[0].id}`);
-					if (starshipsRes.total === 1) return navigate(`/starships/${starshipsRes.data[0].id}`);
-					if (vehiclesRes.total === 1) return navigate(`/vehicles/${vehiclesRes.data[0].id}`);
-				}
-			} catch (err) {
-				setError(err instanceof Error 
-                    ? err.message 
-                    : "Failed to load your request");
-			} 
+			if (allResultsTotal === 1) {
+				setRedirecting(true);
+				if (filmsRes.total === 1) return navigate(`/films/${filmsRes.data[0].id}`);
+				if (peopleRes.total === 1) return navigate(`/people/${peopleRes.data[0].id}`);
+				if (planetsRes.total === 1) return navigate(`/planets/${planetsRes.data[0].id}`);
+				if (speciesRes.total === 1) return navigate(`/species/${speciesRes.data[0].id}`);
+				if (starshipsRes.total === 1) return navigate(`/starships/${starshipsRes.data[0].id}`);
+				if (vehiclesRes.total === 1) return navigate(`/vehicles/${vehiclesRes.data[0].id}`);
+			}
 			setLoading(false);
-		};
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "Failed to load your request");
+			setLoading(false); 
+		}
+	};
 
-		fetchAll();
-	}, [query, currentPage, navigate]);
+	fetchAll();
+}, [query, currentPage, navigate]);
+
 
 	const goToPage = (page: number) => {
 		setSearchParams({ query, page: page.toString() });
@@ -192,7 +179,6 @@ const SearchPage = () => {
 				</p>
 			) : (
 				<>
-					<h1 className="page-title">Search Results for "{query}"</h1>
 					{renderCategory("Films", films, "films", totalFilms)}
 					{renderCategory("People", people, "people", totalPeople)}
 					{renderCategory("Planets", planets, "planets", totalPlanets)}
