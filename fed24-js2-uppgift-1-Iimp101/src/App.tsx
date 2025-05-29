@@ -15,6 +15,7 @@ import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FilmsPage from "./pages/FilmPage";
 import Footer from "./components/Footer";
+import SearchPage from "./pages/SearchPage";
 import "./App.css";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 					<Route path="/starships/:id" element={<StarshipDetailsPage />} /> 
 					<Route path="/vehicles" element={<VehiclesPage />} />
 					<Route path="/vehicles/:id" element={<VehicleDetailsPage />} />
+					<Route path="/search/" element={<SearchPage />} />
 				</Routes>
 			</main>
 

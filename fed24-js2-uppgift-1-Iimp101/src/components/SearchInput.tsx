@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/SearchPage.css";
+import "../CSS/SearchInput.css";
 
 const SearchBar = () => {
 	const [search, setSearch] = useState("");
@@ -10,7 +10,7 @@ const SearchBar = () => {
 		e.preventDefault();
 		const trimmed = search.trim();
 		if (trimmed.length < 2) return;
-		navigate(`/search/people?query=${trimmed}&page=1`);
+		navigate(`/search?query=${trimmed}&page=1`);
 		setSearch("");
 	};
 
