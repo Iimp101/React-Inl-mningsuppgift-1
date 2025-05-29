@@ -9,23 +9,29 @@ const SearchForm = () => {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		const trimmed = search.trim();	
-		// Giltiga resursrutter – för att förhindra att man försöker söka från startsidan
+		const trimmed = search.trim();
+
+		// Hindra tomma sökningar
+		if (!trimmed) return;
+
+		// Lista över tillåtna sökvägar
 		const validPaths = [
-			"/films",
-			"/people",
-			"/planets",
-			"/species",
-			"/starships",
-			"/vehicles"
+			"films",
+			"people",
+			"planets",
+			"species",
+			"starships",
+			"vehicles"
 		];
 
-		const currentPath = location.pathname;
+		// Ta ut resursnamnet från aktuell path
+		const currentPath = location.pathname.split("/")[1]; // t.ex. "people"
 
+		// Om vi befinner oss på en giltig sida → använd den
 		if (validPaths.includes(currentPath)) {
-			const queryParam = encodeURIComponent(trimmed);
-			navigate(`${currentPath}?query=${queryParam}&page=1`);
+			navigate(`/${currentPath}?query=${encodeURIComponent(trimmed)}&page=1`);
 		} else {
+			// Om man t.ex. står på startsidan eller fel sida → default till people
 			navigate(`/people?query=${encodeURIComponent(trimmed)}&page=1`);
 		}
 

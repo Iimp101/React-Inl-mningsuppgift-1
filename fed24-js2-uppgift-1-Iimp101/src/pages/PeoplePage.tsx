@@ -13,36 +13,52 @@ const PeoplePage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState(1);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const page = parseInt(searchParams.get("page") || "1");
 	const query = searchParams.get("query") || "";
+	const peoplePerPage = 10;
 
 	useEffect(() => {
-		const fetchPeople = async () => {
+		const fetchAllPeople = async () => {
 			setIsLoading(true);
 			setError(null);
 
 			try {
-				const response = await getPersonList(page, query);
-				setPeople(response.data);
-				setTotalPages(response.last_page);
-			} catch (err) {
-				setError(err instanceof Error
-				? err.message
-				: "Failed to load people");
+				const res = await getPersonList(1, query);
+				let results = [...res.data];
+				const total = res.last_page;
+
+				const promises = [];
+				for (let p = 2; p <= total; p++) {
+					promises.push(getPersonList(p, query));
+				}
+				const others = await Promise.all(promises);
+				others.forEach((res) => {
+					results = results.concat(res.data);
+				});
+
+				setPeople(results);
+			} catch (err: unknown) {
+				setError(err instanceof Error 
+					? err.message 
+					: "Failed to load people");
 			}
+
 			setIsLoading(false);
 		};
 
-		fetchPeople();
-	}, [page, query]);
+		fetchAllPeople();
+	}, [query]);
+
+	const totalPages = Math.ceil(people.length / peoplePerPage);
+	const startIndex = (page - 1) * peoplePerPage;
+	const visiblePeople = people.slice(startIndex, startIndex + peoplePerPage);
 
 	const goToPage = (newPage: number) => {
-		const newParams: Record<string, string> = { page: newPage.toString() };
-		if (query) newParams.query = query;
-		setSearchParams(newParams);
+		const params: Record<string, string> = { page: newPage.toString() };
+		if (query) params.query = query;
+		setSearchParams(params);
 	};
 
 	return (
@@ -53,7 +69,7 @@ const PeoplePage = () => {
 					alt="Blue Lightsaber"
 					className="lightsaber left"
 				/>
-				Star wars People
+					Star wars People
 				<img
 					src="/GIFS/lightsaberRed2.gif"
 					alt="Red Lightsaber"
@@ -70,12 +86,14 @@ const PeoplePage = () => {
 			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && people.length > 0 && (
+			{!isLoading && !error && visiblePeople.length > 0 && (
 				<ul className="people-list">
-					{people.map((person) => {
+					{visiblePeople.map((person) => {
 						const saberColor = lightsaberColor[person.id];
 						const glowColor = saberColor ?? "#cccccc";
-						const glowTransparent = saberColor ? getTransparentColor(saberColor) : "rgba(204, 204, 204, 0.3)";
+						const glowTransparent = saberColor
+							? getTransparentColor(saberColor)
+							: "rgba(204, 204, 204, 0.3)";
 
 						return (
 							<li key={person.id}>

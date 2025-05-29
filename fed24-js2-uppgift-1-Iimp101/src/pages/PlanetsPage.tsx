@@ -13,31 +13,47 @@ const PlanetsPage = () => {
 	const [planets, setPlanets] = useState<Planet[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState(1);
-
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const page = parseInt(searchParams.get("page") || "1");
 	const query = searchParams.get("query") || "";
+	const planetsPerPage = 8;
 
 	useEffect(() => {
-		const fetchPlanets = async () => {
+		const fetchAllPlanets = async () => {
 			setIsLoading(true);
 			setError(null);
 
 			try {
-				const response = await getPlanetList(page, query);
-				setPlanets(response.data);
-				setTotalPages(response.last_page);
-			} catch (err) {
+				const res = await getPlanetList(1, query);
+				console.log("API returned:", res.data);
+				let results = [...res.data];
+				const total = res.last_page;
+
+				const promises = [];
+				for (let p = 2; p <= total; p++) {
+					promises.push(getPlanetList(p, query));
+				}
+
+				const others = await Promise.all(promises);
+				others.forEach(res => results = results.concat(res.data));
+
+				setPlanets(results);
+			} catch (err: unknown) {
 				setError(err instanceof Error 
 					? err.message 
 					: "Failed to load planets");
 			}
+
 			setIsLoading(false);
 		};
 
-		fetchPlanets();
-	}, [page, query]);
+		fetchAllPlanets();
+	}, [query]);
+
+	const totalPages = Math.ceil(planets.length / planetsPerPage);
+	const startIndex = (page - 1) * planetsPerPage;
+	const visiblePlanets = planets.slice(startIndex, startIndex + planetsPerPage);
 
 	const goToPage = (newPage: number) => {
 		const newParams: Record<string, string> = { page: newPage.toString() };
@@ -48,31 +64,25 @@ const PlanetsPage = () => {
 	return (
 		<div className="planets-page">
 			<h1 className="page-title with-lightsabers">
-				<img
-					src="/GIFS/lightsaberBlue2.gif"
-					alt="Blue Lightsaber"
-					className="lightsaber left"
+				<img src="/GIFS/lightsaberBlue2.gif" 
+						alt="Blue Lightsaber" 
+						className="lightsaber left" 
 				/>
-				Star wars Planets
-				<img
-					src="/GIFS/lightsaberRed2.gif"
-					alt="Red Lightsaber"
-					className="lightsaber right"
+					Star wars Planets
+				<img src="/GIFS/lightsaberRed2.gif" 
+						alt="Red Lightsaber" 
+						className="lightsaber right" 
 				/>
 			</h1>
 
-			{query && (
-				<h2 className="search-results-heading">
-					Search results for "{query}"
-				</h2>
-			)}
+			{query && <h2 className="search-results-heading">Search results for "{query}"</h2>}
 
 			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && planets.length > 0 && (
+			{!isLoading && !error && visiblePlanets.length > 0 && (
 				<ul className="planet-list">
-					{planets.map((planet) => {
+					{visiblePlanets.map((planet) => {
 						const saberColor = lightsaberColor[planet.id];
 						const glowColor = saberColor ?? "#cccccc";
 						const glowTransparent = saberColor
@@ -89,11 +99,7 @@ const PlanetsPage = () => {
 											"--glow-color-transparent": glowTransparent
 										} as React.CSSProperties}
 									>
-										<img
-											src={planetImages[planet.id]}
-											alt={planet.name}
-											className="planet-image"
-										/>
+										<img src={planetImages[planet.id]} alt={planet.name} className="planet-image" />
 										<div className="planet-info">
 											<h3>{planet.name}</h3>
 											<p><strong>Climate:</strong> {planet.climate}</p>

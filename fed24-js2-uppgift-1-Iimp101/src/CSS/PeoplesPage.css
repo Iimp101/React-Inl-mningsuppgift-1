@@ -116,7 +116,3 @@
 	height: 2rem;
 	vertical-align: middle;
 }
-
-.lightsaber.left {
-	transform: scaleX(-1);
-}

@@ -4,28 +4,37 @@ import { getSpeciesList } from "../services/StarwarsPediaAPI";
 import type { Species } from "../services/StarwarsPedia.types";
 import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
-import speciesImages from "../data/SpeciesImages";
 import "../CSS/SpeciesPage.css";
+import speciesImages from "../data/SpeciesImages";
 
 const SpeciesPage = () => {
 	const [species, setSpecies] = useState<Species[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState(1);
-
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const page = parseInt(searchParams.get("page") || "1");
 	const query = searchParams.get("query") || "";
+	const speciesPerPage = 8;
 
 	useEffect(() => {
-		const fetchSpecies = async () => {
+		const fetchAllSpecies = async () => {
 			setIsLoading(true);
 			setError(null);
 
 			try {
-				const response = await getSpeciesList(page, query);
-				setSpecies(response.data);
-				setTotalPages(response.last_page);
+				const res = await getSpeciesList(1, query);
+				let results = [...res.data];
+				const total = res.last_page;
+
+				const promises = [];
+				for (let p = 2; p <= total; p++) {
+					promises.push(getSpeciesList(p, query));
+				}
+				const others = await Promise.all(promises);
+				others.forEach(res => results = results.concat(res.data));
+
+				setSpecies(results);
 			} catch (err) {
 				setError(err instanceof Error 
 					? err.message 
@@ -35,8 +44,12 @@ const SpeciesPage = () => {
 			setIsLoading(false);
 		};
 
-		fetchSpecies();
-	}, [page, query]);
+		fetchAllSpecies();
+	}, [query]);
+
+	const totalPages = Math.ceil(species.length / speciesPerPage);
+	const startIndex = (page - 1) * speciesPerPage;
+	const visibleSpecies = species.slice(startIndex, startIndex + speciesPerPage);
 
 	const goToPage = (newPage: number) => {
 		const newParams: Record<string, string> = { page: newPage.toString() };
@@ -47,31 +60,19 @@ const SpeciesPage = () => {
 	return (
 		<div className="species-page">
 			<h1 className="page-title with-lightsabers">
-				<img
-					src="/GIFS/lightsaberBlue2.gif"
-					alt="Blue Lightsaber"
-					className="lightsaber left"
-				/>
+				<img src="/GIFS/lightsaberBlue2.gif" alt="Blue Lightsaber" className="lightsaber left" />
 				Star wars Species
-				<img
-					src="/GIFS/lightsaberRed2.gif"
-					alt="Red Lightsaber"
-					className="lightsaber right"
-				/>
+				<img src="/GIFS/lightsaberRed2.gif" alt="Red Lightsaber" className="lightsaber right" />
 			</h1>
 
-			{query && (
-				<h2 className="search-results-heading">
-					Search results for "{query}"
-				</h2>
-			)}
+			{query && <h2 className="search-results-heading">Search results for "{query}"</h2>}
 
 			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && species.length > 0 && (
+			{!isLoading && !error && visibleSpecies.length > 0 && (
 				<ul className="species-list">
-					{species.map((specie) => (
+					{visibleSpecies.map((specie) => (
 						<li key={specie.id}>
 							<Link to={`/species/${specie.id}`} className="species-card-link">
 								<div className="species-card">

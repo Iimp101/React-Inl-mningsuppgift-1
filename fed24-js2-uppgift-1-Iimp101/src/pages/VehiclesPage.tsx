@@ -1,32 +1,41 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
 import { getVehicleList } from "../services/StarwarsPediaAPI";
 import type { Vehicle } from "../services/StarwarsPedia.types";
+import { useSearchParams, Link } from "react-router-dom";
 import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
-import "../CSS/VehiclePage.css";
 import vehicleImages from "../data/VehicleImages";
+import "../CSS/VehiclePage.css";
 
 const VehiclesPage = () => {
 	const [vehicles, setVehicles] = useState<Vehicle[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const [totalPages, setTotalPages] = useState(1);
-
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const page = parseInt(searchParams.get("page") || "1");
 	const query = searchParams.get("query") || "";
+	const vehiclesPerPage = 8;
 
 	useEffect(() => {
-		const fetchVehicles = async () => {
+		const fetchAllVehicles = async () => {
 			setIsLoading(true);
 			setError(null);
 
 			try {
-				const response = await getVehicleList(page, query);
-				setVehicles(response.data);
-				setTotalPages(response.last_page);
-			} catch (err) {
+				const res = await getVehicleList(1, query);
+				let results = [...res.data];
+				const total = res.last_page;
+
+				const promises = [];
+				for (let p = 2; p <= total; p++) {
+					promises.push(getVehicleList(p, query));
+				}
+				const others = await Promise.all(promises);
+				others.forEach(res => results = results.concat(res.data));
+
+				setVehicles(results);
+			} catch (err: unknown) {
 				setError(err instanceof Error 
 					? err.message 
 					: "Failed to load vehicles");
@@ -35,8 +44,12 @@ const VehiclesPage = () => {
 			setIsLoading(false);
 		};
 
-		fetchVehicles();
-	}, [page, query]);
+		fetchAllVehicles();
+	}, [query]);
+
+	const totalPages = Math.ceil(vehicles.length / vehiclesPerPage);
+	const startIndex = (page - 1) * vehiclesPerPage;
+	const visibleVehicles = vehicles.slice(startIndex, startIndex + vehiclesPerPage);
 
 	const goToPage = (newPage: number) => {
 		const newParams: Record<string, string> = { page: newPage.toString() };
@@ -47,39 +60,29 @@ const VehiclesPage = () => {
 	return (
 		<div className="vehicles-page">
 			<h1 className="page-title with-lightsabers">
-				<img
-					src="/GIFS/lightsaberBlue2.gif"
-					alt="Blue Lightsaber"
-					className="lightsaber left"
+				<img src="/GIFS/lightsaberBlue2.gif" 
+				alt="Blue Lightsaber" 
+				className="lightsaber left" 
 				/>
 				Star wars Vehicles
-				<img
-					src="/GIFS/lightsaberRed2.gif"
-					alt="Red Lightsaber"
-					className="lightsaber right"
+				<img src="/GIFS/lightsaberRed2.gif" 
+				alt="Red Lightsaber" 
+				className="lightsaber right" 
 				/>
 			</h1>
 
-			{query && (
-				<h2 className="search-results-heading">
-					Search results for "{query}"
-				</h2>
-			)}
+			{query && <h2 className="search-results-heading">Search results for "{query}"</h2>}
 
 			{isLoading && <LoadingGif />}
 			{error && <p className="error-msg">{error}</p>}
 
-			{!isLoading && !error && vehicles.length > 0 && (
+			{!isLoading && !error && visibleVehicles.length > 0 && (
 				<ul className="vehicle-list">
-					{vehicles.map(vehicle => (
+					{visibleVehicles.map(vehicle => (
 						<li key={vehicle.id}>
 							<Link to={`/vehicles/${vehicle.id}`} className="vehicle-card-link">
 								<div className="vehicle-card">
-									<img
-										src={vehicleImages[vehicle.id]}
-										alt={vehicle.name}
-										className="vehicle-image"
-									/>
+									<img src={vehicleImages[vehicle.id]} alt={vehicle.name} className="vehicle-image" />
 									<div className="vehicle-info">
 										<h3>{vehicle.name}</h3>
 										<p><strong>Model:</strong> {vehicle.model}</p>
