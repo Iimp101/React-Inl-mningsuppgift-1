@@ -7,9 +7,9 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 2px solid #4fc3f7;
+	border: 1px solid #ffe81f;
 	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+	box-shadow: 0 0 20px rgba(255, 232, 31, 0.3);
 	color: #fff;
 }
 
@@ -29,13 +29,13 @@
 
 @keyframes vehicleGlow {
 	0% {
-		box-shadow: 0 0 10px #4fc3f7;
+		box-shadow: 0 0 15px #ffe81f;
 	}
 	50% {
-		box-shadow: 0 0 25px #4fc3f7;
+		box-shadow: 0 0 30px #ffe81f;
 	}
 	100% {
-		box-shadow: 0 0 10px #4fc3f7;
+		box-shadow: 0 0 15px #ffe81f;
 	}
 }
 
@@ -54,7 +54,7 @@
 }
 
 .vehicle-details-info h1 {
-	color: #4fc3f7;
+	color: #ffe81f;
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
@@ -70,8 +70,8 @@
 
 .back-button {
 	background-color: transparent;
-	border: 2px solid #4fc3f7;
-	color: #4fc3f7;
+	border: 2px solid #ffe81f;
+	color: #ffe81f;
 	padding: 0.5rem 1rem;
 	border-radius: 8px;
 	cursor: pointer;
@@ -80,7 +80,7 @@
 }
 
 .back-button:hover {
-	background-color: #4fc3f7;
+	background-color: #ffe81f;
 	color: black;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .details-section h3 {
-	color: #4fc3f7;
+	color: #ffe81f;
 	font-family: 'Orbitron', sans-serif;
 	font-size: 1.2rem;
 	margin-bottom: 0.5rem;
@@ -108,7 +108,7 @@
 }
 
 .details-section a {
-	color: #66ccff;
+	color: #fff;
 	text-decoration: none;
 	font-weight: 500;
 	font-size: 1rem;
@@ -118,8 +118,9 @@
 }
 
 .details-section a:hover {
-	color: #ffffff;
-	text-shadow: 0 0 8px #4fc3f7;
+	color: black;
+	background-color: #ffe81f;
+	box-shadow: 0 0 8px #ffe81f;
 }
 
 .link-icon {

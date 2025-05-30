@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { getPlanetById } from "../../services/StarwarsPediaAPI";
 import type { Planet } from "../../services/StarwarsPedia.types";
 import LoadingGif from "../../components/LoadingGif";
-import getTransparentColor from "../../components/TransparentColor";
 import planetImages from "../../data/PlanetImages";
-import lightsaberColor from "../../data/PeopleLightsaverColor";
 import "../../CSS/DetailsPage/PlanetDetailsPage.css";
 
 const PlanetDetailsPage = () => {
@@ -39,21 +37,9 @@ const PlanetDetailsPage = () => {
 	if (error) return <p className="error-msg">{error}</p>;
 	if (!planet) return null;
 
-	const saberColor = lightsaberColor[planet.id];
-	const borderColor = saberColor ?? "#cccccc";
-	const borderShadow = saberColor
-		? getTransparentColor(saberColor)
-		: "rgba(204, 204, 204, 0.3)";
-
-
     return (
 		<div
-			className="planet-details-page"
-			style={{
-				"--border-color": borderColor,
-				"--border-shadow": borderShadow
-			} as React.CSSProperties}
-		>
+			className="planet-details-page">
 			<img
 				src={planetImages[planet.id] ?? "/images/placeholder.png"}
 				alt={planet.name}

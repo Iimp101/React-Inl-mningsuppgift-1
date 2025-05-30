@@ -7,9 +7,9 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 2px solid #ccc;
+	border: 1px solid #ffe81f;
 	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(204, 204, 204, 0.3);
+	box-shadow: 0 0 20px rgba(255, 232, 31, 0.3);
 	color: #fff;
 }
 
@@ -18,18 +18,18 @@
 	height: auto;
 	border-radius: 10px;
 	object-fit: cover;
-	animation: neutralGlow 2s infinite ease-in-out;
+	animation: speciesGlow 2s infinite ease-in-out;
 }
 
-@keyframes neutralGlow {
+@keyframes speciesGlow {
 	0% {
-		box-shadow: 0 0 10px #999;
+		box-shadow: 0 0 15px #ffe81f;
 	}
 	50% {
-		box-shadow: 0 0 20px #ccc;
+		box-shadow: 0 0 30px #ffe81f;
 	}
 	100% {
-		box-shadow: 0 0 10px #999;
+		box-shadow: 0 0 15px #ffe81f;
 	}
 }
 
@@ -40,8 +40,15 @@
 	justify-content: flex-start;
 }
 
+.species-details-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
 .species-details-info h1 {
-	color: #ccc;
+	color: #ffe81f;
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
@@ -55,17 +62,10 @@
 	padding-bottom: 0.5rem;
 }
 
-.species-details-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1rem;
-}
-
 .back-button {
 	background-color: transparent;
-	border: 2px solid #ccc;
-	color: #ccc;
+	border: 2px solid #ffe81f;
+	color: #ffe81f;
 	padding: 0.5rem 1rem;
 	border-radius: 8px;
 	cursor: pointer;
@@ -74,6 +74,6 @@
 }
 
 .back-button:hover {
-	background-color: #ccc;
+	background-color: #ffe81f;
 	color: black;
 }
