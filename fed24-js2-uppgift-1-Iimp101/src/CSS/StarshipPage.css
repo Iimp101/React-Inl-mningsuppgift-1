@@ -1,3 +1,4 @@
+
 .starship-page {
     padding: 2rem;
     max-width: 93.75rem;
@@ -20,16 +21,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2.5rem; /* Increased gap */
-    max-width: 1600px;
-    margin: 0 auto 4rem auto; /* Increased margin-bottom */
+    gap: 2rem;
+    max-width: 100.0000rem;
+    margin: 0 auto 4rem auto;
     padding: 1rem;
     overflow: visible;
 }
 
 .starship-list li {
-    flex: 0 0 280px;
-    max-width: 280px;
+    flex: 0 0 17.5000rem;
+    max-width: 17.5000rem;
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -44,11 +45,11 @@
 
 .starship-card {
     background-color: rgba(0, 0, 0, 0.8);
-    border: 1px solid gold;
-    border-radius: 12px;
+    border: 0.0625rem solid gold;
+    border-radius: 0.7500rem;
     padding: 1rem;
     color: #fff;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 0.6250rem #ccc;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
@@ -56,12 +57,12 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-    min-height: 500px;
+    min-height: 31.2500rem;
 }
 
 .starship-card:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 20px 4px var(--glow-color, #ccc);
+    box-shadow: 0 0 1.2500rem 0.2500rem var(--glow-color, #ccc);
     z-index: 2;
 }
 
@@ -96,7 +97,7 @@
     width: 100%;
     aspect-ratio: 3 / 2;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 0.6250rem;
     margin-bottom: 1rem;
 }
 
