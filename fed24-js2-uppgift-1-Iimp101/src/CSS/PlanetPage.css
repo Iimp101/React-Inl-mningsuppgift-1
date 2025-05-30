@@ -1,115 +1,153 @@
 .planets-page {
-    padding: 2rem;
-    max-width: 93.75rem;
-    margin: 0 auto;
+	padding: 2rem;
+	max-width: 93.75rem;
+	margin: 0 auto;
 }
 
 .page-title {
-    color: yellow;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-family: 'Orbitron', sans-serif;
+	color: yellow;
+	text-align: center;
+	margin-bottom: 2rem;
+	font-family: 'Orbitron', sans-serif;
 }
 
 .error-msg {
-    color: red;
-    text-align: center;
+	color: red;
+	text-align: center;
 }
 
 .planet-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    max-width: 1600px;
-    margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1.5rem;
+	max-width: 100rem;
+	margin: 0 auto;
+	padding: 1rem;
 }
 
 .planet-card {
-    flex: 0 0 280px;
-    text-align: center;
-    width: 280px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 1px solid gold; 
-    border-radius: 12px;
-    padding: 1rem;
-    color: #fff;
-    box-shadow: 0 0 10px #ccc; 
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 10px #ccc;
+	flex: 0 0 17.5rem;
+	width: 17.5rem;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 0.0625rem solid gold;
+	border-radius: 0.75rem;
+	padding: 1rem;
+	color: #fff;
+	box-shadow: 0 0 0.625rem #ccc;
+	transition: transform 0.2s, box-shadow 0.2s;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
 }
 
 .planet-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px 4px var(--glow-color, #ccc);
+	transform: scale(1.03);
+	box-shadow: 0 0 1.25rem 0.25rem var(--glow-color, #ccc);
 }
 
 .planet-card:hover::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        var(--glow-color-transparent, rgba(204, 204, 204, 0.3)) 50%,
-        transparent 100%
-    );
-    animation: scan 1.5s linear;
-    pointer-events: none;
+	content: '';
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to bottom,
+		transparent 0%,
+		var(--glow-color-transparent, rgba(204, 204, 204, 0.3)) 50%,
+		transparent 100%
+	);
+	animation: scan 1.5s linear;
+	pointer-events: none;
 }
 
 @keyframes scan {
-    0% {
-        top: -100%;
-    }
-    100% {
-        top: 100%;
-    }
+	0% {
+		top: -100%;
+	}
+	100% {
+		top: 100%;
+	}
 }
 
 .planet-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
+	width: 100%;
+	height: 15.625rem;
+	object-fit: cover;
+	border-radius: 0.625rem;
+	margin-bottom: 1rem;
 }
 
 .planet-info h3 {
-    color: yellow;
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 0.5rem;
+	color: yellow;
+	font-family: 'Orbitron', sans-serif;
+	margin-bottom: 0.5rem;
+	font-size: 1.2rem;
 }
 
 .planet-info p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	font-size: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 0;
 }
 
 .with-lightsabers {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    color: yellow;
-    position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	font-family: 'Orbitron', sans-serif;
+	color: yellow;
+	position: relative;
 }
 
 .lightsaber {
-    height: 2rem;
-    vertical-align: middle;
+	height: 2rem;
+	vertical-align: middle;
 }
 
 .lightsaber.left {
-    transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
+/* RESPONSIVITET */
+@media (max-width: 768px) {
+	.planet-card {
+		width: 100%;
+		max-width: 20rem;
+	}
+
+	.planet-list {
+		gap: 1rem;
+		padding: 0.5rem;
+	}
+
+	.planet-image {
+		height: 12rem;
+	}
+
+	.page-title {
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.planet-info h3 {
+		font-size: 1rem;
+	}
+
+	.planet-info p {
+		font-size: 0.9rem;
+	}
+
+	.lightsaber {
+		height: 1.5rem;
+	}
 }
