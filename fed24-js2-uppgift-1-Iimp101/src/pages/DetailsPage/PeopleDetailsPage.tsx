@@ -4,8 +4,6 @@ import { getPersonById } from "../../services/StarwarsPediaAPI";
 import type { Person } from "../../services/StarwarsPedia.types";
 import LoadingGif from "../../components/LoadingGif";
 import RelatedLinksSection from "../../components/RelationLinkSection";
-import lightsaberColor from "../../data/PeopleLightsaverColor";
-import getTransparentColor from "../../components/TransparentColor";
 import missingImages from "../../data/PeopleImages";
 import "../../CSS/DetailsPage/PeopleDetailsPage.css";
 
@@ -38,14 +36,7 @@ const PeopleDetailsPage = () => {
 
 	return (
 		<div
-			className="person-details-page"
-			style={{
-				"--border-color": lightsaberColor[person.id] ?? "#cccccc",
-				"--border-shadow": lightsaberColor[person.id]
-					? getTransparentColor(lightsaberColor[person.id])
-					: "rgba(204, 204, 204, 0.3)"
-			} as React.CSSProperties}
-		>
+			className="person-details-page">
 			<img
 				src={person.image_url || missingImages[person.id] || "/images/placeholder.png"}
 				alt={person.name}
