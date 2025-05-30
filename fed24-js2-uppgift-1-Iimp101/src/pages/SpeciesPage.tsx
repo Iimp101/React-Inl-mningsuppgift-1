@@ -24,6 +24,7 @@ const SpeciesPage = () => {
 
 			try {
 				const res = await getSpeciesList(1, query);
+				await new Promise(r => setTimeout(r, 1500));
 				let results = [...res.data];
 				const total = res.last_page;
 

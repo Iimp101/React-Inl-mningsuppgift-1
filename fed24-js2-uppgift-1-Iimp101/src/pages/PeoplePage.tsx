@@ -26,6 +26,7 @@ const PeoplePage = () => {
 
 			try {
 				const res = await getPersonList(1, query);
+				await new Promise(r => setTimeout(r, 1500));
 				let results = [...res.data];
 				const total = res.last_page;
 

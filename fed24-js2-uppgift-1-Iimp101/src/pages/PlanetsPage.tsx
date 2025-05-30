@@ -26,6 +26,7 @@ const PlanetsPage = () => {
 
 			try {
 				const res = await getPlanetList(1, query);
+				await new Promise(r => setTimeout(r, 1500));
 				console.log("API returned:", res.data);
 				let results = [...res.data];
 				const total = res.last_page;

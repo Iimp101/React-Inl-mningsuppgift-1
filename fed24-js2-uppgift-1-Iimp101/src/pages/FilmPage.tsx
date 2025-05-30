@@ -23,6 +23,7 @@ const FilmsPage = () => {
 
 			try {
 				const response = await getFilmList(page, query);
+				await new Promise(r => setTimeout(r, 1500));
 				setFilms(response.data);
 				setTotalPages(response.last_page);
 			} catch (err) {
