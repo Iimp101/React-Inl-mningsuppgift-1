@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../CSS/SearchForm.css";
 
 const SearchForm = () => {
 	const [search, setSearch] = useState("");
-	const [resource, setResource] = useState("people"); // default
+	const [resource, setResource] = useState("people");
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -22,7 +21,7 @@ const SearchForm = () => {
 			<select
 				className="searchbar-select"
 				value={resource}
-				onChange={(e) => setResource(e.target.value)}
+				onChange={e => setResource(e.target.value)}
 			>
 				<option value="people">People</option>
 				<option value="planets">Planets</option>
@@ -36,8 +35,9 @@ const SearchForm = () => {
 				type="text"
 				placeholder="Search..."
 				value={search}
-				onChange={(e) => setSearch(e.target.value)}
+				onChange={e => setSearch(e.target.value)}
 				className="searchbar-input"
+				autoFocus
 			/>
 			<button type="submit" className="searchbar-button">
 				<img
