@@ -1,8 +1,9 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStarshipById } from "../../services/StarwarsPediaAPI";
 import type { Starship } from "../../services/StarwarsPedia.types";
 import LoadingGif from "../../components/LoadingGif";
+import RelatedLinksSection from "../../components/RelationLinkSection";
 import starshipImages from "../../data/StarshipImages";
 import "../../CSS/DetailsPage/StarshipDetailsPage.css";
 
@@ -14,22 +15,24 @@ const StarshipDetailsPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const fetchStarship = async () => {
+		const fetchStarshipData = async () => {
 			setIsLoading(true);
 			setError(null);
+
 			try {
 				const res = await getStarshipById(Number(id));
-				await new Promise(r => setTimeout(r, 1500));
+				await new Promise((r) => setTimeout(r, 1500));
 				setStarship(res);
 			} catch (err) {
 				setError(err instanceof Error 
 					? err.message 
-					: "Failed to load Starship");
+					: "Failed to load starship");
 			}
+
 			setIsLoading(false);
 		};
 
-		if (id) fetchStarship();
+		if (id) fetchStarshipData();
 	}, [id]);
 
 	if (isLoading) return <LoadingGif />;
@@ -37,15 +40,17 @@ const StarshipDetailsPage = () => {
 	if (!starship) return null;
 
 	return (
-		<div className="person-details-page">
-			<img
-				src={starshipImages[starship.id] ?? "/images/placeholder.png"}
-				alt={starship.name}
-				className="person-details-img"
-			/>
+		<div className="starship-details-page">
+			<div className="starship-image-wrapper">
+				<img
+					src={starshipImages[starship.id] ?? "/images/placeholder.png"}
+					alt={starship.name}
+					className="starship-details-img"
+				/>
+			</div>
 
-			<div className="person-details-info">
-				<div className="person-details-header">
+			<div className="starship-details-info">
+				<div className="starship-details-header">
 					<h1>{starship.name}</h1>
 					<button className="back-button" onClick={() => navigate(-1)}>
 						← Back
@@ -58,25 +63,18 @@ const StarshipDetailsPage = () => {
 				<p><strong>Length:</strong> {starship.length} m</p>
 				<p><strong>Crew:</strong> {starship.crew}</p>
 				<p><strong>Passengers:</strong> {starship.passengers}</p>
-				<p><strong>Max Speed:</strong> {starship.max_atmosphering_speed} km/h</p>
+				<p><strong>Max Speed:</strong> {starship.max_atmosphering_speed}</p>
 				<p><strong>Hyperdrive Rating:</strong> {starship.hyperdrive_rating}</p>
 				<p><strong>Starship Class:</strong> {starship.starship_class}</p>
 
-				{starship.films?.length > 0 && (
-					<div className="details-section">
-						<h3>🎬 Films</h3>
-						<ul>
-							{starship.films.map((film) => (
-								<li key={film.id}>
-									<Link to={`/films/${film.id}`} className="film-link">
-										<span className="link-icon">🎬</span>
-										{film.title}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
-				)}
+				<div className="details-section">
+					<RelatedLinksSection
+						title="Films"
+						items={starship.films}
+						basePath="films"
+						icon="🎬"
+					/>
+				</div>
 			</div>
 		</div>
 	);

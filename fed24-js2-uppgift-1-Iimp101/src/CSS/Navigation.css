@@ -1,7 +1,7 @@
 .starwars-navbar {
 	background-color: #000;
-	border-bottom: 2px solid yellow;
-	box-shadow: 0 0 10px yellow;
+	border-bottom: 2px solid gold;
+	box-shadow: 0 0 10px gold;
 	padding: 1rem 2rem;
 	position: sticky;
 	top: 0;
@@ -17,7 +17,7 @@
 }
 
 .nav-left .starwars-logo {
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	font-size: 1.6rem;
 	text-decoration: none;
@@ -41,12 +41,12 @@
 }
 
 .nav-link:hover {
-	color: #fff700;
+	color: gold;
 }
 
 .nav-link.active {
-	color: yellow;
-	text-shadow: 0 0 5px yellow;
+	color: gold;
+	text-shadow: 0 0 5px gold;
 	font-weight: bold;
 }
 
@@ -58,8 +58,8 @@
 
 .sound-toggle {
 	background: transparent;
-	color: yellow;
-	border: 1px solid yellow;
+	color: gold;
+	border: 1px solid gold;
 	padding: 0.4rem 0.8rem;
 	border-radius: 4px;
 	cursor: pointer;
@@ -68,7 +68,7 @@
 }
 
 .sound-toggle:hover {
-	background-color: yellow;
+	background-color: gold;
 	color: black;
 }
 
@@ -77,11 +77,11 @@
 	width: 100px;
 	height: 10px;
 	margin-left: 1rem;
-	background: linear-gradient(to right, red 0%, yellow 100%);
+	background: linear-gradient(to right, red 0%, gold 100%);
 	border-radius: 5px;
 	outline: none;
 	transition: background 0.3s ease;
-	box-shadow: 0 0 10px yellow;
+	box-shadow: 0 0 10px gold;
 }
 
 .lightsaber-slider::-webkit-slider-thumb {

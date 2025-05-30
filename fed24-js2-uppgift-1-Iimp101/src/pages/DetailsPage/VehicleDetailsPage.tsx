@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getVehicleById } from "../../services/StarwarsPediaAPI";
 import type { Vehicle } from "../../services/StarwarsPedia.types";
 import LoadingGif from "../../components/LoadingGif";
+import RelatedLinksSection from "../../components/RelationLinkSection";
 import vehicleImages from "../../data/VehicleImages";
 import "../../CSS/DetailsPage/VehicleDetailsPage.css";
 
@@ -20,12 +21,12 @@ const VehicleDetailsPage = () => {
 
 			try {
 				const res = await getVehicleById(Number(id));
-				await new Promise((r) => setTimeout(r, 1500));
+				await new Promise(r => setTimeout(r, 1500));
 				setVehicle(res);
 			} catch (err) {
 				setError(err instanceof Error 
-                    ? err.message 
-                    : "Failed to load vehicle");
+					? err.message 
+					: "Failed to load vehicle");
 			}
 
 			setIsLoading(false);
@@ -57,15 +58,23 @@ const VehicleDetailsPage = () => {
 				</div>
 
 				<p><strong>Model:</strong> {vehicle.model}</p>
-				<p><strong>Vehicle Class:</strong> {vehicle.vehicle_class}</p>
+				<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
 				<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
-				<p><strong>Cost in Credits:</strong> {vehicle.cost_in_credits}</p>
+				<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
 				<p><strong>Length:</strong> {vehicle.length} m</p>
 				<p><strong>Crew:</strong> {vehicle.crew}</p>
 				<p><strong>Passengers:</strong> {vehicle.passengers}</p>
 				<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>
 				<p><strong>Consumables:</strong> {vehicle.consumables}</p>
-				<p><strong>Films:</strong> {vehicle.films_count}</p>
+
+				<div className="details-section">
+					<RelatedLinksSection
+						title="Films"
+						items={vehicle.films}
+						basePath="films"
+						icon="🎬"
+					/>
+				</div>
 			</div>
 		</div>
 	);

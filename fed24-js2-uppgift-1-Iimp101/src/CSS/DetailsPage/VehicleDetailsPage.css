@@ -83,3 +83,46 @@
 	background-color: #4fc3f7;
 	color: black;
 }
+
+.details-section {
+	margin-top: 2rem;
+}
+
+.details-section h3 {
+	color: #4fc3f7;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.3rem;
+}
+
+.details-section ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.details-section li {
+	margin: 0.4rem 0;
+}
+
+.details-section a {
+	color: #66ccff;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 1rem;
+	transition: color 0.3s ease, text-shadow 0.3s ease;
+	display: inline-flex;
+	align-items: center;
+}
+
+.details-section a:hover {
+	color: #ffffff;
+	text-shadow: 0 0 8px #4fc3f7;
+}
+
+.link-icon {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
