@@ -4,42 +4,34 @@ import "../CSS/SearchForm.css";
 
 const SearchForm = () => {
 	const [search, setSearch] = useState("");
+	const [resource, setResource] = useState("people"); // default
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		const trimmed = search.trim();
-
-		// Hindra tomma sökningar
 		if (!trimmed) return;
 
-		// Lista över tillåtna sökvägar
-		const validPaths = [
-			"films",
-			"people",
-			"planets",
-			"species",
-			"starships",
-			"vehicles"
-		];
-
-		// Ta ut resursnamnet från aktuell path
-		const currentPath = location.pathname.split("/")[1]; // t.ex. "people"
-
-		// Om vi befinner oss på en giltig sida → använd den
-		if (validPaths.includes(currentPath)) {
-			navigate(`/${currentPath}?query=${encodeURIComponent(trimmed)}&page=1`);
-		} else {
-			// Om man t.ex. står på startsidan eller fel sida → default till people
-			navigate(`/people?query=${encodeURIComponent(trimmed)}&page=1`);
-		}
-
+		navigate(`/${resource}?query=${encodeURIComponent(trimmed)}&page=1`);
 		setSearch("");
 	};
 
 	return (
 		<form onSubmit={handleSubmit} className="searchbar-form">
+			<select
+				className="searchbar-select"
+				value={resource}
+				onChange={(e) => setResource(e.target.value)}
+			>
+				<option value="people">People</option>
+				<option value="planets">Planets</option>
+				<option value="films">Films</option>
+				<option value="species">Species</option>
+				<option value="vehicles">Vehicles</option>
+				<option value="starships">Starships</option>
+			</select>
+
 			<input
 				type="text"
 				placeholder="Search..."

@@ -21,22 +21,36 @@
 	font-family: 'Orbitron', sans-serif;
 	font-size: 1.6rem;
 	text-decoration: none;
+	transition: text-shadow 0.3s ease;
 }
 
+.nav-left .starwars-logo:hover {
+	text-shadow: 0 0 10px gold;
+}
+
+.nav-toggle {
+	display: none;
+	background: transparent;
+	border: none;
+	color: gold;
+	font-size: 1.8rem;
+	cursor: pointer;
+}
+
+
 .nav-center {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 50%;
-	transform: translate(-50%, -50%);
 	display: flex;
 	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
 }
 
 .nav-link {
 	color: #ccc;
 	text-decoration: none;
 	font-weight: 500;
+	font-family: 'Orbitron', sans-serif;
 	transition: color 0.3s ease;
 }
 
@@ -50,12 +64,15 @@
 	font-weight: bold;
 }
 
+/* RIGHT SIDE: AUDIO & SEARCH */
 .nav-right {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	gap: 0.5rem;
 }
 
+/* AUDIO BUTTON */
 .sound-toggle {
 	background: transparent;
 	color: gold;
@@ -72,15 +89,14 @@
 	color: black;
 }
 
+/* SLIDER */
 .lightsaber-slider {
 	appearance: none;
 	width: 100px;
 	height: 10px;
-	margin-left: 1rem;
 	background: linear-gradient(to right, red 0%, gold 100%);
 	border-radius: 5px;
 	outline: none;
-	transition: background 0.3s ease;
 	box-shadow: 0 0 10px gold;
 }
 
@@ -93,7 +109,6 @@
 	border: 2px solid #333;
 	cursor: pointer;
 	box-shadow: 0 0 8px red;
-	transition: box-shadow 0.3s ease;
 }
 
 .lightsaber-slider::-moz-range-thumb {
@@ -104,5 +119,43 @@
 	border: 2px solid #333;
 	cursor: pointer;
 	box-shadow: 0 0 8px red;
-	transition: box-shadow 0.3s ease;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+	.nav-toggle {
+		display: block;
+		position: absolute;
+		top: 1rem;
+		right: 2rem;
+		z-index: 1000;
+	}
+
+	.nav-container {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.nav-center {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-top: 1rem;
+		padding: 1rem 0;
+		background-color: #000;
+		border-top: 1px solid gold;
+	}
+
+	.nav-center.open {
+		display: flex;
+	}
+
+	.nav-right {
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
 }

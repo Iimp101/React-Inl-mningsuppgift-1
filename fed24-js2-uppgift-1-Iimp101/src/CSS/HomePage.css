@@ -1,5 +1,4 @@
 .homepage-container {
-	background-image: url("/images/starwars-background.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -23,7 +22,7 @@
 }
 
 .homepage-title {
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	font-size: 2.5rem;
 	margin-bottom: 1rem;
@@ -48,7 +47,7 @@
 	border: 2px solid yellow;
 	border-radius: 5px;
 	background-color: #000;
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 }
 
@@ -58,7 +57,7 @@
 
 .search-button {
 	padding: 0.6rem 1rem;
-	background-color: yellow;
+	background-color: gold;
 	color: #000;
 	border: none;
 	border-radius: 5px;
@@ -69,5 +68,5 @@
 }
 
 .search-button:hover {
-	background-color: #fff700;
+	background-color: gold;
 }

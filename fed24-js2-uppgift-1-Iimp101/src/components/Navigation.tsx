@@ -6,6 +6,7 @@ import "../CSS/Navigation.css";
 const Navigation = () => {
 	const [audioPlaying, setAudioPlaying] = useState(false);
 	const [volume, setVolume] = useState(0.5);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
 	const toggleAudio = () => {
@@ -30,21 +31,46 @@ const Navigation = () => {
 		}
 	};
 
+	const handleNavLinkClick = () => {
+		setIsMenuOpen(false);
+	};
+
 	return (
 		<header className="starwars-navbar">
 			<div className="nav-container">
-
 				<div className="nav-left">
-					<NavLink to="/" className="starwars-logo">🌌 Star wars DB</NavLink>
+					<NavLink to="/" className="starwars-logo" onClick={handleNavLinkClick}>
+						🌌 Star wars DB
+					</NavLink>
 				</div>
 
-				<nav className="nav-center">
-					<NavLink to="/films" className="nav-link">Films</NavLink>
-					<NavLink to="/people" className="nav-link">People</NavLink>
-					<NavLink to="/planets" className="nav-link">Planets</NavLink>
-					<NavLink to="/species" className="nav-link">Species</NavLink>
-					<NavLink to="/starships" className="nav-link">Starships</NavLink>
-					<NavLink to="/vehicles" className="nav-link">Vehicles</NavLink>
+				<button
+					className="nav-toggle"
+					onClick={() => setIsMenuOpen((prev) => !prev)}
+					aria-label="Toggle navigation"
+				>
+					☰
+				</button>
+
+				<nav className={`nav-center ${isMenuOpen ? "open" : ""}`}>
+					<NavLink to="/films" className="nav-link" onClick={handleNavLinkClick}>
+						Films
+					</NavLink>
+					<NavLink to="/people" className="nav-link" onClick={handleNavLinkClick}>
+						People
+					</NavLink>
+					<NavLink to="/planets" className="nav-link" onClick={handleNavLinkClick}>
+						Planets
+					</NavLink>
+					<NavLink to="/species" className="nav-link" onClick={handleNavLinkClick}>
+						Species
+					</NavLink>
+					<NavLink to="/starships" className="nav-link" onClick={handleNavLinkClick}>
+						Starships
+					</NavLink>
+					<NavLink to="/vehicles" className="nav-link" onClick={handleNavLinkClick}>
+						Vehicles
+					</NavLink>
 				</nav>
 
 				<div className="nav-right">
@@ -62,12 +88,10 @@ const Navigation = () => {
 						title="Volume"
 					/>
 					<SearchForm />
-					
 					<audio ref={audioRef} loop>
 						<source src="/sounds/Starwars-Lobby-Music.mp3" type="audio/mpeg" />
 					</audio>
 				</div>
-
 			</div>
 		</header>
 	);
