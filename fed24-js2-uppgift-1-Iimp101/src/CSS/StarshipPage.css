@@ -32,7 +32,7 @@
     max-width: 280px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem; /* Increased bottom margin */
+    margin-bottom: 2rem;
 }
 
 .starship-card-link {

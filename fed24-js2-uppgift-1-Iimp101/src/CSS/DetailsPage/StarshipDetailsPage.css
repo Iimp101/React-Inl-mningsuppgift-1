@@ -7,35 +7,29 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 2px solid #ffe81f;
+	border: 2px solid var(--border-color, gold);
 	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(255, 232, 31, 0.3);
+	box-shadow: 0 0 20px var(--border-shadow, rgba(255, 215, 0, 0.3));
 	color: #fff;
 }
 
 .starship-details-img {
-	width: 100%;
+	width: 300px;
 	height: auto;
 	border-radius: 10px;
 	object-fit: cover;
 	animation: starshipGlow 2s infinite ease-in-out;
 }
 
-.starship-image-wrapper {
-	width: 50%;
-	height: auto;
-	flex-shrink: 0;
-}
-
 @keyframes starshipGlow {
 	0% {
-		box-shadow: 0 0 10px #ffe81f;
+		box-shadow: 0 0 10px var(--border-color, gold);
 	}
 	50% {
-		box-shadow: 0 0 25px #ffe81f;
+		box-shadow: 0 0 25px var(--border-color, gold);
 	}
 	100% {
-		box-shadow: 0 0 10px #ffe81f;
+		box-shadow: 0 0 10px var(--border-color, gold);
 	}
 }
 
@@ -46,8 +40,15 @@
 	justify-content: flex-start;
 }
 
+.starship-details-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
 .starship-details-info h1 {
-	color: #ffe81f;
+	color: var(--border-color, gold);
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
@@ -61,17 +62,10 @@
 	padding-bottom: 0.5rem;
 }
 
-.starship-details-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1rem;
-}
-
 .back-button {
 	background-color: transparent;
-	border: 2px solid #ffe81f;
-	color: #ffe81f;
+	border: 2px solid var(--border-color, gold);
+	color: var(--border-color, gold);
 	padding: 0.5rem 1rem;
 	border-radius: 8px;
 	cursor: pointer;
@@ -80,6 +74,49 @@
 }
 
 .back-button:hover {
-	background-color: #ffe81f;
+	background-color: var(--border-color, gold);
 	color: black;
+}
+
+.details-section {
+	margin-top: 2rem;
+}
+
+.details-section h3 {
+	color: var(--border-color, gold);
+	font-family: 'Orbitron', sans-serif;
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.3rem;
+}
+
+.details-section ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.details-section li {
+	margin: 0.4rem 0;
+}
+
+.details-section a {
+	color: #ffd700;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 1rem;
+	transition: color 0.3s ease, text-shadow 0.3s ease;
+	display: inline-flex;
+	align-items: center;
+}
+
+.details-section a:hover {
+	color: #ffffff;
+	text-shadow: 0 0 8px var(--border-color, gold);
+}
+
+.link-icon {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
 }
