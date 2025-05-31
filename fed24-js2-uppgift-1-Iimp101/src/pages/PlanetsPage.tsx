@@ -64,16 +64,8 @@ const PlanetsPage = () => {
 
 	return (
 		<div className="planets-page">
-			<h1 className="page-title with-lightsabers">
-				<img src="/GIFS/lightsaberBlue2.gif" 
-						alt="Blue Lightsaber" 
-						className="lightsaber left" 
-				/>
-					Star wars Planets
-				<img src="/GIFS/lightsaberRed2.gif" 
-						alt="Red Lightsaber" 
-						className="lightsaber right" 
-				/>
+			<h1 className="page-title">
+				Star Wars Planets
 			</h1>
 
 			{query && <h2 className="search-results-heading">Search results for "{query}"</h2>}

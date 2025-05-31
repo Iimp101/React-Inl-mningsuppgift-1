@@ -60,10 +60,8 @@ const SpeciesPage = () => {
 
 	return (
 		<div className="species-page">
-			<h1 className="page-title with-lightsabers">
-				<img src="/GIFS/lightsaberBlue2.gif" alt="Blue Lightsaber" className="lightsaber left" />
-				Star wars Species
-				<img src="/GIFS/lightsaberRed2.gif" alt="Red Lightsaber" className="lightsaber right" />
+			<h1 className="page-title">				
+				Star Wars Species			
 			</h1>
 
 			{query && <h2 className="search-results-heading">Search results for "{query}"</h2>}

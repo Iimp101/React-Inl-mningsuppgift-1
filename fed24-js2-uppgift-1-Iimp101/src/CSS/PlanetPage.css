@@ -105,26 +105,6 @@
 	font-size: 1.5rem;
 }
 
-
-.with-lightsabers {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
-	font-family: 'Orbitron', sans-serif;
-	color: yellow;
-	position: relative;
-}
-
-.lightsaber {
-	height: 2rem;
-	vertical-align: middle;
-}
-
-.lightsaber.left {
-	transform: scaleX(-1);
-}
-
 @media (max-width: 768px) {
 	.planet-card {
 		width: 100%;
@@ -152,9 +132,5 @@
 
 	.planet-info p {
 		font-size: 0.9rem;
-	}
-
-	.lightsaber {
-		height: 1.5rem;
 	}
 }

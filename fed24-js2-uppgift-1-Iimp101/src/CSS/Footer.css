@@ -1,27 +1,36 @@
 .footer {
-    background-color: #111;
-    color: #aaa;
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-    border-top: 1px solid #333;
+	background-color: #111;
+	color: #aaa;
+	text-align: center;
+	padding: 2rem 1rem;
+	font-size: 0.9rem;
+	border-top: 0.0625rem solid #333;
 }
 
 .footer p {
-    margin: 0.3rem 0;
+	margin: 0.1875rem 0;
 }
 
 .social-icons {
-    margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .social-icons a {
-    color: gold;
-    margin: 0 0.5rem;
-    font-size: 1.6rem;
-    transition: color 0.3s ease;
+	margin: 0 0.5rem;
+	font-size: 1.6rem;
+	transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
-    color: white;
+.social-icons a[href*="github"] {
+	color: #ccc;
+}
+.social-icons a[href*="github"]:hover {
+	color: white;
+}
+
+.social-icons a[href*="linkedin"] {
+	color: #0a66c2;
+}
+.social-icons a[href*="linkedin"]:hover {
+	color: #3399ff;
 }

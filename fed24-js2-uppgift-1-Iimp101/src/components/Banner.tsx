@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../CSS/HeroBanner.css";
+import "../CSS/Banner.css";
 
 const images = [
 	"/images/Banner/9.jpg",

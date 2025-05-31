@@ -65,18 +65,8 @@ const PeoplePage = () => {
 
 	return (
 		<div className="people-page">
-			<h1 className="page-title with-lightsabers">
-				<img
-					src="/GIFS/lightsaberBlue2.gif"
-					alt="Blue Lightsaber"
-					className="lightsaber left"
-				/>
-					Star wars People
-				<img
-					src="/GIFS/lightsaberRed2.gif"
-					alt="Red Lightsaber"
-					className="lightsaber right"
-				/>
+			<h1 className="page-title">
+				Star Wars People
 			</h1>
 
 			{query && (

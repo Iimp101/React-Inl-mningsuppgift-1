@@ -6,7 +6,7 @@
 }
 
 .page-title {
-    color: yellow;
+    color: gold;
     text-align: center;
     margin-bottom: 2rem;
     font-family: 'Orbitron', sans-serif;
@@ -82,7 +82,7 @@
 }
 
 .vehicle-info h3 {
-    color: yellow;
+    color: gold;
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 0.5rem;
     font-size: 1.125rem;
@@ -95,30 +95,10 @@
     font-size: 1rem;
 }
 
-.with-lightsabers {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    color: yellow;
-    position: relative;
-    margin-top: 1rem;
-}
-
 .vehicle-list.centered {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.lightsaber {
-    height: 2rem;
-    vertical-align: middle;
-}
-
-.lightsaber.left {
-    transform: scaleX(-1);
 }
 
 @media (max-width: 48rem) {

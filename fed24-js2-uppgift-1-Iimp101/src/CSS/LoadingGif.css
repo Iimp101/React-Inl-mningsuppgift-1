@@ -6,17 +6,17 @@
 }
 
 .loading-pages img {
-    width: 220px;
+    width: 13.75rem;
     height: auto;
-    filter: drop-shadow(0 0 10px yellow);
+    filter: drop-shadow(0 0 0.625rem gold); 
     animation: float 2s ease-in-out infinite;
 }
 
 @keyframes float {
-  	0%, 100% {
-    	transform: translateY(0);
-  	}
-  	50% {
-    	transform: translateY(-10px);
-  	}
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-0.625rem); 
+    }
 }

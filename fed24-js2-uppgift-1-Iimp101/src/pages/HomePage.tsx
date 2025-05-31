@@ -1,7 +1,11 @@
 import HeroBanner from "../components/Banner";
 
 const HomePage = () => {
-	return <HeroBanner />;
+	return (
+		<div className="homepage-wrapper">
+			<HeroBanner />;
+		</div>
+	)
 };
 
 export default HomePage;

@@ -111,23 +111,8 @@
 	text-overflow: ellipsis;
 }
 
-.with-lightsabers {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
-	font-family: 'Orbitron', sans-serif;
-	color: gold;
-	position: relative;
-}
-
 .film-list.centered {
 	place-items: center;
-}
-
-.lightsaber {
-	height: 2rem;
-	vertical-align: middle;
 }
 
 .film-card-link {

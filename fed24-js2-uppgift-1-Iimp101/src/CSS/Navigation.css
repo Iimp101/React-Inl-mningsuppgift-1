@@ -1,7 +1,7 @@
 .starwars-navbar {
-	background-color: #000;
-	border-bottom: 2px solid gold;
-	box-shadow: 0 0 10px gold;
+	background-color: rgba(0, 0, 0, 0.7);
+	border-bottom: 0.125rem solid gold;
+	box-shadow: 0 0 0.625rem gold;
 	padding: 1rem 2rem;
 	position: sticky;
 	top: 0;
@@ -27,7 +27,7 @@
 }
 
 .nav-left .starwars-logo:hover {
-	text-shadow: 0 0 10px gold;
+	text-shadow: 0 0 0.625rem gold;
 }
 
 .nav-toggle {
@@ -60,7 +60,7 @@
 
 .nav-link.active {
 	color: gold;
-	text-shadow: 0 0 5px gold;
+	text-shadow: 0 0 0.3125rem gold;
 	font-weight: bold;
 }
 
@@ -74,9 +74,9 @@
 .sound-toggle {
 	background: transparent;
 	color: gold;
-	border: 1px solid gold;
+	border: 0.0625rem solid gold;
 	padding: 0.4rem 0.8rem;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	cursor: pointer;
 	font-family: 'Orbitron', sans-serif;
 	transition: background 0.3s;
@@ -89,36 +89,36 @@
 
 .lightsaber-slider {
 	appearance: none;
-	width: 100px;
-	height: 10px;
+	width: 6.25rem;
+	height: 0.625rem; 
 	background: linear-gradient(to right, red 0%, gold 100%);
-	border-radius: 5px;
+	border-radius: 0.3125rem;
 	outline: none;
-	box-shadow: 0 0 10px gold;
+	box-shadow: 0 0 0.625rem gold;
 }
 
 .lightsaber-slider::-webkit-slider-thumb {
 	appearance: none;
-	height: 20px;
-	width: 20px;
+	height: 1.25rem;
+	width: 1.25rem;
 	border-radius: 50%;
 	background: silver;
-	border: 2px solid #333;
+	border: 0.125rem solid #333;
 	cursor: pointer;
-	box-shadow: 0 0 8px red;
+	box-shadow: 0 0 0.5rem red;
 }
 
 .lightsaber-slider::-moz-range-thumb {
-	height: 20px;
-	width: 20px;
+	height: 1.25rem;
+	width: 1.25rem;
 	border-radius: 50%;
 	background: silver;
-	border: 2px solid #333;
+	border: 0.125rem solid #333;
 	cursor: pointer;
-	box-shadow: 0 0 8px red;
+	box-shadow: 0 0 0.5rem red;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
 	.nav-container {
 		display: flex;
 		flex-direction: column;
@@ -143,7 +143,7 @@
 		align-items: center;
 		width: 100%;
 		padding: 1rem 0;
-		border-top: 1px solid gold;
+		border-top: 0.0625rem solid gold;
 		background-color: #000;
 	}
 

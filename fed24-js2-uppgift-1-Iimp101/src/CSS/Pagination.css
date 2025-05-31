@@ -4,19 +4,19 @@
 	align-items: center;
 	margin-top: 2rem;
 	padding: 0.5rem 1rem;
-	background-color: #000;
-	border: 2px solid yellow;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 2px solid gold;
 	border-radius: 8px;
 	font-family: 'Orbitron', sans-serif;
 }
 
 .pagination-info {
-	color: yellow;
+	color: gold;
 	font-size: 1.1rem;
 }
 
 .pagination-button {
-	background-color: yellow;
+	background-color: gold;
 	color: #000;
 	border: none;
 	border-radius: 5px;
