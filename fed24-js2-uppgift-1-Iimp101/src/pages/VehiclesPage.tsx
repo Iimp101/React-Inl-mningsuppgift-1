@@ -78,7 +78,7 @@ const VehiclesPage = () => {
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && visibleVehicles.length > 0 && (
-				<ul className="vehicle-list">
+				<ul className={`vehicle-list ${visibleVehicles.length === 1 ? "centered" : ""}`}>
 					{visibleVehicles.map(vehicle => (
 						<li key={vehicle.id}>
 							<Link to={`/vehicles/${vehicle.id}`} className="vehicle-card-link">

@@ -106,6 +106,12 @@
     margin-top: 1rem;
 }
 
+.vehicle-list.centered {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .lightsaber {
     height: 2rem;
     vertical-align: middle;
