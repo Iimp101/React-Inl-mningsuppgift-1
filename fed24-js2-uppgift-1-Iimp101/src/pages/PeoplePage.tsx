@@ -5,6 +5,7 @@ import type { Person } from "../services/StarwarsPedia.types";
 import Pagination from "../components/Pagination";
 import LoadingGif from "../components/LoadingGif";
 import missingImages from "../data/PeopleImages";
+import characterDescriptions from "../data/CharacterDes";
 import lightsaberColor from "../data/PeopleLightsaverColor";
 import getTransparentColor from "../components/TransparentColor";
 import "../CSS/PeoplePage.css";
@@ -113,10 +114,9 @@ const PeoplePage = () => {
 										/>
 										<div className="person-info">
 											<h3>{person.name}</h3>
-											<p><strong>Birth Year:</strong> {person.birth_year}</p>
-											<p><strong>Height:</strong> {person.height} cm</p>
-											<p><strong>Mass:</strong> {person.mass} kg</p>
-											<p><strong>Homeworld:</strong> {person.homeworld.name}</p>
+											<p className="character-description">
+    											{characterDescriptions[person.name] ?? "No description available."}
+  											</p>
 										</div>
 									</div>
 								</Link>

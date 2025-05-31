@@ -44,6 +44,7 @@
 	justify-content: space-between;
 	position: relative;
 	overflow: hidden;
+	height: 25rem;
 }
 
 .person-card:hover {
@@ -93,7 +94,7 @@
 }
 
 .person-info h3 {
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	margin-bottom: 0.5rem;
 	font-size: 1.2rem;
@@ -130,6 +131,13 @@
 	margin: 0 auto;
 }
 
+.character-description {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
 
 @media (max-width: 48rem) {
 	.page-title {
