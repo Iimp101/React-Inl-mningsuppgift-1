@@ -6,7 +6,6 @@
 
 .page-title {
 	color: yellow;
-	text-align: center;
 	margin-bottom: 2rem;
 	font-family: 'Orbitron', sans-serif;
 }
@@ -98,6 +97,15 @@
 	margin: 0;
 }
 
+.search-results-heading {
+	text-align: center;
+	color: yellow;
+	font-family: 'Orbitron', sans-serif;
+	margin-bottom: 1.5rem;
+	font-size: 1.5rem;
+}
+
+
 .with-lightsabers {
 	display: flex;
 	align-items: center;
@@ -117,7 +125,6 @@
 	transform: scaleX(-1);
 }
 
-/* RESPONSIVITET */
 @media (max-width: 768px) {
 	.planet-card {
 		width: 100%;

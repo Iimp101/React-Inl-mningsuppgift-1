@@ -70,7 +70,7 @@ const FilmsPage = () => {
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && films.length > 0 && (
-				<ul className="film-list">
+				<ul className={`film-list${films.length === 1 ? ' centered' : ''}`}>
 					{films.map((film) => (
 						<li key={film.id}>
 							<Link to={`/films/${film.id}`} className="film-card-link">
@@ -82,9 +82,6 @@ const FilmsPage = () => {
 									/>
 									<div className="film-info">
 										<h3>{film.title}</h3>
-										<p><strong>Release:</strong> {film.release_date}</p>
-										<p><strong>Director:</strong> {film.director}</p>
-										<p><strong>Producer:</strong> {film.producer}</p>
 										<p className="opening-crawl">
 											{film.opening_crawl.slice(0, 150)}...
 										</p>

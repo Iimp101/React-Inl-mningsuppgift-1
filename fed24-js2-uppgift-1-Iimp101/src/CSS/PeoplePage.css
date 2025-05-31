@@ -103,7 +103,7 @@
 	font-size: 0.95rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	white-space: normal;
 	margin: 0;
 }
 
@@ -121,6 +121,15 @@
 	height: 2rem;
 	vertical-align: middle;
 }
+
+.film-list.centered {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width: 21rem;
+	margin: 0 auto;
+}
+
 
 @media (max-width: 48rem) {
 	.page-title {

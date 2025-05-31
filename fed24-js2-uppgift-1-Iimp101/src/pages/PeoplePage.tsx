@@ -7,7 +7,7 @@ import LoadingGif from "../components/LoadingGif";
 import missingImages from "../data/PeopleImages";
 import lightsaberColor from "../data/PeopleLightsaverColor";
 import getTransparentColor from "../components/TransparentColor";
-import "../CSS/PeoplesPage.css";
+import "../CSS/PeoplePage.css";
 
 const PeoplePage = () => {
 	const [people, setPeople] = useState<Person[]>([]);
@@ -88,7 +88,7 @@ const PeoplePage = () => {
 			{error && <p className="error-msg">{error}</p>}
 
 			{!isLoading && !error && visiblePeople.length > 0 && (
-				<ul className="people-list">
+				<ul className={`people-list ${visiblePeople.length === 1 ? "centered" : ""}`}>
 					{visiblePeople.map((person) => {
 						const saberColor = lightsaberColor[person.id];
 						const glowColor = saberColor ?? "#cccccc";
