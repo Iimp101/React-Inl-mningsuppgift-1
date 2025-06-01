@@ -21,6 +21,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: 1.5rem;
+	row-gap: 3rem;
 	max-width: 100rem;
 	margin: 0 auto 3rem auto;
 	padding: 1rem;
@@ -117,9 +118,6 @@
 
 .species-info p {
 	font-size: 0.95rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	margin: 0;
 }
 

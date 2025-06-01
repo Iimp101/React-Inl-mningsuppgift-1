@@ -4,8 +4,9 @@ import { getSpeciesList } from "../services/StarwarsPediaAPI";
 import type { Species } from "../services/StarwarsPedia.types";
 import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
-import "../CSS/SpeciesPage.css";
 import speciesImages from "../data/SpeciesImages";
+import speciesDescriptions from "../data/speciesDescriptions";
+import "../CSS/SpeciesPage.css";
 
 const SpeciesPage = () => {
 	const [species, setSpecies] = useState<Species[]>([]);
@@ -82,14 +83,9 @@ const SpeciesPage = () => {
 									/>
 									<div className="species-info">
 										<h3>{specie.name}</h3>
-										<p><strong>Classification:</strong> {specie.classification}</p>
-										<p><strong>Designation:</strong> {specie.designation}</p>
-										<p><strong>Avg Height:</strong> {specie.average_height} cm</p>
-										<p><strong>Lifespan:</strong> {specie.average_lifespan} years</p>
-										<p><strong>Language:</strong> {specie.language}</p>
-										{specie.homeworld && (
-											<p><strong>Homeworld:</strong> {specie.homeworld.name}</p>
-										)}
+										<p className="species-description">
+    										{speciesDescriptions[specie.name]}
+  										</p>
 									</div>
 								</div>
 							</Link>

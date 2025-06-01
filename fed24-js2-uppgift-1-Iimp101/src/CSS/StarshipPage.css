@@ -46,18 +46,18 @@
 .starship-card {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0.0625rem solid gold;
-    border-radius: 0.7500rem;
-    padding: 1rem;
+    border-radius: 0.75rem;
+    padding: 0.75rem; 
     color: #fff;
-    box-shadow: 0 0 0.6250rem #ccc;
+    box-shadow: 0 0 0.625rem #ccc;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 80%;
+    justify-content: flex-start;
+    align-items: center;
     position: relative;
     overflow: hidden;
-    min-height: 31.2500rem;
+    height: 26rem;
     text-align: center;
 }
 
@@ -96,10 +96,11 @@
 
 .starship-image {
     width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: contain;
-    border-radius: 0.6250rem;
+    aspect-ratio: 4 / 3; 
+    object-fit: cover;   
+    border-radius: 0.625rem;
     margin-bottom: 1rem;
+    background-color: #111;
 }
 
 .starship-info {
@@ -119,9 +120,6 @@
 
 .starship-info p {
     font-size: 0.95rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     margin: 0;
 }
 

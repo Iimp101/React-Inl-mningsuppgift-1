@@ -6,6 +6,7 @@ import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
 import starshipImages from "../data/StarshipImages";
 import "../CSS/StarshipPage.css";
+import starshipDescriptions from "../data/starshipDescriptions";
 
 const StarshipPage = () => {
 	const [starships, setStarships] = useState<Starship[]>([]);
@@ -78,14 +79,9 @@ const StarshipPage = () => {
 									<img src={starshipImages[ship.id]} alt={ship.name} className="starship-image" />
 									<div className="starship-info">
 										<h3>{ship.name}</h3>
-										<p><strong>Cost:</strong> {ship.cost_in_credits} credits</p>
-										<p><strong>Length:</strong> {ship.length} m</p>
-										<p><strong>Crew:</strong> {ship.crew}</p>
-										<p><strong>Passengers:</strong> {ship.passengers}</p>
-										<p><strong>Max Speed:</strong> {ship.max_atmosphering_speed} km/h</p>
-										<p><strong>Hyperdrive Rating:</strong> {ship.hyperdrive_rating}</p>
-										<p><strong>Consumables:</strong> {ship.consumables}</p>
-										<p><strong>Films:</strong> {ship.films_count}</p>
+										<p className="starships-description">
+    										{starshipDescriptions[ship.name]}
+  										</p>
 									</div>
 								</div>
 							</Link>
