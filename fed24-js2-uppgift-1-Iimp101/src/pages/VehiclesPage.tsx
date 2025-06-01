@@ -6,6 +6,7 @@ import LoadingGif from "../components/LoadingGif";
 import Pagination from "../components/Pagination";
 import vehicleImages from "../data/VehicleImages";
 import "../CSS/VehiclePage.css";
+import vehicleDescriptions from "../data/vehicleDescriptions";
 
 const VehiclesPage = () => {
 	const [vehicles, setVehicles] = useState<Vehicle[]>([]);
@@ -78,13 +79,9 @@ const VehiclesPage = () => {
 									<img src={vehicleImages[vehicle.id]} alt={vehicle.name} className="vehicle-image" />
 									<div className="vehicle-info">
 										<h3>{vehicle.name}</h3>
-										<p><strong>Model:</strong> {vehicle.model}</p>
-										<p><strong>Class:</strong> {vehicle.vehicle_class}</p>
-										<p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
-										<p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
-										<p><strong>Crew:</strong> {vehicle.crew}</p>
-										<p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed} km/h</p>
-										<p><strong>Films:</strong> {vehicle.films_count}</p>
+										<p className="vehicle-description">
+    										{vehicleDescriptions[vehicle.name]}
+  										</p>
 									</div>
 								</div>
 							</Link>
