@@ -40,7 +40,7 @@ const Navigation = () => {
 			<div className="nav-container">
 				<div className="nav-left">
 					<NavLink to="/" className="starwars-logo" onClick={handleNavLinkClick}>
-						🌌 Star wars DB
+						🌌 Star Wars DB
 					</NavLink>
 				</div>
 

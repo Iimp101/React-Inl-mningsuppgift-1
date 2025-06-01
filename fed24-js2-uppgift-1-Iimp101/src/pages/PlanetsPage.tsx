@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import planetImages from "../data/PlanetImages";
 import lightsaberColor from "../data/PeopleLightsaverColor";
 import getTransparentColor from "../components/TransparentColor";
+import planetDescriptions from "../data/PlanetDes";
 import "../CSS/PlanetPage.css";
 
 const PlanetsPage = () => {
@@ -95,10 +96,10 @@ const PlanetsPage = () => {
 										<img src={planetImages[planet.id]} alt={planet.name} className="planet-image" />
 										<div className="planet-info">
 											<h3>{planet.name}</h3>
-											<p><strong>Climate:</strong> {planet.climate}</p>
-											<p><strong>Terrain:</strong> {planet.terrain}</p>
-											<p><strong>Population:</strong> {planet.population}</p>
-											<p><strong>Gravity:</strong> {planet.gravity}</p>
+											<p className="planet-description">
+    											{planetDescriptions[planet.name] 
+												?? "A mysterious place. No maps. Probably full of lost socks and lightsabers."}
+  											</p>
 										</div>
 									</div>
 								</Link>
