@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "check:0-lint": "eslint .",
+    "check:1-tsc": "tsc --noEmit",
+    "check:2-type-coverage": "type-coverage -p ./tsconfig.app.json --at-least 100",
+    "check": "run-s check:*",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,6 +29,8 @@
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "type-coverage": "^2.29.7",
+    "npm-run-all2": "^8.0.3",
     "globals": "^16.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",

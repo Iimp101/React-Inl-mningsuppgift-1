@@ -122,13 +122,21 @@
 }
 
 @media (max-width: 48rem) {
+
 	.species-page {
 		padding: 1rem;
+	}
+
+	.species-image {
+		object-fit: contain;
+		height: auto;
+		max-height: 20rem;
 	}
 
 	.species-list {
 		gap: 1rem;
 		padding: 0.5rem;
+		row-gap: 4rem;
 	}
 
 	.species-list li {

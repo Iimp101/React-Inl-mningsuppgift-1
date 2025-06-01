@@ -5,7 +5,7 @@ const characterDescriptions: Record<string, string> = {
     "Darth Vader": "Once the Jedi Knight Anakin Skywalker, now a powerful Sith Lord and the Emperor's right hand.",
     "Leia Organa": "Princess of Alderaan, leader of the Rebel Alliance, and Luke Skywalker's sister.",
     "Owen Lars": "Luke's adoptive uncle who lives on Tatooine.",
-    "Beru Whitesun Lars": "Luke's adoptive aunt and Owen's wife.",
+    "Beru Whitesun lars": "Luke's adoptive aunt and Owen's wife.",
     "R5-D4": "An astromech droid known for his faulty motivator.",
     "Biggs Darklighter": "A pilot from Tatooine and friend of Luke Skywalker.",
     "Obi-Wan Kenobi": "A Jedi Master who trains both Anakin and Luke Skywalker, known for his wisdom and skill.",

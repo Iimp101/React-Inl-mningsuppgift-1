@@ -26,10 +26,10 @@
 }
 
 .planet-card {
-	flex: 0 0 17.5rem;
 	width: 17.5rem;
 	text-align: center;
 	background-color: rgba(0, 0, 0, 0.8);
+	box-sizing: border-box;
 	border: 0.0625rem solid gold;
 	border-radius: 0.75rem;
 	padding: 1rem;
@@ -41,7 +41,7 @@
 	justify-content: flex-start;
 	position: relative;
 	overflow: hidden;
-	min-height: 20rem;
+	min-height: 29rem;
 }
 
 .planet-card:hover {
@@ -77,11 +77,10 @@
 
 .planet-image {
 	width: 100%;
-	height: 15.625rem;
+	height: 20rem;
 	object-fit: cover;
 	border-radius: 0.625rem;
 	margin-bottom: 1rem;
-	height: 12rem;
 }
 
 .planet-info h3 {
@@ -93,9 +92,6 @@
 
 .planet-info p {
 	font-size: 1rem;
-/* 	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap; */
 	margin: 0;
 }
 
@@ -115,15 +111,17 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
 	.planet-card {
 		width: 100%;
 		max-width: 20rem;
+		margin: 0 auto;
+		min-height: 24rem;
 	}
 
 	.planet-list {
-		gap: 1rem;
-		padding: 0.5rem;
+		justify-content: center;
+		padding: 1rem;
 	}
 
 	.planet-image {
@@ -135,12 +133,33 @@
 	}
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
+	.planet-list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.planet-card {
+		width: 100%;
+		max-width: 18rem;
+		margin: 0 auto;
+		max-height: 10rem;
+	}
+
 	.planet-info h3 {
 		font-size: 1rem;
+		text-align: center;
 	}
 
 	.planet-info p {
 		font-size: 0.9rem;
+		text-align: center;
 	}
 }
+
+

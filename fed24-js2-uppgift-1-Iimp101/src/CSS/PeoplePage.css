@@ -31,15 +31,15 @@
 }
 
 .people-list.centered {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0; 
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 0;
 }
 
 .people-list.centered li {
-  max-width: 15.625rem;
-  width: 100%;
+	max-width: 15.625rem;
+	width: 100%;
 }
 
 .person-card {
@@ -53,10 +53,10 @@
 	transition: transform 0.2s, box-shadow 0.2s;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	position: relative;
 	overflow: hidden;
-	height: 25rem;
+	min-height: 33rem;
 }
 
 .person-card:hover {
@@ -92,17 +92,17 @@
 
 .person-image {
 	width: 100%;
-	height: 15.625rem;
+	height: 24rem;
 	object-fit: cover;
 	border-radius: 0.625rem;
 	margin-bottom: 1rem;
 }
 
 .person-info {
-	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	flex-grow: 1;
 }
 
 .person-info h3 {
@@ -120,34 +120,53 @@
 	margin: 0;
 }
 
-
-.film-list.centered {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	max-width: 21rem;
-	margin: 0 auto;
-}
-
 .character-description {
-  margin-top: 0.5rem;
-  font-style: italic;
-  color: #ccc;
-  font-size: 0.95rem;
-  line-height: 1.4;
+	margin-top: 0.5rem;
+	font-style: italic;
+	color: #ccc;
+	font-size: 0.95rem;
+	line-height: 1.4;
 }
 
 @media (max-width: 48rem) {
-	.page-title {
-		font-size: 1.6rem;
-	}
 	.people-list {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+	}
+
+	.people-list li {
+		width: 100%;
+		max-width: 18rem;
+	}
+	.person-card {
+		min-height: 26rem;
+	}
+	.person-image {
+		height: 14rem;
+		object-fit: contain;         
+		object-position: center;
 	}
 	.person-info h3 {
 		font-size: 1.1rem;
 	}
 	.person-info p {
 		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 30rem) {
+	.page-title {
+		font-size: 1.5rem;
+	}
+	.person-card {
+		min-height: 25rem;
+	}
+	.person-image {
+		height: 12rem;
+		object-fit: contain;         
+		object-position: center;
 	}
 }
