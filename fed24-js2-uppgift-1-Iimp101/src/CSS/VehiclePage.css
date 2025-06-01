@@ -99,20 +99,69 @@
 }
 
 @media (max-width: 48rem) {
-    .vehicle-list {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-        gap: 1rem;
-    }
+  .vehicle-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
 
-    .vehicle-card {
-        padding: 1rem 0.75rem;
-    }
+  .vehicle-card {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
+    padding: 1rem;
+  }
 
-    .vehicle-info h3 {
-        font-size: 1rem;
-    }
+  .vehicle-image {
+    height: auto;
+    max-height: 12rem;
+    object-fit: contain;
+  }
 
-    .vehicle-info p {
-        font-size: 0.95rem;
-    }
+  .vehicle-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .vehicle-info p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
 }
+
+@media (max-width: 30rem) {
+  .vehicles-page {
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .vehicle-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .vehicle-card {
+    width: 100%;
+    max-width: 18rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .vehicle-info h3 {
+    font-size: 1rem;
+  }
+
+  .vehicle-info p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+

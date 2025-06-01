@@ -1,4 +1,4 @@
-.species-details-page {
+.planet-details-page {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -14,34 +14,29 @@
 	flex-wrap: wrap;
 }
 
-.species-details-img {
+.planet-details-img {
 	width: 17.5rem;
 	height: auto;
 	border-radius: 0.625rem;
 	object-fit: cover;
-	animation: speciesGlow 2s infinite ease-in-out;
+	animation: planetGlow 2s infinite ease-in-out;
 }
 
-@keyframes speciesGlow {
-	0% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
-	50% {
-		box-shadow: 0 0 1.875rem #ffe81f;
-	}
-	100% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
+@keyframes planetGlow {
+	0% { box-shadow: 0 0 0.9375rem #ffe81f; }
+	50% { box-shadow: 0 0 1.875rem #ffe81f; }
+	100% { box-shadow: 0 0 0.9375rem #ffe81f; }
 }
 
-.species-details-info {
+.planet-details-info {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	width: 100%;
 }
 
-.species-details-header {
+.planet-details-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -50,19 +45,22 @@
 	gap: 1rem;
 }
 
-.species-details-info h1 {
+.planet-details-info h1 {
 	color: #ffe81f;
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
+	text-align: left;
 }
 
-.species-details-info p {
+.planet-details-info p {
 	margin: 0.5rem 0;
 	font-size: 1rem;
 	line-height: 1.6;
 	border-bottom: 1px solid #333;
 	padding-bottom: 0.5rem;
+	text-align: left;
+	width: 100%;
 }
 
 .back-button {
@@ -74,6 +72,7 @@
 	cursor: pointer;
 	font-family: 'Orbitron', sans-serif;
 	transition: background 0.3s ease, color 0.3s ease;
+	align-self: flex-start;
 }
 
 .back-button:hover {
@@ -82,27 +81,27 @@
 }
 
 @media (max-width: 48rem) {
-	.species-details-page {
+	.planet-details-page {
 		flex-direction: column;
 		padding: 1rem;
 	}
 
-	.species-details-img {
+	.planet-details-img {
 		width: 100%;
 		max-width: 20rem;
 		margin: 0 auto 1.5rem auto;
 	}
 
-	.species-details-header {
+	.planet-details-header {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 
-	.species-details-info h1 {
+	.planet-details-info h1 {
 		font-size: 1.6rem;
 	}
 
-	.species-details-info p {
+	.planet-details-info p {
 		font-size: 0.95rem;
 	}
 }
