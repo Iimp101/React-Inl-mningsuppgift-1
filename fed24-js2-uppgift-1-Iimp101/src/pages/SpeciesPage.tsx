@@ -76,11 +76,7 @@ const SpeciesPage = () => {
 						<li key={specie.id}>
 							<Link to={`/species/${specie.id}`} className="species-card-link">
 								<div className="species-card">
-									<img
-										src={speciesImages[specie.id]}
-										alt={specie.name}
-										className="species-image"
-									/>
+									<img src={speciesImages[specie.id]} alt={specie.name} className="species-image"/>
 									<div className="species-info">
 										<h3>{specie.name}</h3>
 										<p className="species-description">

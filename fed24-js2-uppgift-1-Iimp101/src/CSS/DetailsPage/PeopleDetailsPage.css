@@ -7,14 +7,14 @@
 	max-width: 75rem;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 0.0625rem solid #ffe81f;
+	border: 0.0625rem solid gold;
 	border-radius: 0.625rem;
 	box-shadow: 0 0 1.25rem rgba(255, 232, 31, 0.3);
 	color: #fff;
-	flex-wrap: wrap;
 }
 
 .person-details-img {
+	width: 50%;
 	width: 17.5rem;
 	height: auto;
 	border-radius: 0.625rem;
@@ -23,14 +23,11 @@
 }
 
 @keyframes pulseGlow {
-	0% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
+	0% { box-shadow: 0 0 0.9375rem gold;
 	}
-	50% {
-		box-shadow: 0 0 1.875rem #ffe81f;
+	50% { box-shadow: 0 0 1.875rem gold;
 	}
-	100% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
+	100% { box-shadow: 0 0 0.9375rem gold;
 	}
 }
 
@@ -51,7 +48,7 @@
 }
 
 .person-details-info h1 {
-	color: #ffe81f;
+	color: gold;
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
@@ -66,7 +63,7 @@
 }
 
 .person-details-info a {
-	color: #ffe81f;
+	color: gold;
 	text-decoration: underline;
 	transition: color 0.3s ease;
 }
@@ -77,8 +74,8 @@
 
 .back-button {
 	background-color: transparent;
-	border: 0.125rem solid #ffe81f;
-	color: #ffe81f;
+	border: 0.125rem solid gold;
+	color: gold;
 	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -87,7 +84,7 @@
 }
 
 .back-button:hover {
-	background-color: #ffe81f;
+	background-color: gold;
 	color: black;
 }
 
@@ -96,7 +93,7 @@
 }
 
 .details-section h3 {
-	color: #ffe81f;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	font-size: 1.2rem;
 	margin-bottom: 0.5rem;
@@ -126,8 +123,8 @@
 
 .details-section a:hover {
 	color: black;
-	background-color: #ffe81f;
-	box-shadow: 0 0 0.5rem #ffe81f;
+	background-color: gold;
+	box-shadow: 0 0 0.5rem gold;
 	border-radius: 0.25rem;
 	padding: 0.2rem 0.5rem;
 }

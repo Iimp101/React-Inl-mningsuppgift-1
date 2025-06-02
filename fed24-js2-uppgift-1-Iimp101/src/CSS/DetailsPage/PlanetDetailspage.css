@@ -7,7 +7,7 @@
 	max-width: 75rem;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 0.0625rem solid #ffe81f;
+	border: 0.0625rem solid  gold;
 	border-radius: 0.625rem;
 	box-shadow: 0 0 1.25rem rgba(255, 232, 31, 0.3);
 	color: #fff;
@@ -16,23 +16,19 @@
 }
 
 .planet-details-img {
-	width: 17.5rem;
+	width: 40%;
+	min-width: 18rem;
 	height: auto;
 	border-radius: 0.625rem;
 	object-fit: cover;
 	animation: planetGlow 2s infinite ease-in-out;
+	flex-shrink: 0;
 }
 
 @keyframes planetGlow {
-	0% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
-	50% {
-		box-shadow: 0 0 1.875rem #ffe81f;
-	}
-	100% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
+	0% { box-shadow: 0 0 0.9375rem gold; }
+	50% { box-shadow: 0 0 1.875rem gold; }
+	100% { box-shadow: 0 0 0.9375rem gold; }
 }
 
 .planet-details-info {
@@ -47,15 +43,15 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1rem;
 	margin-bottom: 1rem;
 	flex-wrap: wrap;
-	gap: 1rem;
 }
 
 .planet-details-info h1 {
-	color: #ffe81f;
+	color: gold;
 	font-size: 2rem;
-	margin-bottom: 1rem;
+	margin: 0;
 	font-family: 'Orbitron', sans-serif;
 }
 
@@ -69,8 +65,8 @@
 
 .back-button {
 	background-color: transparent;
-	border: 0.125rem solid #ffe81f;
-	color: #ffe81f;
+	border: 0.125rem solid gold;
+	color: gold;
 	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -79,51 +75,47 @@
 }
 
 .back-button:hover {
-	background-color: #ffe81f;
+	background-color: gold;
 	color: black;
 }
 
 @media (max-width: 48rem) {
 	.planet-details-page {
 		flex-direction: column;
-		/* align-items: center; */
-		padding: 1rem;
+		align-items: stretch;
+		padding: 1.5rem 1rem;
 	}
 
 	.planet-details-img {
 		width: 100%;
-		max-width: 20rem;
+		max-width: 22rem;
+		margin: 0 auto 1.5rem auto;
 	}
 
 	.planet-details-header {
-		flex-direction: column;
-		align-items: flex-start;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+@media (max-width: 30rem) {
+	.planet-details-header {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.planet-details-info h1 {
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 	}
 
 	.planet-details-info p {
 		font-size: 0.95rem;
 	}
-}
 
-@media (max-width: 30rem) {
-	.planet-details-info h1 {
-		font-size: 1.4rem;
-		text-align: center;
-	}
-
-	.planet-details-info p {
-		font-size: 0.9rem;
-		text-align: center;
-		text-align: left;
-	}
 	.back-button {
-		width: auto;
-		text-align: left;
-		align-self: flex-start;
+		font-size: 0.9rem;
+		padding: 0.4rem 0.8rem;
 	}
-
 }

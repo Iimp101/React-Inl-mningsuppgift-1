@@ -7,35 +7,36 @@
 	max-width: 75rem;
 	margin: 0 auto;
 	background-color: rgba(0, 0, 0, 0.85);
-	border: 0.125rem solid var(--border-color, gold);
+	border: 0.0625rem solid gold;
 	border-radius: 0.625rem;
-	box-shadow: 0 0 1.25rem var(--border-shadow, rgba(255, 215, 0, 0.3));
+	box-shadow: 0 0 1.25rem rgba(255, 232, 31, 0.3);
 	color: #fff;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 }
 
 .starship-details-img {
-	width: 18.75rem;
+	width: 100%;
 	height: auto;
 	border-radius: 0.625rem;
 	object-fit: cover;
 	animation: starshipGlow 2s infinite ease-in-out;
+	display: block;
 }
 
 @keyframes starshipGlow {
 	0% {
-		box-shadow: 0 0 0.625rem var(--border-color, gold);
+		box-shadow: 0 0 0.9375rem #ffe81f;
 	}
 	50% {
-		box-shadow: 0 0 1.5625rem var(--border-color, gold);
+		box-shadow: 0 0 1.875rem #ffe81f;
 	}
 	100% {
-		box-shadow: 0 0 0.625rem var(--border-color, gold);
+		box-shadow: 0 0 0.9375rem #ffe81f;
 	}
 }
 
 .starship-details-info {
-	flex: 1;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -51,7 +52,7 @@
 }
 
 .starship-details-info h1 {
-	color: var(--border-color, gold);
+	color: gold;
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-family: 'Orbitron', sans-serif;
@@ -61,14 +62,14 @@
 	margin: 0.5rem 0;
 	font-size: 1rem;
 	line-height: 1.6;
-	border-bottom: 0,0625rem solid #333;
+	border-bottom: 0.0625rem solid #333;
 	padding-bottom: 0.5rem;
 }
 
 .back-button {
 	background-color: transparent;
-	border: 0.125rem solid var(--border-color, gold);
-	color: var(--border-color, gold);
+	border: 0.125rem solid gold;
+	color: gold;
 	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -77,7 +78,7 @@
 }
 
 .back-button:hover {
-	background-color: var(--border-color, gold);
+	background-color: gold;
 	color: black;
 }
 
@@ -86,11 +87,11 @@
 }
 
 .details-section h3 {
-	color: var(--border-color, gold);
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	font-size: 1.2rem;
 	margin-bottom: 0.5rem;
-	border-bottom: 0,0625rem solid #333;
+	border-bottom: 0.0625rem solid #333;
 	padding-bottom: 0.3rem;
 }
 
@@ -105,7 +106,7 @@
 }
 
 .details-section a {
-	color: gold;
+	color: #fff;
 	text-decoration: none;
 	font-weight: 500;
 	font-size: 1rem;
@@ -115,8 +116,9 @@
 }
 
 .details-section a:hover {
-	color: #ffffff;
-	text-shadow: 0 0 0.5rem var(--border-color, gold);
+	color: black;
+	background-color: gold;
+	box-shadow: 0 0 0.5rem gold;
 }
 
 .link-icon {
@@ -132,10 +134,24 @@
 
 	.starship-details-img {
 		width: 100%;
+		max-width: 20rem;
+		margin: 0 auto 1.5rem auto;
+	}
+
+	.starship-details-info {
+		width: 100%;
 	}
 
 	.starship-details-header {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.starship-details-info h1 {
+		font-size: 1.6rem;
+	}
+
+	.starship-details-info p {
+		font-size: 0.95rem;
 	}
 }
