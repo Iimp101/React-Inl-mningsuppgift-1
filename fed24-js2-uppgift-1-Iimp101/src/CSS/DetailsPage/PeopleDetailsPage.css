@@ -23,12 +23,9 @@
 }
 
 @keyframes pulseGlow {
-	0% { box-shadow: 0 0 0.9375rem gold;
-	}
-	50% { box-shadow: 0 0 1.875rem gold;
-	}
-	100% { box-shadow: 0 0 0.9375rem gold;
-	}
+	0% { box-shadow: 0 0 0.9375rem gold; }
+	50% { box-shadow: 0 0 1.875rem gold; }
+	100% { box-shadow: 0 0 0.9375rem gold; }
 }
 
 .person-details-info {

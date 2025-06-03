@@ -29,15 +29,9 @@
 }
 
 @keyframes vehicleGlow {
-	0% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
-	50% {
-		box-shadow: 0 0 1.875rem #ffe81f;
-	}
-	100% {
-		box-shadow: 0 0 0.9375rem #ffe81f;
-	}
+	0% { box-shadow: 0 0 0.9375rem gold; }
+	50% { box-shadow: 0 0 1.875rem gold; }
+	100% { box-shadow: 0 0 0.9375rem gold; }
 }
 
 .vehicle-details-info {

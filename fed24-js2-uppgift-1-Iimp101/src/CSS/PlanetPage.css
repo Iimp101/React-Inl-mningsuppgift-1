@@ -5,7 +5,7 @@
 }
 
 .page-title {
-	color: yellow;
+	color: gold;
 	margin-bottom: 2rem;
 	font-family: 'Orbitron', sans-serif;
 }
@@ -84,7 +84,7 @@
 }
 
 .planet-info h3 {
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	margin-bottom: 0.5rem;
 	font-size: 1.2rem;
@@ -97,7 +97,7 @@
 
 .search-results-heading {
 	text-align: center;
-	color: yellow;
+	color: gold;
 	font-family: 'Orbitron', sans-serif;
 	margin-bottom: 1.5rem;
 	font-size: 1.5rem;

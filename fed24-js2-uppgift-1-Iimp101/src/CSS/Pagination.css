@@ -33,7 +33,7 @@
 }
 
 .pagination-button:hover:not(:disabled) {
-	background-color: #fff700;
+	background-color: gold;
 }
 
 .pagination-button:disabled {
